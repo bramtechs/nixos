@@ -16,6 +16,7 @@
       "security.workspace.trust.enabled" = false;
       "git.openRepositoryInParentFolders" = "always";
       "cmake.configureOnOpen"= true;
+      "extensions.ignoreRecommendations"= true;
       "git.autofetch"= true;
       "[javascript]" = {
         "editor.defaultFormatter"= "esbenp.prettier-vscode";
