@@ -7,10 +7,10 @@
     enableUpdateCheck = false;
     userSettings = {
       "files.autoSave" = "onFocusChange";
-      "workbench.colorTheme" = "Gruvbox Dark Medium";
+      #"workbench.colorTheme" = "Gruvbox Dark Medium";
       "editor.minimap.enabled" = false;
       "editor.lineNumbers" = "off";
-      "window.zoomLevel" = 2;
+      "window.zoomLevel" = 1;
       "nix.enableLanguageServer" = true;
       "nix.serverPath" = "rnix-lsp";
       "security.workspace.trust.enabled" = false;
