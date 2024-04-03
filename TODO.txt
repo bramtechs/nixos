@@ -1,0 +1,6 @@
+make qt apps dark
+make i3 font bigger
+remap i3 keys
+setup resilio
+switch to other terminal emulator that can be configured
+setup flatpak for steam

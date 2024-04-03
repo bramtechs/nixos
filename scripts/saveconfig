@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+pushd "$(dirname $0)/.."
+
+rsync -a --progress --delete ~/.config/JetBrains .config/
+
+popd

@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+set -e
+
+pushd $(dirname $0)
+sudo nixos-rebuild switch || exit 1;
+git add ..
+git commit -m "nixos: automatic commit"
+echo "Added nixos commit"
+popd
+
