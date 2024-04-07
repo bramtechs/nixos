@@ -68,6 +68,8 @@
     fontDir.enable = true;
     enableGhostscriptFonts = true;
     packages = with pkgs; [
+      font-awesome
+      alacritty
       anonymousPro
       corefonts
       dejavu_fonts
@@ -113,6 +115,7 @@
           ./bram.nix
           ./bram-i3.nix
           ./bram-nvim.nix
+          ./bram-alacritty.nix
           ./bram-vscode.nix
           ./bram-firefox.nix
         ];

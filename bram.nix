@@ -54,7 +54,7 @@
     userEmail = "contact@doomhowl-interactive.com";
     ignores = [ "*~" "*ghcid.txt" ];
     extraConfig = {
-      core.editor = "nvim";
+      core.editor = "vi";
       # Allow keybase git protocol.
       protocol.keybase.allow = "always";
     };
