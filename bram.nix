@@ -50,8 +50,8 @@
   programs.git = {
     package = pkgs.gitAndTools.gitFull;
     enable = true;
-    userName = "brambasiel";
-    userEmail = "contact@doomhowl-interactive.com";
+    userName = "bramtechs";
+    userEmail = "bramtech@telenet.be";
     ignores = [ "*~" "*ghcid.txt" ];
     extraConfig = {
       core.editor = "vi";

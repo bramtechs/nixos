@@ -121,15 +121,6 @@
         ];
   };
 
-  systemd.user.services.start-apps = {
-    description = "start apps";
-    serviceConfig.PassEnvironment = "DISPLAY";
-    script = ''
-      discord &
-    '';
-    wantedBy = [ "multi-user.target" ]; # starts after login
-  };
-
   # nsa backdoor
   nixpkgs.config.permittedInsecurePackages = [
                   "nix-2.15.3"
