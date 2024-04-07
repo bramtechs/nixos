@@ -49,7 +49,7 @@ let mapleader = " "
 noremap j gj
 noremap k gk
 
-nnoremap <S-F2> :tabedit ~/dev/nixos/nixos/nvim.vim<CR>
+nnoremap <S-F2> :tabedit ~/dev/nixos/nvim.vim<CR>
 nnoremap <leader><F2> :so $MYVIMRC<CR>
 
 nnoremap <F8> :tabedit ~/TODO.md<CR>
