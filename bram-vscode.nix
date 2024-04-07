@@ -27,6 +27,7 @@
       jdinhlife.gruvbox
       esbenp.prettier-vscode
       ms-vscode.cpptools
+      vadimcn.vscode-lldb
     ];
   };
 

@@ -26,6 +26,10 @@
     docker-compose
     codeblocks
 
+    # creation
+    blender
+    obs-studio
+
     # deps
     nodejs_21
 
