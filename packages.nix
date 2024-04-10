@@ -8,6 +8,8 @@
   # system packages
   environment.systemPackages = with pkgs; [
 
+    vmware-workstation
+    
     # CODING
     git
     neovim
