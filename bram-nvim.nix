@@ -2,6 +2,14 @@
 
 let
   nvimConfig = lib.readFile ./nvim.vim;
+  fromGitHub = ref: repo: pkgs.vimUtils.buildVimPlugin {
+      pname = "${lib.strings.sanitizeDerivationName repo}";
+      version = ref;
+      src = builtins.fetchGit {
+        url = "https://github.com/${repo}.git";
+        ref = ref;
+      };
+  };
 in
 {
   programs.neovim = {
@@ -16,49 +24,9 @@ in
       lsp-zero-nvim
       vim-auto-save
 
-      nvim-treesitter
+      nvim-treesitter.withAllGrammars
 
-      xml
-      yaml
-      zig
-      vue
-      vala
-      v
-      typescript
-      tsx
-      toml
-      svelte
-      cpp
-      c
-      csv
-      css
-      cmake
-      c_sharp
-      json
-      javascript
-      d
-      dockerfile
-      gdscript
-      lua
-      rust
-      php
-      odin
-      objc
-      java
-      html
-      glsl
-      bash
-      ocaml
-      latex
-      python
-      pascal
-      nix
-      kotlin
-      haskell
-      groovy
-      markdown
-      janet_simple
-
+      (fromGitHub "HEAD" "janet-lang/janet.vim")
     ];
     viAlias = true;
     vimAlias = true;
