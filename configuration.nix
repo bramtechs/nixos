@@ -201,12 +201,14 @@
         };
       };
     };
+    spiceUSBRedirection.enable = true;
+    docker.enable = true;
   };
 
-  programs.virt-manager.enable = true;
-  virtualisation.docker.enable = true;
-
-  programs.dconf.enable = true;
+  programs = {
+    virt-manager.enable = true;
+    dconf.enable = true;
+  };
 
   # Open ports in the firewall.
   networking.firewall.allowedTCPPorts = [ 22 ];
@@ -214,6 +216,7 @@
   networking.firewall.enable = true;
 
   system.fsPackages = [ pkgs.sshfs ];
+
   fileSystems =
     let
       # Use the user's gpg-agent session to query
