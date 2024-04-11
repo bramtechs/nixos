@@ -1,8 +1,8 @@
 { config, lib, pkgs, callPackage, ... }:
 
-let 
+let
   nvimConfig = lib.readFile ./nvim.vim;
-in 
+in
 {
   programs.neovim = {
     enable = true;
@@ -15,7 +15,6 @@ in
 
       vimPlugins.lsp-zero-nvim
       vimPlugins.vim-auto-save
-      vimPlugins.vimsence
 
       # List of additional treesitter parsers (still not learning Nix language)
       vimPlugins.nvim-treesitter
