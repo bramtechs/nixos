@@ -91,6 +91,8 @@
   networking = {
       hostName = "doomhowl"; # Define your hostname.
       networkmanager.enable = true;
+      wireless.enable = false;
+      nameservers = [ "1.1.1.1" "1.0.0.1" ]
   };
 
   console = {
