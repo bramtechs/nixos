@@ -29,7 +29,6 @@
     codeblocks
 
     # creation
-    blender
     obs-studio
 
     # deps

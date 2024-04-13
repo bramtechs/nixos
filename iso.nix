@@ -5,7 +5,7 @@
 
     imports = [
         <nixpkgs/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix>
-        "${builtins.getEnv "PWD"}/configuration.nix"
+        ./configuration.nix
     ];
 
     # use fastest compression

@@ -7,7 +7,7 @@
     enableUpdateCheck = false;
     userSettings = {
       "files.autoSave" = "onFocusChange";
-      #"workbench.colorTheme" = "Gruvbox Dark Medium";
+      "workbench.colorTheme" = "Gruvbox Dark Medium";
       "editor.minimap.enabled" = false;
       "editor.lineNumbers" = "off";
       "window.zoomLevel" = 1;
@@ -27,6 +27,7 @@
       jdinhlife.gruvbox
       esbenp.prettier-vscode
       ms-vscode.cpptools
+      ms-vscode.cmake-tools
       vadimcn.vscode-lldb
     ];
   };
