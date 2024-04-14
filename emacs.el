@@ -22,8 +22,12 @@
 (transient-mark-mode 1)               ;; No region when it is not highlighted
 (setq cua-keep-region-after-copy t) 
 
-(ac-config-default)
+;; markdown preview
+(custom-set-variables
+ '(markdown-command "pandoc"))
 
+;; autocomplete
+(ac-config-default)
 
 (load-theme 'gruber-darker t)
 
@@ -32,9 +36,29 @@
       '((c++-mode . "stroustrup")
         (java-mode . "java")))
 
-;; keybindings
-(global-set-key (kbd "<f5>") 'compile)
+;; compiling
+(defun find-closest-makefile ()
+  "Find the closest Makefile starting from the current directory."
+  (let ((dir (locate-dominating-file default-directory "Makefile")))
+    (if dir
+        (concat (file-name-as-directory dir) "Makefile")
+      nil)))
+
+(defun run-makefile (&optional task)
+  "Run the closest Makefile found from the current directory."
+  (interactive)
+  (let ((makefile (find-closest-makefile)))
+    (if makefile
+        (progn
+          (compile (concat "make -f " makefile " -b " task))
+          (message "Makefile %s is being run." makefile))
+      (message "No Makefile found."))))
+
+;; keybindings (lambdas everywhere cuz elisp skill issue)
 (global-set-key (kbd "<f2>") (lambda () (interactive) (find-file "~/dev/nixos/emacs.el")))
+(global-set-key (kbd "<f5>") `run-makefile)
+(global-set-key (kbd "<f6>") (lambda () (interactive) (run-makefile "run")))
+(global-set-key (kbd "<f7>") 'compile)
 
 ;; elcord (larp-mode)
 (elcord-mode)

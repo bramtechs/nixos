@@ -68,6 +68,7 @@
     hollywood
     yt-dlp
     playerctl
+    pandoc
 
     # i3
     nitrogen

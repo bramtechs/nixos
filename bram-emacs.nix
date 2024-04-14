@@ -9,18 +9,29 @@ in
     package = pkgs.emacs-gtk;
     extraConfig = emacsConfig;
     extraPackages = epkgs: [
-        epkgs.jetbrains-darcula-theme
-        epkgs.obsidian-theme
-        epkgs.oblivion-theme
-        epkgs.bongo
-        epkgs.janet-mode
-        epkgs.git
-  	    epkgs.nix-mode
-	      epkgs.auto-complete
-        epkgs.vlc
-        epkgs.elcord
-        epkgs.gruber-darker-theme
-        epkgs.fsharp-mode
+      
+      # themes
+      epkgs.jetbrains-darcula-theme
+      epkgs.obsidian-theme
+      epkgs.oblivion-theme
+      epkgs.gruber-darker-theme
+
+      # language modes
+      epkgs.janet-mode
+      epkgs.fsharp-mode      
+  	  epkgs.nix-mode
+      epkgs.markdown-mode
+
+      # utils
+	    epkgs.auto-complete
+      epkgs.markdown-preview-mode
+      epkgs.git
+
+      # distractions
+      epkgs.bongo
+      epkgs.vlc
+      epkgs.elcord
+
     ];
   };
 }
