@@ -18,15 +18,27 @@ in
 
       # language modes
       epkgs.janet-mode
-      epkgs.fsharp-mode      
+      epkgs.lua-mode
+      epkgs.d-mode
+      epkgs.go-mode
+      epkgs.rust-mode
+      epkgs.make-color
+      epkgs.fsharp-mode
+      epkgs.csharp-mode
   	  epkgs.nix-mode
       epkgs.markdown-mode
+      epkgs.shader-mode
+      epkgs.shader-mode
+      epkgs.cmake-mode
+      epkgs.python-mode
+      epkgs.typescript-mode
 
       # utils
 	    epkgs.auto-complete
       epkgs.markdown-preview-mode
       epkgs.git
       epkgs.rainbow-mode
+      epkgs.pdf-tools
 
       # distractions
       epkgs.bongo

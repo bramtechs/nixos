@@ -29,11 +29,16 @@
 ;; autocomplete
 (ac-config-default)
 
+;; pdf support
+(pdf-tools-install)
+
+;; set theme
 (load-theme 'gruber-darker t)
 
 ;; c-style language formatting
 (setq c-default-style
       '((c++-mode . "stroustrup")
+        (c-mode . "stroustrup")
         (java-mode . "java")))
 
 ;; compiling
@@ -69,8 +74,12 @@
 (defun edit-config ()
   (find-file "~/dev/nixos/emacs.el"))
 
+(defun edit-nix-config ()
+  (find-file "~/dev/nixos/bram-emacs.nix"))
+
 ;; keybindings
 (global-set-key (kbd "<f2>") (lambda () (interactive) (edit-config)))
+(global-set-key (kbd "S-<f2>") (lambda () (interactive) (edit-nix-config)))
 (global-set-key (kbd "<f5>") (lambda () (interactive) (build-project)))
 (global-set-key (kbd "<f6>") (lambda () (interactive) (run-project)))
 (global-set-key (kbd "<f7>") 'compile)
@@ -79,9 +88,11 @@
 (global-set-key (kbd "C-+") 'text-scale-increase)
 (global-set-key (kbd "C--") 'text-scale-decrease)
 
-
 ;; elcord (larp-mode)
 (elcord-mode)
+(setq elcord-icon-base '"https://raw.githubusercontent.com/bramtechs/elcord/master/icons/")
+(setq elcord-mode-icon-alist (append elcord-mode-icon-alist '((janet-mode . "janet-mode_icon"))))
+
 (setq elcord-display-elapsed 'f)
 (setq elcord-quiet 't)
 (setq elcord-refresh-rate 7)
