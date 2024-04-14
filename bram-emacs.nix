@@ -1,6 +1,6 @@
 { config, lib, pkgs, callPackage, ... }:
 
-let 
+let
     emacsConfig = lib.readFile ./emacs.el;
 in
 {
@@ -13,11 +13,13 @@ in
         epkgs.obsidian-theme
         epkgs.oblivion-theme
         epkgs.bongo
-
-	    epkgs.nix-mode
-	    epkgs.auto-complete
+        epkgs.janet-mode
+        epkgs.git
+  	    epkgs.nix-mode
+	      epkgs.auto-complete
         epkgs.vlc
         epkgs.elcord
+        epkgs.gruber-darker-theme
         epkgs.fsharp-mode
     ];
   };
