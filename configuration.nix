@@ -119,6 +119,7 @@
           ./bram-nvim.nix
           ./bram-alacritty.nix
           ./bram-vscode.nix
+          ./bram-emacs.nix
           ./bram-firefox.nix
         ];
   };

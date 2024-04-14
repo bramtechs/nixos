@@ -18,13 +18,13 @@
     firefox
     keepassxc
 
+    gnome.gnome-font-viewer
     adapta-gtk-theme
     ubuntu_font_family
     ubuntu-themes
 
     gradle
     jdk17
-    dotnet-sdk_8
 
     flameshot
     gnome.nautilus
