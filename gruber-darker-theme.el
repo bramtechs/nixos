@@ -1,4 +1,4 @@
-;;; gruber-darker-theme.el --- Gruber Darker color theme for Emacs 24.
+;; gruber-darker-theme.el --- Gruber Darker color theme for Emacs 24.
 
 ;; Copyright (C) 2013-2016 Alexey Kutepov a.k.a rexim
 ;; Copyright (C) 2009-2010 Jason R. Blevins
@@ -54,7 +54,7 @@
       (gruber-darker-red       "#f43841")
       (gruber-darker-red+1     "#ff4f58")
       (gruber-darker-green     "#73c936")
-      (gruber-darker-yellow    "#ffdd33")
+      (gruber-darker-yellow    "#ffbb33")
       (gruber-darker-brown     "#cc8c3c")
       (gruber-darker-quartz    "#95a99f")
       (gruber-darker-niagara-2 "#303540")

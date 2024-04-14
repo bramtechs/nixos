@@ -26,6 +26,7 @@ in
 	    epkgs.auto-complete
       epkgs.markdown-preview-mode
       epkgs.git
+      epkgs.rainbow-mode
 
       # distractions
       epkgs.bongo

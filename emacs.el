@@ -44,21 +44,32 @@
         (concat (file-name-as-directory dir) "Makefile")
       nil)))
 
+(defun find-closest-makefile-folder ()
+  "Find the closest Makefile starting from the current directory."
+  (locate-dominating-file default-directory "Makefile"))
+
 (defun run-makefile (&optional task)
   "Run the closest Makefile found from the current directory."
   (interactive)
   (let ((makefile (find-closest-makefile)))
     (if makefile
         (progn
-          (compile (concat "make -f " makefile " -b " task))
+          (compile (concat "make -f " makefile " -C " (find-closest-makefile-folder) " -b " task))
           (message "Makefile %s is being run." makefile))
       (message "No Makefile found."))))
+
+
 
 ;; keybindings (lambdas everywhere cuz elisp skill issue)
 (global-set-key (kbd "<f2>") (lambda () (interactive) (find-file "~/dev/nixos/emacs.el")))
 (global-set-key (kbd "<f5>") `run-makefile)
 (global-set-key (kbd "<f6>") (lambda () (interactive) (run-makefile "run")))
 (global-set-key (kbd "<f7>") 'compile)
+
+;; map zoom to sane bindings
+(global-set-key (kbd "C-+") 'text-scale-increase)
+(global-set-key (kbd "C--") 'text-scale-decrease)
+
 
 ;; elcord (larp-mode)
 (elcord-mode)

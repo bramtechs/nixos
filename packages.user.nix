@@ -8,6 +8,7 @@
     gimp
     libreoffice
     vlc
+    gitg
 
     blender
     inkscape
