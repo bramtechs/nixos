@@ -20,7 +20,7 @@
 (setq elcord-display-elapsed 'f)
 (setq elcord-quiet 't)
 (setq elcord-refresh-rate 7)
-
+(setq elcord-idle-message "Howling at the moon.")
 (defun elcord--editor-icon ()
   "The icon to use to represent the current editor."
   "https://raw.githubusercontent.com/bramtechs/nixos-config/main/misc/icon-invert-skew.png")
