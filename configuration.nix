@@ -61,7 +61,7 @@
 
       # Configure keymap in X11
       layout = "us";
-      xkbOptions = "ctrl:nocaps";
+      xkbOptions = "ctrl:nocaps"; # remember to use caps instead of control!
   };
 
   fonts = {

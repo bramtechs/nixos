@@ -58,12 +58,21 @@
           (message "Makefile %s is being run." makefile))
       (message "No Makefile found."))))
 
+(defun build-project ()
+  (setq compilation-scroll-output 'first-error) ;; stop compilation scroll on first error
+  (run-makefile))
 
+(defun run-project ()
+  (setq compilation-scroll-output 't) ;; auto scroll compilation buffer
+  (run-makefile "run"))
 
-;; keybindings (lambdas everywhere cuz elisp skill issue)
-(global-set-key (kbd "<f2>") (lambda () (interactive) (find-file "~/dev/nixos/emacs.el")))
-(global-set-key (kbd "<f5>") `run-makefile)
-(global-set-key (kbd "<f6>") (lambda () (interactive) (run-makefile "run")))
+(defun edit-config ()
+  (find-file "~/dev/nixos/emacs.el"))
+
+;; keybindings
+(global-set-key (kbd "<f2>") (lambda () (interactive) (edit-config)))
+(global-set-key (kbd "<f5>") (lambda () (interactive) (build-project)))
+(global-set-key (kbd "<f6>") (lambda () (interactive) (run-project)))
 (global-set-key (kbd "<f7>") 'compile)
 
 ;; map zoom to sane bindings
@@ -76,7 +85,7 @@
 (setq elcord-display-elapsed 'f)
 (setq elcord-quiet 't)
 (setq elcord-refresh-rate 7)
-(setq elcord-idle-message "Howling at the moon.")
+(setq elcord-idle-message "Howling at the moon...")
 (defun elcord--editor-icon ()
   "The icon to use to represent the current editor."
   "https://raw.githubusercontent.com/bramtechs/nixos-config/main/misc/icon-invert-skew.png")

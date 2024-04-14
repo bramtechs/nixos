@@ -32,7 +32,7 @@ in
       epkgs.bongo
       epkgs.vlc
       epkgs.elcord
-
+      epkgs.playerctl
     ];
   };
 }
