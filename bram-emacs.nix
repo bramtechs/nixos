@@ -14,7 +14,8 @@ in
         epkgs.oblivion-theme
         epkgs.bongo
 
-	epkgs.auto-complete
+	    epkgs.nix-mode
+	    epkgs.auto-complete
         epkgs.vlc
         epkgs.elcord
         epkgs.fsharp-mode
