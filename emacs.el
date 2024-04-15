@@ -16,7 +16,11 @@
     
 (set-frame-font "Ubuntu Mono 17" nil t)
 
-;; Ctrl x,c,v
+;; Ctrl x,c,v :: Conflicts with emacs sometimes, but old habits don't die.
+;; Workarounds:
+;; - press the prefix key twice very quickly (within 0.2 seconds),
+;; - press the prefix key and the following key within 0.2 seconds, or
+;; - use the SHIFT key with the prefix key, i.e. C-S-x or C-S-c.
 (cua-mode t)
 (setq cua-auto-tabify-rectangles nil) ;; Don't tabify after rectangle commands
 (transient-mark-mode 1)               ;; No region when it is not highlighted
@@ -32,6 +36,15 @@
 ;; pdf support
 (pdf-tools-install)
 
+;; org mode
+(setq org-support-shift-select 't)
+
+;; auto open shader-mode
+(add-to-list 'auto-mode-alist '("\\.vs\\'" . shader-mode))
+(add-to-list 'auto-mode-alist '("\\.fs\\'" . shader-mode))
+(add-to-list 'auto-mode-alist '("\\.vert\\'" . shader-mode))
+(add-to-list 'auto-mode-alist '("\\.frag\\'" . shader-mode))
+
 ;; set theme
 (load-theme 'gruber-darker t)
 
@@ -42,6 +55,11 @@
         (java-mode . "java")))
 
 ;; compiling
+
+;; Support colors in compilation mode
+(require 'ansi-color)
+(add-hook 'compilation-filter-hook 'ansi-color-compilation-filter)
+
 (defun find-closest-makefile ()
   "Find the closest Makefile starting from the current directory."
   (let ((dir (locate-dominating-file default-directory "Makefile")))
