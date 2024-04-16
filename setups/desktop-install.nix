@@ -3,8 +3,7 @@
 {
     imports =
         [
-        ../configuration.nix
-        ../cinnamon.nix
+        ./laptop-install.nix
         ];
 
     services.xserver.videoDrivers = ["nvidia"];

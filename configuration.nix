@@ -4,7 +4,6 @@
   imports =
     [
       <home-manager/nixos>
-      ./packages.nix
     ];
 
   # kernel additions
@@ -127,17 +126,6 @@
                   "nix-2.15.3"
                 ];
 
-
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
-
-  # List services that you want to enable:
-
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
 
@@ -146,73 +134,14 @@
     ''
       192.168.0.149 nas
     '';
-
-  services.picom = {
-    enable = true;
-    backend = "glx";
-    settings = {
-      blur = true;
-      blurExclude = [ ];
-      inactiveDim = "0.05";
-      noDNDShadow = false;
-      noDockShadow = false;
-      # shadow-radius = 20
-      # '';
-      # shadow-radius = 20
-      # corner-radius = 10
-      # blur-size = 20
-      # rounded-corners-exclude = [
-      # "window_type = 'dock'",
-      # "class_g = 'i3-frame'"
-      # ]
-      # '';
-    };
-    fade = false;
-    inactiveOpacity = 1.0;
-    menuOpacity = 1.0;
-    opacityRules = [
-      "0:_NET_WM_STATE@[0]:32a = '_NET_WM_STATE_HIDDEN'" # Hide tabbed windows
-    ];
-    shadow = false;
-    shadowExclude = [ ];
-    shadowOffsets = [ (-10) (-10) ];
-    shadowOpacity = 0.5;
-    vSync = true;
-  };
-
-  # virtualization
-  virtualisation = {
-    vmware = {
-      host.enable = true;
-    };
-    libvirtd = {
-      enable = true;
-      qemu = {
-        package = pkgs.qemu_kvm;
-        runAsRoot = true;
-        swtpm.enable = true;
-        ovmf = {
-          enable = true;
-          packages = [
-            (pkgs.OVMF.override {
-              secureBoot = true;
-              tpmSupport = true;
-            }).fd
-          ];
-        };
-      };
-    };
-    spiceUSBRedirection.enable = true;
-    docker.enable = true;
-  };
-
+  
   programs = {
     virt-manager.enable = true;
     dconf.enable = true;
   };
 
   # Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [ 22 ];
+  #networking.firewall.allowedTCPPorts = [ 22 ];
   #networking.firewall.allowedUDPPorts = [ ... ];
   networking.firewall.enable = true;
 

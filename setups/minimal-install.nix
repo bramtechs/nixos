@@ -4,6 +4,7 @@
   imports =
     [
       ../configuration.nix
-      ../i3.nix
+      ../cinnamon.nix
+      ../packages.nix
     ];
 }

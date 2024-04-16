@@ -1,10 +1,6 @@
 { config, lib, pkgs, ... }:
 
 {
-  imports = [
-    ./packages.user.nix
-  ];
-
   programs.home-manager.enable = true;
 
   # variables
