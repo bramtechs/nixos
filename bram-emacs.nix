@@ -34,7 +34,7 @@ in
       epkgs.typescript-mode
 
       # utils
-	    epkgs.auto-complete
+	    # epkgs.auto-complete
       epkgs.markdown-preview-mode
       epkgs.git
       epkgs.rainbow-mode

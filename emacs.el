@@ -31,7 +31,7 @@
  '(markdown-command "pandoc"))
 
 ;; autocomplete
-(ac-config-default)
+;; (ac-config-default)
 
 ;; pdf support
 (pdf-tools-install)
