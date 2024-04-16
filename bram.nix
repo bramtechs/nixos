@@ -60,7 +60,7 @@
       PATH="$PATH:$HOME/dev/nixos/scripts"
 
       # set wallpaper
-      gsettings set org.gnome.desktop.background picture-uri file:///home/bram/dev/nixos/misc/wallpaper.png
+      gsettings set org.gnome.desktop.background picture-uri file:///home/bram/dev/nixos/misc/wallpaper_red.png
     '';
   };
 
