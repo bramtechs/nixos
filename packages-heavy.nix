@@ -7,7 +7,11 @@
     jetbrains.phpstorm
     jetbrains.clion
     jetbrains.idea-community
-    android-studio
+    jetbrains.rider
+    
+    androidStudioPackages.dev
+    android-tools
+    
     docker-compose
     codeblocks
 

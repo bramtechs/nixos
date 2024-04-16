@@ -82,7 +82,7 @@
 
   users.users.bram = {
     isNormalUser = true;
-    extraGroups = [ "libvirtd" "fuse" "video" "wheel" "networkmanager" "docker" "sudo" "tss" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "kvm" "adbusers" "libvirtd" "fuse" "video" "wheel" "networkmanager" "docker" "sudo" "tss" ]; # Enable ‘sudo’ for the user.
   };
 
   home-manager.users.bram = { config, lib, pkgs, ... }: {
@@ -117,7 +117,7 @@
   };
 
   # Open ports in the firewall.
-  #networking.firewall.allowedTCPPorts = [ 22 ];
+  networking.firewall.allowedTCPPorts = [ 22 ];
   #networking.firewall.allowedUDPPorts = [ ... ];
   networking.firewall.enable = true;
 

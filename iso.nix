@@ -5,7 +5,7 @@
 
     imports = [
         <nixpkgs/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix>
-        ./configuration.nix
+        ./setups/minimal-install.nix
     ];
 
     # use fastest compression

@@ -55,8 +55,12 @@
       fi # added by Nix installer
       PATH="$PATH:$HOME/dev/nixos/scripts"
 
+      # add private scripts
+      mkdir -p ~/dev/scripts
+      PATH="$PATH:$HOME/dev/scripts"
+
       # set wallpaper
-      gsettings set org.gnome.desktop.background picture-uri file:///home/bram/dev/nixos/misc/wallpaper_red.png
+      gsettings set org.gnome.desktop.background picture-uri file:///home/bram/dev/nixos/misc/wallpaper_red.png      
     '';
   };
 

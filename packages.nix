@@ -25,6 +25,8 @@
     gf
     haxe
     gcc
+    php83
+    php83Packages.composer
     spotdl
     wget
     curl
