@@ -3,10 +3,8 @@
 {
   imports =
     [
-      # ./i3.nix
-      ./cinnamon.nix
-      ./packages.nix
       <home-manager/nixos>
+      ./packages.nix
     ];
 
   # kernel additions

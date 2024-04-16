@@ -1,6 +1,12 @@
 { config, lib, pkgs, callPackage, ... }:
 
 {
+    imports =
+        [
+        ../configuration.nix
+        ../cinnamon.nix
+        ];
+
     services.xserver.videoDrivers = ["nvidia"];
 
      hardware.nvidia = {
