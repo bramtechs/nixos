@@ -58,5 +58,6 @@
     ubuntu-themes
     flameshot
     gnome.nautilus
+    gnome.gnome-clocks
   ];
 }

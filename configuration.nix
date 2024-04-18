@@ -6,6 +6,8 @@
       <home-manager/nixos>
     ];
 
+  nixpkgs.config.allowUnfree = true;
+
   # dual booting
   time.hardwareClockInLocalTime = true;
 
@@ -110,6 +112,7 @@
   networking.extraHosts =
     ''
       192.168.0.149 nas
+      127.0.0.1 server.test
     '';
   
   programs = {
@@ -117,7 +120,7 @@
   };
 
   # Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [ 22 ];
+  networking.firewall.allowedTCPPorts = [ 22 3000 ];
   #networking.firewall.allowedUDPPorts = [ ... ];
   networking.firewall.enable = true;
 

@@ -1,5 +1,4 @@
 { config, lib, pkgs, callPackage, ... }:
-
 {
   imports =
     [
@@ -57,7 +56,7 @@
     spiceUSBRedirection.enable = true;
     docker.enable = true;
   };
-
+  
   programs = {
     virt-manager.enable = true;
     adb.enable = true;
