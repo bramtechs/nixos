@@ -3,8 +3,7 @@
 (setq inhibit-splash-screen t)
 (setq initial-scratch-message nil)
 (if window-system
-    (tool-bar-mode -1)
-)
+    (tool-bar-mode -1))
 
 ;; Tab size is 4 spaces
 (setq-default indent-tabs-mode nil)
