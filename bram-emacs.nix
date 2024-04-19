@@ -35,6 +35,7 @@ in
       epkgs.typescript-mode
       epkgs.vue-mode
       epkgs.csv-mode
+      epkgs.yaml-mode
       
       # utils
 	    # epkgs.auto-complete
@@ -48,6 +49,7 @@ in
       epkgs.vlc
       epkgs.elcord
       epkgs.playerctl
+      epkgs.ement
     ];
   };
 }

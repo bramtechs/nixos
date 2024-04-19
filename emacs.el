@@ -1,3 +1,4 @@
+
 ;; Hide bloat
 (setq inhibit-startup-message t)
 (setq inhibit-splash-screen t)
@@ -17,7 +18,7 @@
 
 ;; Ctrl x,c,v :: Conflicts with emacs sometimes, but old habits don't die.
 ;; Workarounds:
-;; - press the prefix key twice very quickly (within 0.2 seconds),
+;; - Press the prefix key twice very quickly (within 0.2 seconds),
 ;; - press the prefix key and the following key within 0.2 seconds, or
 ;; - use the SHIFT key with the prefix key, i.e. C-S-x or C-S-c.
 (cua-mode t)
@@ -104,6 +105,38 @@
 ;; map zoom to sane bindings
 (global-set-key (kbd "C-+") 'text-scale-increase)
 (global-set-key (kbd "C--") 'text-scale-decrease)
+
+;; interact with discord through irc-client
+(global-set-key (kbd "C-c rc") (lambda () (interactive)
+                           (erc :server "localhost" :port "6667"
+                                :nick "brambasiel")))
+
+
+
+(defun erc-discord ()
+  (interactive)
+  (defvar creds-file "~/.env.el")
+
+  (if (file-readable-p creds-file)
+      (progn (load creds-file)
+             (defun erc-cmd (c &optional hide)
+               (interactive)
+               (setq erc-accidental-paste-threshold-seconds 0)
+               (insert c)
+               (erc-send-current-line)
+               (if hide
+                   (progn (insert "/clear")
+                          (erc-send-current-line))))
+             
+             (erc-cmd (concat "account add eionrobb-discord " dc-email " " dc-pwd) t)
+             (erc-cmd "account 0 on")
+             
+             ;; Don't leave credentials in memory after logging in.
+             (setq dc-email "")
+             (setq dc-pwd "")
+             (message "Signed into Discord!"))
+    (message "Could not load Discord credentials, at" creds-file)))
+  
 
 ;; elcord (larp-mode)
 (elcord-mode)

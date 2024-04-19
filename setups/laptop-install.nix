@@ -6,6 +6,7 @@
       ../cinnamon.nix
       ../packages.nix
       ../packages-heavy.nix
+      ../irc.nix
     ];
 
   # kernel additions

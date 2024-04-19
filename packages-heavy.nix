@@ -14,7 +14,9 @@
     
     docker-compose
     codeblocks
-
+    thunderbird
+    element-desktop
+    
     # creation
     obs-studio
 
