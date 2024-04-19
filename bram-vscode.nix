@@ -28,6 +28,7 @@
       esbenp.prettier-vscode
       ms-vscode.cpptools
       ms-vscode.cmake-tools
+      ms-python.python
       vadimcn.vscode-lldb
     ];
   };

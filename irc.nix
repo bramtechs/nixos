@@ -4,15 +4,10 @@
   nixpkgs.config.bitlbee.enableLibPurple = true;
 
   services.bitlbee = {
-    enable = true;
+    enable = false; # disabled for now
     libpurple_plugins = with pkgs; [
       pidginPackages.purple-discord 
     ];
   };
 
-  networking.firewall.deniedTCPPorts = [ 6667 ];
-  
-  environment.systemPackages = with pkgs; [
-    pidgin
-  ];
 }
