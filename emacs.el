@@ -1,4 +1,4 @@
-;; Hide the bloat (it stil doesn't go away wtf)
+;; Hide the bloat
 (custom-set-variables
  '(inhibit-startup-message t)
  '(inhibit-splash-screen t)
