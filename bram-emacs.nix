@@ -36,8 +36,7 @@ in
       epkgs.vue-mode
       epkgs.csv-mode
       epkgs.yaml-mode
-      
-      # utils
+     
 	    # epkgs.auto-complete
       epkgs.markdown-preview-mode
       epkgs.git

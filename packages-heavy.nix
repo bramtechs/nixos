@@ -16,6 +16,8 @@
     codeblocks
     thunderbird
     element-desktop
+    bruno
+    dbeaver
     
     # creation
     obs-studio
