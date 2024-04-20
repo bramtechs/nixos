@@ -4,7 +4,8 @@
 (setq inhibit-splash-screen t)
 (setq initial-scratch-message nil)
 (if window-system
-    (tool-bar-mode -1))
+    (tool-bar-mode -1)
+    (menu-bar-mode -1))
 
 ;; Tab size is 4 spaces
 (setq-default indent-tabs-mode nil)
@@ -46,7 +47,8 @@
 (add-to-list 'auto-mode-alist '("\\.frag\\'" . shader-mode))
 
 ;; set theme
-(load-theme 'gruber-darker t)
+(add-to-list 'custom-theme-load-path "~/dev/nixos/")
+(load-theme 'custom-emacs t)
 
 ;; c-style language formatting
 (setq c-default-style

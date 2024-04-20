@@ -14,7 +14,6 @@ in
       epkgs.jetbrains-darcula-theme
       epkgs.obsidian-theme
       epkgs.oblivion-theme
-      epkgs.gruber-darker-theme
 
       # language modes
       epkgs.janet-mode
