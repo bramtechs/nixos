@@ -1,11 +1,10 @@
-
-;; Hide bloat
-(setq inhibit-startup-message t)
-(setq inhibit-splash-screen t)
-(setq initial-scratch-message nil)
-(if window-system
-    (tool-bar-mode -1)
-    (menu-bar-mode -1))
+;; Hide the bloat (it stil doesn't go away wtf)
+(custom-set-variables
+ '(inhibit-startup-message t)
+ '(inhibit-splash-screen t)
+ '(initial-scratch-message nil))
+(menu-bar-mode -1)
+(tool-bar-mode -1)
 
 ;; Tab size is 4 spaces
 (setq-default indent-tabs-mode nil)
@@ -152,3 +151,5 @@
 (defun elcord--editor-icon ()
   "The icon to use to represent the current editor."
   "https://raw.githubusercontent.com/bramtechs/nixos-config/main/misc/icon-invert-skew.png")
+
+
