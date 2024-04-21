@@ -1,8 +1,10 @@
-;; Hide the bloat
 (custom-set-variables
  '(inhibit-startup-message t)
  '(inhibit-splash-screen t)
- '(initial-scratch-message nil))
+ '(initial-scratch-message nil)
+ '(shr-use-xwidgets-for-media t)
+ '(eww-retrieve-command '("google-chrome-stable" "--headless" "--dump-dom")))
+
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 
@@ -31,7 +33,7 @@
  '(markdown-command "pandoc"))
 
 ;; autocomplete
-;; (ac-config-default)
+(ac-config-default)
 
 ;; pdf support
 (pdf-tools-install)
@@ -111,8 +113,8 @@
 (global-set-key (kbd "C-c rc") (lambda () (interactive)
                            (erc :server "localhost" :port "6667"
                                 :nick "brambasiel")))
-
-
+;; eww
+(add-hook 'eww-after-render-hook #'epithet-rename-buffer)
 
 (defun erc-discord ()
   (interactive)
@@ -142,7 +144,8 @@
 ;; elcord (larp-mode)
 (elcord-mode)
 (setq elcord-icon-base '"https://raw.githubusercontent.com/bramtechs/elcord/master/icons/")
-(setq elcord-mode-icon-alist (append elcord-mode-icon-alist '((janet-mode . "janet-mode_icon"))))
+(setq elcord-mode-icon-alist (append elcord-mode-icon-alist
+                                     '((janet-mode . "janet-mode_icon"))))
 
 (setq elcord-display-elapsed 'f)
 (setq elcord-quiet 't)

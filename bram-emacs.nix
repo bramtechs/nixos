@@ -1,12 +1,12 @@
 { config, lib, pkgs, callPackage, ... }:
 
 let
-    emacsConfig = lib.readFile ./emacs.el;
+    emacsConfig = lib.readFile ./epithet.el + lib.readFile ./emacs.el;
 in
 {
     programs.emacs = {
     enable = true;
-    package = pkgs.emacs-gtk;
+    package = pkgs.emacs29-gtk3;
     extraConfig = emacsConfig;
     extraPackages = epkgs: [
       
@@ -36,7 +36,7 @@ in
       epkgs.csv-mode
       epkgs.yaml-mode
      
-	    # epkgs.auto-complete
+	    epkgs.auto-complete
       epkgs.markdown-preview-mode
       epkgs.git
       epkgs.rainbow-mode
