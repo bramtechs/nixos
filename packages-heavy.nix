@@ -9,6 +9,7 @@
     jetbrains.idea-community
     jetbrains.rider
     
+    azuredatastudio
     androidStudioPackages.dev
     android-tools
     
