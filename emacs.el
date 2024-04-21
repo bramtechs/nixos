@@ -2,8 +2,7 @@
  '(inhibit-startup-message t)
  '(inhibit-splash-screen t)
  '(initial-scratch-message nil)
- '(shr-use-xwidgets-for-media t)
- '(eww-retrieve-command '("google-chrome-stable" "--headless" "--dump-dom")))
+ '(shr-use-xwidgets-for-media t))
 
 (menu-bar-mode -1)
 (tool-bar-mode -1)
@@ -114,7 +113,9 @@
                            (erc :server "localhost" :port "6667"
                                 :nick "brambasiel")))
 ;; eww
+(load-file "~/dev/nixos/epithet.el")
 (add-hook 'eww-after-render-hook #'epithet-rename-buffer)
+(setq eww-retrieve-command '("google-chrome-stable" "--headless" "--dump-dom"))
 
 (defun erc-discord ()
   (interactive)

@@ -1,7 +1,7 @@
 { config, lib, pkgs, callPackage, ... }:
 
 let
-    emacsConfig = lib.readFile ./epithet.el + lib.readFile ./emacs.el;
+    emacsConfig = lib.readFile ./emacs.el;
 in
 {
     programs.emacs = {

@@ -52,7 +52,7 @@
 (defun epithet-for-eww-url ()
   "Suggest a name for a `eww-mode' buffer."
   (when (derived-mode-p 'eww-mode)
-    (format "*%s*" (plist-get eww-data :url))))
+    (format "*eww: %s*" (plist-get eww-data :url))))
 
 (defun epithet-for-Info ()
   "Suggest a name for an `Info-mode' buffer."
@@ -142,9 +142,6 @@ NEW-NAME (using the suggestion as default value)."
 
 ;;;###autoload
 (defun epithet-rename-buffer-ignoring-arguments (&rest _)
-  "Save as `epithet-rename-buffer' but ignores arguments passed to it.
-This is useful when using hooks (e.g., `compilation-start-hook'
-that pass arguments epithet doesn't want."
   (epithet-rename-buffer))
 
 (provide 'epithet)
