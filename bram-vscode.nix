@@ -29,6 +29,7 @@
       ms-vscode.cpptools
       ms-vscode.cmake-tools
       ms-python.python
+      ms-toolsai.jupyter
       vadimcn.vscode-lldb
     ];
   };
