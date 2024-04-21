@@ -6,7 +6,7 @@ in
 {
     programs.emacs = {
     enable = true;
-    package = pkgs.emacs-gtk;
+    package = pkgs.emacs29-gtk3;
     extraConfig = emacsConfig;
     extraPackages = epkgs: [
       
@@ -14,7 +14,6 @@ in
       epkgs.jetbrains-darcula-theme
       epkgs.obsidian-theme
       epkgs.oblivion-theme
-      epkgs.gruber-darker-theme
 
       # language modes
       epkgs.janet-mode
@@ -36,9 +35,8 @@ in
       epkgs.vue-mode
       epkgs.csv-mode
       epkgs.yaml-mode
-      
-      # utils
-	    # epkgs.auto-complete
+     
+	    epkgs.auto-complete
       epkgs.markdown-preview-mode
       epkgs.git
       epkgs.rainbow-mode

@@ -1,10 +1,11 @@
+(custom-set-variables
+ '(inhibit-startup-message t)
+ '(inhibit-splash-screen t)
+ '(initial-scratch-message nil)
+ '(shr-use-xwidgets-for-media t))
 
-;; Hide bloat
-(setq inhibit-startup-message t)
-(setq inhibit-splash-screen t)
-(setq initial-scratch-message nil)
-(if window-system
-    (tool-bar-mode -1))
+(menu-bar-mode -1)
+(tool-bar-mode -1)
 
 ;; Tab size is 4 spaces
 (setq-default indent-tabs-mode nil)
@@ -31,7 +32,7 @@
  '(markdown-command "pandoc"))
 
 ;; autocomplete
-;; (ac-config-default)
+(ac-config-default)
 
 ;; pdf support
 (pdf-tools-install)
@@ -46,7 +47,8 @@
 (add-to-list 'auto-mode-alist '("\\.frag\\'" . shader-mode))
 
 ;; set theme
-(load-theme 'gruber-darker t)
+(add-to-list 'custom-theme-load-path "~/dev/nixos/")
+(load-theme 'custom-emacs t)
 
 ;; c-style language formatting
 (setq c-default-style
@@ -110,8 +112,10 @@
 (global-set-key (kbd "C-c rc") (lambda () (interactive)
                            (erc :server "localhost" :port "6667"
                                 :nick "brambasiel")))
-
-
+;; eww
+(load-file "~/dev/nixos/epithet.el")
+(add-hook 'eww-after-render-hook #'epithet-rename-buffer)
+(setq eww-retrieve-command '("google-chrome-stable" "--headless" "--dump-dom"))
 
 (defun erc-discord ()
   (interactive)
@@ -141,7 +145,8 @@
 ;; elcord (larp-mode)
 (elcord-mode)
 (setq elcord-icon-base '"https://raw.githubusercontent.com/bramtechs/elcord/master/icons/")
-(setq elcord-mode-icon-alist (append elcord-mode-icon-alist '((janet-mode . "janet-mode_icon"))))
+(setq elcord-mode-icon-alist (append elcord-mode-icon-alist
+                                     '((janet-mode . "janet-mode_icon"))))
 
 (setq elcord-display-elapsed 'f)
 (setq elcord-quiet 't)
@@ -150,3 +155,5 @@
 (defun elcord--editor-icon ()
   "The icon to use to represent the current editor."
   "https://raw.githubusercontent.com/bramtechs/nixos-config/main/misc/icon-invert-skew.png")
+
+

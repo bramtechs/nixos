@@ -9,6 +9,7 @@
     jetbrains.idea-community
     jetbrains.rider
     
+    azuredatastudio
     androidStudioPackages.dev
     android-tools
     
@@ -16,6 +17,8 @@
     codeblocks
     thunderbird
     element-desktop
+    bruno
+    dbeaver
     
     # creation
     obs-studio
