@@ -8,4 +8,8 @@
         };
         displayManager.defaultSession = "cinnamon";
     };
+
+    environment.systemPackages = with pkgs; [
+        gnome.gnome-system-monitor
+    ];
 }

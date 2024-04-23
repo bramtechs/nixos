@@ -2,9 +2,10 @@
 set -e
 
 pushd $(dirname $0)
-sudo nixos-rebuild switch || exit 1;
+# sudo nixos-rebuild switch || exit 1;
 git add ..
 git commit -m "nixos: automatic commit"
 echo "Added nixos commit"
+git push
 popd
 

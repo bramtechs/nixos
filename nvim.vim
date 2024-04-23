@@ -67,6 +67,8 @@ nnoremap <leader>R :lcd %:p:h<CR>:!echo Moved instance to %:p:h<CR>
 
 " actually use vlang filetype
 au BufRead,BufNewFile *.v   set filetype=vlang
+
+" treat janet as lisp
 au BufRead,BufNewFile *.janet   set filetype=lisp
 
 " threat HolyC as regular C (blasphomy)

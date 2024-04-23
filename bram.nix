@@ -1,39 +1,6 @@
 { config, lib, pkgs, ... }:
 
 {
-  home.packages = with pkgs; [
-    # games
-    osu-lazer-bin
-    discord
-    spotify
-    gimp
-    libreoffice
-    vlc
-
-    evince
-    remmina
-    google-chrome
-    firefox
-    keepassxc
-
-    adapta-gtk-theme
-    ubuntu_font_family
-    ubuntu-themes
-
-    gradle
-    jdk17
-    dotnet-sdk_8
-
-    flameshot
-    gnome.nautilus
-    resilio-sync
-
-    eclipses.eclipse-java
-
-    mpv
-    cmus
-    audacious
-  ];
   programs.home-manager.enable = true;
 
   # variables
@@ -88,8 +55,12 @@
       fi # added by Nix installer
       PATH="$PATH:$HOME/dev/nixos/scripts"
 
+      # add private scripts
+      mkdir -p ~/dev/scripts
+      PATH="$PATH:$HOME/dev/scripts"
+
       # set wallpaper
-      gsettings set org.gnome.desktop.background picture-uri file:///home/bram/dev/nixos/misc/wallpaper.png
+      gsettings set org.gnome.desktop.background picture-uri file:///home/bram/dev/nixos/misc/wallpaper_red.png      
     '';
   };
 

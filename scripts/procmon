@@ -1,0 +1,41 @@
+#!/usr/bin/env sh
+
+run() {
+    PROCESS=$(pgrep $1)
+    if [ -z "$PROCESS" ]; then
+        echo "Process $1 stopped or not found."
+        exit 0
+    fi
+    
+    CPU=$(ps -p $PROCESS -o %cpu | tail -n 1)
+    MEMORY=$(ps -p $PROCESS -o rss | tail -n 1)
+    MEMORY_FMT=$(echo $MEMORY | awk '{ printf "%'\''d\n", $1 }' | sed 's/,/ /g')
+    
+    # Check if memory exceeds 1GB (1,000,000 KB)
+    if [ $MEMORY -gt 1000000 ]; then
+        # Print in red
+        tput setaf 1
+        echo "CPU: $CPU% | MEM: $MEMORY_FMT KB"
+        tput sgr0
+    else
+        # Print in default color
+        echo "CPU: $CPU% | MEM: $MEMORY_FMT KB"
+    fi
+}
+
+if [ "$1" = "-i" ] || [ "$1" = "--interval" ]; then
+    if [ -n "$2" ]; then
+        INTERVAL="$2"
+        echo Showing process info for $3 every $INTERVAL seconds...
+        while true; do
+            run "$3"
+            sleep "$INTERVAL"
+        done
+    else
+        echo "Error: Please provide an interval value."
+        exit 1
+    fi
+else
+    echo Showing process info for $1...
+    run "$1"
+fi
