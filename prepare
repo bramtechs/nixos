@@ -6,4 +6,3 @@ sudo nix-channel --add https://www.github.com/nix-community/home-manager/archive
 # install doomhowl channel
 sudo nix-channel --add https://www.github.com/bramtechs/nix-channel/archive/main.tar.gz doomhowl
 
-sudo nix-channel --update
