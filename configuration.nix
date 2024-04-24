@@ -7,6 +7,7 @@
     ];
 
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.allowUnfreePredicate = _: true;
 
   # dual booting
   time.hardwareClockInLocalTime = true;
