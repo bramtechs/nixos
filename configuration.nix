@@ -4,6 +4,7 @@
   imports =
     [
       <home-manager/nixos>
+      ./zen.nix # don't
     ];
 
   nixpkgs.config.allowUnfree = true;
