@@ -14,7 +14,7 @@ in
       epkgs.jetbrains-darcula-theme
       epkgs.obsidian-theme
       epkgs.oblivion-theme
-
+      
       # language modes
       epkgs.janet-mode
       epkgs.lua-mode
@@ -35,13 +35,15 @@ in
       epkgs.vue-mode
       epkgs.csv-mode
       epkgs.yaml-mode
-     
+
+      # utils
 	    epkgs.auto-complete
       epkgs.markdown-preview-mode
       epkgs.git
       epkgs.rainbow-mode
       epkgs.pdf-tools
-
+      epkgs.multiple-cursors
+      
       # distractions
       epkgs.bongo
       epkgs.vlc
