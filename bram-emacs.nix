@@ -19,22 +19,16 @@ in
       epkgs.janet-mode
       epkgs.lua-mode
       epkgs.d-mode
-      epkgs.go-mode
-      epkgs.rust-mode
       epkgs.make-color
       epkgs.fsharp-mode
-      epkgs.csharp-mode
   	  epkgs.nix-mode
       epkgs.markdown-mode
       epkgs.shader-mode
       epkgs.shader-mode
-      epkgs.cmake-mode
       epkgs.python-mode
       epkgs.php-mode
-      epkgs.typescript-mode
       epkgs.vue-mode
       epkgs.csv-mode
-      epkgs.yaml-mode
      
 	    epkgs.auto-complete
       epkgs.markdown-preview-mode
@@ -48,6 +42,8 @@ in
       epkgs.elcord
       epkgs.playerctl
       epkgs.ement
+      epkgs.ivy
+      epkgs.ivy-youtube
     ];
   };
 }

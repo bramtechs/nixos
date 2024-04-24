@@ -1,8 +1,7 @@
 (custom-set-variables
  '(inhibit-startup-message t)
  '(inhibit-splash-screen t)
- '(initial-scratch-message nil)
- '(shr-use-xwidgets-for-media t))
+ '(initial-scratch-message nil))
 
 (menu-bar-mode -1)
 (tool-bar-mode -1)
@@ -57,6 +56,9 @@
         (java-mode . "java")))
 
 ;; compiling
+
+;; etags
+(setq tags-revert-without-query 1)
 
 ;; Support colors in compilation mode
 (require 'ansi-color)
@@ -117,30 +119,29 @@
 (add-hook 'eww-after-render-hook #'epithet-rename-buffer)
 (setq eww-retrieve-command '("google-chrome-stable" "--headless" "--dump-dom"))
 
-(defun erc-discord ()
-  (interactive)
-  (defvar creds-file "~/.env.el")
-
-  (if (file-readable-p creds-file)
-      (progn (load creds-file)
-             (defun erc-cmd (c &optional hide)
-               (interactive)
-               (setq erc-accidental-paste-threshold-seconds 0)
-               (insert c)
-               (erc-send-current-line)
-               (if hide
-                   (progn (insert "/clear")
-                          (erc-send-current-line))))
-             
-             (erc-cmd (concat "account add eionrobb-discord " dc-email " " dc-pwd) t)
-             (erc-cmd "account 0 on")
-             
-             ;; Don't leave credentials in memory after logging in.
-             (setq dc-email "")
-             (setq dc-pwd "")
-             (message "Signed into Discord!"))
-    (message "Could not load Discord credentials, at" creds-file)))
+;; load credentials
+(defconst creds-file "~/.env.el")
+(if (file-readable-p creds-file)
+    (progn
+      (load-file creds-file)
+      (defun erc-discord ()
+        (interactive)
+        (defun erc-cmd (c &optional hide)
+          (interactive)
+          (setq erc-accidental-paste-threshold-seconds 0)
+          (insert c)
+          (erc-send-current-line)
+          (if hide
+              (progn (insert "/clear")
+                     (erc-send-current-line))))
+        
+        (erc-cmd (concat "account add eionrobb-discord " dc-email " " dc-pwd) t)
+        (erc-cmd "account 0 on")
+        (message "Signed into Discord!")))
+    (message "Could not find credential file, at" creds-file))
   
+;; ivy
+(setq ivy-youtube-play-at "mpv")
 
 ;; elcord (larp-mode)
 (elcord-mode)
