@@ -23,10 +23,10 @@
     gdb
     dmd
     gf
-    haxe
-    gcc
     php83
     php83Packages.composer
+    haxe
+    gcc
     spotdl
     wget
     curl

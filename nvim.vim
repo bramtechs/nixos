@@ -49,8 +49,8 @@ let mapleader = " "
 noremap j gj
 noremap k gk
 
-nnoremap <F2> :tabedit ~/dev/nixos/nvim.vim<CR>
-nnoremap <leader><F2> :so $MYVIMRC<CR>
+nnoremap <S-F2> :tabedit ~/dev/nixos/nvim.vim<CR>
+nnoremap <leader><F2> :so ~/dev/nixos/nvim.vim<CR>
 
 nnoremap <F8> :tabedit ~/TODO.md<CR>
 nnoremap <A-j> :tabprevious<CR>
@@ -66,10 +66,10 @@ nnoremap <S-E> 0f;lv$hx0
 nnoremap <leader>R :lcd %:p:h<CR>:!echo Moved instance to %:p:h<CR>
 
 " actually use vlang filetype
-au BufRead, BufNewFile *.v set filetype=vlang
+au BufRead,BufNewFile *.v   set filetype=vlang
 
 " treat janet as lisp
-au BufRead, BufNewFile *.janet set filetype=lisp
+au BufRead,BufNewFile *.janet   set filetype=lisp
 
 " threat HolyC as regular C (blasphomy)
 au BufRead, BufNewFile *.HC set filetype=c

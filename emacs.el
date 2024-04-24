@@ -26,6 +26,11 @@
 (transient-mark-mode 1)               ;; No region when it is not highlighted
 (setq cua-keep-region-after-copy t) 
 
+;; multi cursors
+(require 'multiple-cursors)
+(global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
+(global-set-key (kbd "C-S-<mouse-1>") 'mc/add-cursor-on-click)
+
 ;; markdown preview
 (custom-set-variables
  '(markdown-command "pandoc"))

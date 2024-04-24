@@ -40,7 +40,7 @@
     unzip
     rsync
 
-        osu-lazer-bin
+    osu-lazer-bin
     spotify
     gimp
     libreoffice

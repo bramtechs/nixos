@@ -14,7 +14,7 @@ in
       epkgs.jetbrains-darcula-theme
       epkgs.obsidian-theme
       epkgs.oblivion-theme
-
+      
       # language modes
       epkgs.janet-mode
       epkgs.lua-mode
@@ -35,7 +35,8 @@ in
       epkgs.git
       epkgs.rainbow-mode
       epkgs.pdf-tools
-
+      epkgs.multiple-cursors
+      
       # distractions
       epkgs.bongo
       epkgs.vlc
