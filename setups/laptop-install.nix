@@ -2,9 +2,7 @@
 {
   imports =
     [
-      ../configuration.nix
-      ../cinnamon.nix
-      ../packages.nix
+      ./minimal-install.nix
       ../packages-heavy.nix
       ../irc.nix
     ];

@@ -47,6 +47,7 @@
     shellAliases = {
       cdnix = "cd $HOME/dev/monolith/nixos";
       cdmono = "cd $HOME/dev/monolith";
+      screenfetch = "neofetch";
     };
     initExtra = ''
       if [ -e ~/.nix-profile/etc/profile.d/nix.sh ]; then
@@ -74,8 +75,4 @@
     automount = true;
     notify = true;
   };
-
-  # The state version is required and should stay at the version you
-  # originally installed.
-  home.stateVersion = "21.11";
 }

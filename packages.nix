@@ -10,22 +10,10 @@
     git
     neovim
     tmux
-    rnix-lsp
-    tpm2-tools
-    tpm2-tss
-    inetutils
-    nodejs_21
-    rustc
-    cargo
-    rustfmt
     cmake
     gcc
-    gdb
-    dmd
-    gf
     php83
-    php83Packages.composer
-    haxe
+    php83Packages.composer  
     gcc
     spotdl
     wget
@@ -33,32 +21,12 @@
     neofetch
     htop
     bmon
-    iotop
-    playerctl
     ranger
     gnumake
-    libnotify
-    xclip
     ffmpeg
-    cmatrix
-    hollywood
     yt-dlp
-    playerctl
     pandoc
-    gnome.gnome-disk-utility
-    xterm
-    pavucontrol
-    lxappearance
-    discord
-    gitg
     cmus
-    google-chrome
-    adapta-gtk-theme
-    ubuntu_font_family
-    ubuntu-themes
-    flameshot
-    gnome.nautilus
-    gnome.gnome-clocks
-    gnome.ghex
+    neofetch
   ];
 }

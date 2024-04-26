@@ -3,9 +3,12 @@
 {
   imports =
     [
-      <home-manager/nixos>
-      ./zen.nix # don't
+      ./zen.nix
     ];
+
+  nixpkgs.config.permittedInsecurePackages = [
+    "nix-2.15.3"
+  ];
 
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.allowUnfreePredicate = _: true;
@@ -88,7 +91,7 @@
     extraGroups = [ "kvm" "adbusers" "libvirtd" "fuse" "video" "wheel" "networkmanager" "docker" "sudo" "tss" ]; # Enable ‘sudo’ for the user.
   };
 
-  home-manager.users.bram = { config, lib, pkgs, ... }: {
+    home-manager.users.bram = { config, lib, pkgs, ... }: {
       imports =
         [
           ./bram.nix
@@ -101,23 +104,19 @@
         ];
   };
 
-  # nsa backdoor
-  nixpkgs.config.permittedInsecurePackages = [
-                  "nix-2.15.3"
-                ];
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
+
+  programs = {
+    dconf.enable = true;
+  };
 
   # extra hosts
   networking.extraHosts =
     ''
       192.168.0.149 nas
     '';
-  
-  programs = {
-    dconf.enable = true;
-  };
 
   # Open ports in the firewall.
   networking.firewall.allowedTCPPorts = [ 22 3000 ];
