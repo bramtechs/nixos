@@ -59,5 +59,6 @@
     flameshot
     gnome.nautilus
     gnome.gnome-clocks
+    gnome.ghex
   ];
 }
