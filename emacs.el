@@ -14,7 +14,7 @@
 ;; nowrap
 (set-default 'truncate-lines t)
     
-(set-frame-font "Ubuntu Mono 17" nil t)
+(set-frame-font "Ubuntu Mono 14" nil t)
 
 ;; Ctrl x,c,v :: Conflicts with emacs sometimes, but old habits don't die.
 ;; Workarounds:
