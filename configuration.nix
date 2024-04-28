@@ -98,7 +98,7 @@
           ./bram-alacritty.nix
           ./bram-vscode.nix
           ./bram-emacs.nix
-          ./bram-firefox.nix
+          ./bram-librewolf.nix
         ];
   };
 

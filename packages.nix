@@ -8,10 +8,8 @@
   # system packages
   documentation.dev.enable = true;
   environment.systemPackages = with pkgs; [
-
     man-pages
     man-pages-posix
-    
     git
     neovim
     tmux
@@ -45,19 +43,13 @@
     libnotify
     xclip
     ffmpeg
-    cmatrix
-    hollywood
     yt-dlp
-    playerctl
     pandoc
     gnome.gnome-disk-utility
     xterm
     pavucontrol
     lxappearance
-    discord
     gitg
-    cmus
-    google-chrome
     adapta-gtk-theme
     ubuntu_font_family
     ubuntu-themes
