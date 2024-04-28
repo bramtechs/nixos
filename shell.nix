@@ -1,4 +1,4 @@
-{ pkgs ? import <nixpkgs> {} }:
+{ pkgs ? import <nixpkgs> { config.allowUnfree = true; } }:
 
 # nix shell with distracting software
 
@@ -15,4 +15,4 @@ mkShell
       discord
     ];
   }
-  
+

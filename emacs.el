@@ -8,7 +8,7 @@
 
 ;; Tab size is 4 spaces
 (setq-default indent-tabs-mode nil)
-(setq-default tab-width 4)
+(setq tab-width 4)
 (setq indent-line-function 'insert-tab)
 
 ;; nowrap
@@ -158,14 +158,12 @@
 
 ;; elcord (larp-mode)
 (elcord-mode)
-(setq elcord-icon-base '"https://raw.githubusercontent.com/bramtechs/elcord/master/icons/")
+(setq elcord-icon-base '"https://raw.githubusercontent.com/bramtechs/elcord/own/icons/")
 (setq elcord-mode-icon-alist (append elcord-mode-icon-alist
-                                     '((janet-mode . "janet-mode_icon"))))
-
-;; TODO: write bug report for elcord, assembly icon doesn't show
-(setq elcord-mode-icon-alist (append elcord-mode-icon-alist
-                                     '((asm-mode . "assembly-mode_icon")
-                                       (nasm-mode . "assembly-mode_icon"))))
+                                     '((janet-mode . "janet-mode_icon")
+                                       (asm-mode . "assembly-mode_icon")
+                                       (nasm-mode . "assembly-mode_icon")
+                                       (d-mode . "d-mode_icon"))))
 
 (setq elcord-display-elapsed 'f)
 (setq elcord-quiet 't)
