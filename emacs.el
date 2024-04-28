@@ -16,6 +16,14 @@
     
 (set-frame-font "Ubuntu Mono 14" nil t)
 
+;; reduce some friction
+(setq use-short-answers t)
+(setq kill-buffer-query-functions
+  (remq 'process-kill-buffer-query-function
+         kill-buffer-query-functions))
+
+(global-set-key (kbd "C-x p") 'project-find-file)
+
 ;; Ctrl x,c,v :: Conflicts with emacs sometimes, but old habits don't die.
 ;; Workarounds:
 ;; - Press the prefix key twice very quickly (within 0.2 seconds),
@@ -36,7 +44,7 @@
  '(markdown-command "pandoc"))
 
 ;; autocomplete
-(ac-config-default)
+;;(ac-config-default)
 
 ;; pdf support
 (pdf-tools-install)
@@ -153,6 +161,11 @@
 (setq elcord-icon-base '"https://raw.githubusercontent.com/bramtechs/elcord/master/icons/")
 (setq elcord-mode-icon-alist (append elcord-mode-icon-alist
                                      '((janet-mode . "janet-mode_icon"))))
+
+;; TODO: write bug report for elcord, assembly icon doesn't show
+(setq elcord-mode-icon-alist (append elcord-mode-icon-alist
+                                     '((asm-mode . "assembly-mode_icon")
+                                       (nasm-mode . "assembly-mode_icon"))))
 
 (setq elcord-display-elapsed 'f)
 (setq elcord-quiet 't)

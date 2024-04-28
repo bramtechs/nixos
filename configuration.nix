@@ -5,6 +5,7 @@
     [
       <home-manager/nixos>
       ./zen.nix # don't
+      ./mount-nas.nix
     ];
 
   nixpkgs.config.allowUnfree = true;
