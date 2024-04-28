@@ -19,9 +19,10 @@
     enable = true;
     userName = "bramtechs";
     userEmail = "bramtech@telenet.be";
-    ignores = [ "*~" "*ghcid.txt" ];
+    ignores = [ "*~" "*ghcid.txt" "TAGS" ".idea" ".vscode" ];
     extraConfig = {
       core.editor = "vi";
+      pull.rebase = false;
       # Allow keybase git protocol.
       protocol.keybase.allow = "always";
     };
@@ -60,7 +61,7 @@
       PATH="$PATH:$HOME/dev/scripts"
 
       # set wallpaper
-      gsettings set org.gnome.desktop.background picture-uri file:///home/bram/dev/nixos/misc/wallpaper_red.png      
+      gsettings set org.gnome.desktop.background picture-uri file:///home/bram/dev/nixos/misc/wallpaper_red.png 
     '';
   };
 
