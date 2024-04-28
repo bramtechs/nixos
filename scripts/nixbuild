@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+pushd $HOME/dev/nixos
+sudo make build
+popd
