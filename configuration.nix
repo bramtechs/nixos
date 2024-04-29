@@ -10,6 +10,8 @@
 
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.allowUnfreePredicate = _: true;
+  
+  boot.loader.systemd-boot.configurationLimit = 10;
 
   # dual booting
   time.hardwareClockInLocalTime = true;
