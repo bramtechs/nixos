@@ -13,8 +13,10 @@
 
 ;; nowrap
 (set-default 'truncate-lines t)
-    
-(set-frame-font "Ubuntu Mono 14" nil t)
+
+(if (eq system-type 'darwin)
+    (set-frame-font "Monaco 18" nil t)
+  (set-frame-font "Ubuntu Mono 14" nil t))
 
 ;; Ctrl x,c,v :: Conflicts with emacs sometimes, but old habits don't die.
 ;; Workarounds:
@@ -52,6 +54,7 @@
 
 ;; set theme
 (add-to-list 'custom-theme-load-path "~/dev/nixos/")
+  
 (load-theme 'custom-emacs t)
 
 ;; c-style language formatting
