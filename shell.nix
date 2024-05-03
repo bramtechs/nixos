@@ -8,9 +8,6 @@ mkShell
   {
     buildInputs = [
       google-chrome
-      cmus
-      osu-lazer-bin
-      audacious
       spotify
       discord
     ];

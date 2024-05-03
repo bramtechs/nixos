@@ -56,5 +56,9 @@
     eclipses.eclipse-java
 
     mpv
+
+    google-chrome
+    spotify
+    discord
   ];
 }
