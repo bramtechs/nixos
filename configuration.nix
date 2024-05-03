@@ -10,6 +10,8 @@
 
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.allowUnfreePredicate = _: true;
+  
+  boot.loader.systemd-boot.configurationLimit = 10;
 
   # dual booting
   time.hardwareClockInLocalTime = true;
@@ -108,7 +110,13 @@
                 ];
 
   # Enable the OpenSSH daemon.
-  services.openssh.enable = true;
+  services.openssh = {
+    enable = true;
+    settings = {
+      PasswordAuthentication = false;
+      PermitRootLogin = "no";
+    };
+  };
 
   # extra hosts
   networking.extraHosts =

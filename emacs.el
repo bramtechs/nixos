@@ -130,7 +130,15 @@
 ;; eww
 (load-file "~/dev/nixos/epithet.el")
 (add-hook 'eww-after-render-hook #'epithet-rename-buffer)
-(setq eww-retrieve-command '("google-chrome-stable" "--headless" "--dump-dom"))
+;;(setq eww-retrieve-command '("google-chrome-stable" "--headless" "--dump-dom"))
+
+;; shorthands
+(defun mwb ()
+  (interactive)
+  (mark-whole-buffer))
+(defun mhb ()
+  (interactive)
+  (mark-whole-buffer))
 
 ;; load credentials
 (defconst creds-file "~/.env.el")
