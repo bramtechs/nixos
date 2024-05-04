@@ -7,7 +7,9 @@ in
     programs.emacs = {
     enable = true;
     package = pkgs.emacs29-gtk3;
+    
     extraConfig = emacsConfig;
+
     extraPackages = epkgs: [
       
       # themes

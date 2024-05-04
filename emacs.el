@@ -6,6 +6,10 @@
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 
+;; make emacs shut up
+(setq ring-bell-function 'ignore)
+(setq set-message-beep 'silent)
+
 ;; Tab size is 4 spaces
 (setq-default indent-tabs-mode nil)
 (setq tab-width 4)
@@ -62,7 +66,8 @@
 
 ;; set theme
 (add-to-list 'custom-theme-load-path "~/dev/nixos/")
-  
+(add-to-list 'custom-theme-load-path "/mnt/c/dev/nixos/") ;; wsl
+
 (load-theme 'custom-emacs t)
 
 ;; c-style language formatting
@@ -110,10 +115,14 @@
   (run-makefile "run"))
 
 (defun edit-config ()
-  (find-file "~/dev/nixos/emacs.el"))
+  (if (file-exists-p "~/dev/nixos/emacs.el")
+    (find-file "~/dev/nixos/emacs.el")
+    (find-file "/mnt/c/dev/nixos/emacs.el")))
 
 (defun edit-nix-config ()
-  (find-file "~/dev/nixos/bram-emacs.nix"))
+  (if (file-exists-p "~/dev/nixos/bram-emacs.nix")
+    (find-file "~/dev/nixos/bram-emacs.nix")
+    (find-file "/mnt/c/dev/nixos/bram-emacs.nix")))
 
 ;; keybindings
 (global-set-key (kbd "<f2>") (lambda () (interactive) (edit-config)))
@@ -131,7 +140,10 @@
                            (erc :server "localhost" :port "6667"
                                 :nick "brambasiel")))
 ;; eww
-(load-file "~/dev/nixos/epithet.el")
+(if (file-exists-p "~/dev/nixos/epithet.el")
+    (load-file "~/dev/nixos/epithet.el")
+  (load-file "/mnt/c/dev/nixos/epithet.el")) ;; wsl
+
 (add-hook 'eww-after-render-hook #'epithet-rename-buffer)
 ;;(setq eww-retrieve-command '("google-chrome-stable" "--headless" "--dump-dom"))
 
