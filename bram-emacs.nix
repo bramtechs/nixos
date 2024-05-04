@@ -27,8 +27,10 @@ in
       epkgs.shader-mode
       epkgs.python-mode
       epkgs.php-mode
+      epkgs.typescript-mode
       epkgs.vue-mode
       epkgs.csv-mode
+      epkgs.cmake-mode
      
 	    epkgs.auto-complete
       epkgs.markdown-preview-mode

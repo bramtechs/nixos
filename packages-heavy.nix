@@ -31,6 +31,7 @@
     jetbrains.idea-community
     jetbrains.rider
     
+    microsoft-edge
     azuredatastudio
     androidStudioPackages.dev
     android-tools
@@ -62,8 +63,6 @@
     unzip
     rsync
 
-    osu-lazer-bin
-    spotify
     gimp
     libreoffice
     vlc    
@@ -73,13 +72,15 @@
 
     evince
     remmina
-    firefox
     keepassxc
 
     gnome.gnome-font-viewer
     eclipses.eclipse-java
 
     mpv
-    audacious
+
+    google-chrome
+    spotify
+    discord
   ];
 }

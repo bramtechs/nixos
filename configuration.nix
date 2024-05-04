@@ -4,7 +4,6 @@
   imports =
     [
       <home-manager/nixos>
-      ./zen.nix
     ];
 
   nixpkgs.config.permittedInsecurePackages = [
@@ -13,6 +12,8 @@
 
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.allowUnfreePredicate = _: true;
+  
+  boot.loader.systemd-boot.configurationLimit = 10;
 
   # Enable the X11 windowing system and configure i3
   environment.pathsToLink = [ "/libexec" ];
@@ -55,7 +56,13 @@
   };
 
   # Enable the OpenSSH daemon.
-  services.openssh.enable = true;
+  services.openssh = {
+    enable = true;
+    settings = {
+      PasswordAuthentication = false;
+      PermitRootLogin = "no";
+    };
+  };
 
   programs = {
     dconf.enable = true;
@@ -65,6 +72,8 @@
   networking.extraHosts =
     ''
       192.168.0.149 nas
+      127.0.0.1 server.test
+      127.0.0.1 tirematch.local
     '';
 
   # Open ports in the firewall.
