@@ -48,13 +48,10 @@
     shellAliases = {
       cdnix = "cd $HOME/dev/monolith/nixos";
       cdmono = "cd $HOME/dev/monolith";
-      screenfetch = "neofetch";
+      screenfetch = "hyfetch";
     };
+
     initExtra = ''
-      if [ -e ~/.nix-profile/etc/profile.d/nix.sh ]; then
-        . ~/.nix-profile/etc/profile.d/nix.sh;
-        export NIX_PATH=$HOME/.nix-defexpr/channels''${NIX_PATH:+:}$NIX_PATH
-      fi # added by Nix installer
       PATH="$PATH:$HOME/dev/nixos/scripts"
 
       # add private scripts
@@ -66,14 +63,28 @@
     '';
   };
 
+  # dicks
+  programs.hyfetch = {
+    enable = true;
+    settings = {
+      preset = "rainbow";
+      mode = "rgb";
+      light_dark = "dark";
+      lightness = 0.65;
+      color_align = {
+          mode = "horizontal";
+          custom_colors = [];
+          fore_back = null;
+      };
+      backend = "neofetch";
+      distro = null;
+      pride_month_shown = [];
+      pride_month_disable = false;
+    };
+  };
+
   programs.fzf = {
     enable = true;
     enableBashIntegration = true;
-  };
-
-  # Automounter for removable media.
-  services.udiskie = {
-    automount = true;
-    notify = true;
   };
 }

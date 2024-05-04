@@ -52,7 +52,6 @@
     yt-dlp
     pandoc
     cmus
-    neofetch
     dos2unix
     emacs29-gtk3
   ];
