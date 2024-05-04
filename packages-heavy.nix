@@ -1,6 +1,28 @@
 { config, lib, pkgs, callPackage, ... }:
 
 {
+  # fonts
+  fonts = {
+    fontDir.enable = true;
+    enableGhostscriptFonts = true;
+    packages = with pkgs; [
+      font-awesome
+      alacritty
+      anonymousPro
+      corefonts
+      dejavu_fonts
+      freefont_ttf
+      google-fonts
+      inconsolata
+      liberation_ttf
+      powerline-fonts
+      source-code-pro
+      terminus_font
+      ttf_bitstream_vera
+      ubuntu_font_family
+    ];
+  };
+
   # system packages
   environment.systemPackages = with pkgs; [
     vmware-workstation

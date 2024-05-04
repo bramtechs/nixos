@@ -28,5 +28,6 @@
     pandoc
     cmus
     neofetch
+    dos2unix
   ];
 }
