@@ -52,6 +52,7 @@
     yt-dlp
     pandoc
     cmus
+    rclone
     dos2unix
     emacs29-gtk3
   ];
