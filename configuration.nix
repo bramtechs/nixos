@@ -68,14 +68,6 @@
     dconf.enable = true;
   };
 
-  # extra hosts
-  networking.extraHosts =
-    ''
-      192.168.0.149 nas
-      127.0.0.1 server.test
-      127.0.0.1 tirematch.local
-    '';
-
   # Open ports in the firewall.
   networking.firewall.allowedTCPPorts = [ 22 3000 ];
   #networking.firewall.allowedUDPPorts = [ ... ];

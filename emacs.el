@@ -19,7 +19,7 @@
 (set-default 'truncate-lines t)
 
 (if (eq system-type 'darwin)
-    (set-frame-font "Monaco 18" nil t)
+    (set-frame-font "Monaco 17" nil t)
   (set-frame-font "Ubuntu Mono 14" nil t))
 
 ;; reduce some friction

@@ -1,4 +1,6 @@
 build:
+# prevents bash build error on wsl
+	dos2unix bram.nix 2> /dev/null
 	nixos-rebuild switch
 upgrade:
 	nix-channel --update

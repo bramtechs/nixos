@@ -1,5 +1,4 @@
-#!/bin/sh
-
+#!/usr/bin/env sh
 xrandr --output DP-1 --mode 2560x1440 --rate 60 || exit 1 # X11 bs
 sleep 1
 

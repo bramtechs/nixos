@@ -1,4 +1,9 @@
 #!/usr/bin/env bash
-pushd $HOME/dev/nixos
+if [ -d "/mnt/c/dev/nixos" ]; then
+    pushd /mnt/c/dev/nixos    
+else
+    pushd $HOME/dev/nixos
+fi
+
 sudo make build
 popd

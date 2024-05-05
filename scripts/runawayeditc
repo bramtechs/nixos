@@ -1,4 +1,0 @@
-#!/usr/bin/env bash
-pushd /home/bram/dev/runaway/runaway-cpp
-nix-shell --command 'code ~/dev/runaway/runaway-cpp'
-popd

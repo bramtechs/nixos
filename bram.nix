@@ -21,7 +21,7 @@
     userEmail = "bramtech@telenet.be";
     ignores = [ "*~" "*ghcid.txt" "TAGS" ".idea" ".vscode" ];
     extraConfig = {
-      core.editor = "vi";
+      core.editor = "vim";
       pull.rebase = false;
       # Allow keybase git protocol.
       protocol.keybase.allow = "always";
@@ -45,6 +45,7 @@
     enable = true;
     historyIgnore = [ "l" "ls" "cd" "exit" ];
     historyControl = [ "erasedups" ];
+    historyFileSize = 10;
     shellAliases = {
       cdnix = "cd $HOME/dev/monolith/nixos";
       cdmono = "cd $HOME/dev/monolith";
@@ -53,13 +54,18 @@
 
     initExtra = ''
       PATH="$PATH:$HOME/dev/nixos/scripts"
+      PATH="$PATH:/mnt/c/dev/nixos/scripts"
 
       # add private scripts
       mkdir -p ~/dev/scripts
       PATH="$PATH:$HOME/dev/scripts"
 
-      # set wallpaper
-      gsettings set org.gnome.desktop.background picture-uri file:///home/bram/dev/nixos/misc/wallpaper_red.png 
+      # ugly hack on wsl so scripts don't have Windows line endings.
+      dos2unix /mnt/c/dev/nixos/scripts 2> /dev/null
+
+      if command -v gsettings &> /dev/null; then
+        gsettings set org.gnome.desktop.background picture-uri file:///home/bram/dev/nixos/misc/wallpaper_red.png    
+      fi
     '';
   };
 

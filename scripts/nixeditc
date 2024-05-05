@@ -1,2 +1,2 @@
-#!/bin/sh
+#!/usr/bin/env sh
 code "$(dirname $0)/.."
