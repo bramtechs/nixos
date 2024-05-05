@@ -61,7 +61,7 @@
       PATH="$PATH:$HOME/dev/scripts"
 
       # ugly hack on wsl so scripts don't have Windows line endings.
-      dos2unix /mnt/c/dev/nixos/scripts 2> /dev/null
+      dos2unix /mnt/c/dev/nixos/scripts/* 2> /dev/null
 
       if command -v gsettings &> /dev/null; then
         gsettings set org.gnome.desktop.background picture-uri file:///home/bram/dev/nixos/misc/wallpaper_red.png    
