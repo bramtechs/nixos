@@ -55,8 +55,8 @@
 
     mpv
 
-    google-chrome
-    spotify
+    #google-chrome
+    #spotify
     discord
   ];
 }
