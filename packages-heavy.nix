@@ -11,8 +11,6 @@
     
     microsoft-edge
     azuredatastudio
-    androidStudioPackages.dev
-    android-tools
     
     docker-compose
     codeblocks
