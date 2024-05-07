@@ -85,35 +85,6 @@
 (require 'ansi-color)
 (add-hook 'compilation-filter-hook 'ansi-color-compilation-filter)
 
-(defun find-closest-makefile ()
-  "Find the closest Makefile starting from the current directory."
-  (let ((dir (locate-dominating-file default-directory "Makefile")))
-    (if dir
-        (concat (file-name-as-directory dir) "Makefile")
-      nil)))
-
-(defun find-closest-makefile-folder ()
-  "Find the closest Makefile starting from the current directory."
-  (locate-dominating-file default-directory "Makefile"))
-
-(defun run-makefile (&optional task)
-  "Run the closest Makefile found from the current directory."
-  (interactive)
-  (let ((makefile (find-closest-makefile)))
-    (if makefile
-        (progn
-          (compile (concat "make -f " makefile " -C " (find-closest-makefile-folder) " -b " task))
-          (message "Makefile %s is being run." makefile))
-      (message "No Makefile found."))))
-
-(defun build-project ()
-  (setq compilation-scroll-output 'first-error) ;; stop compilation scroll on first error
-  (run-makefile))
-
-(defun run-project ()
-  (setq compilation-scroll-output 't) ;; auto scroll compilation buffer
-  (run-makefile "run"))
-
 (defun edit-config ()
   (if (file-exists-p "~/dev/nixos/emacs.el")
     (find-file "~/dev/nixos/emacs.el")
@@ -127,9 +98,6 @@
 ;; keybindings
 (global-set-key (kbd "<f2>") (lambda () (interactive) (edit-config)))
 (global-set-key (kbd "S-<f2>") (lambda () (interactive) (edit-nix-config)))
-(global-set-key (kbd "<f5>") (lambda () (interactive) (build-project)))
-(global-set-key (kbd "<f6>") (lambda () (interactive) (run-project)))
-(global-set-key (kbd "<f7>") 'compile)
 
 ;; map zoom to sane bindings
 (global-set-key (kbd "C-+") 'text-scale-increase)

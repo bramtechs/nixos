@@ -1,7 +1,7 @@
 { config, lib, pkgs, callPackage, ... }:
 
 let
-    emacsConfig = lib.readFile ./emacs.el;
+    emacsConfig = lib.readFile ./emacs.el + lib.readFile ./makefile-tools.el;
 in
 {
     programs.emacs = {
