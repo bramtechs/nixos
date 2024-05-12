@@ -52,6 +52,10 @@
 ;; autocomplete
 ;;(ac-config-default)
 
+;;(global-aggressive-indent-mode 1)
+(global-emojify-mode)
+(global-hl-todo-mode)
+
 ;; pdf support
 (pdf-tools-install)
 
@@ -149,7 +153,7 @@
 
 ;; elcord (larp-mode)
 (elcord-mode)
-(setq elcord-icon-base '"https://raw.githubusercontent.com/bramtechs/elcord/own/icons/")
+(setq elcord-icon-base '"https://raw.githubusercontent.com/bramtechs/elcord/own/icons_red/")
 (setq elcord-mode-icon-alist (append elcord-mode-icon-alist
                                      '((janet-mode . "janet-mode_icon")
                                        (asm-mode . "assembly-mode_icon")
@@ -160,6 +164,7 @@
 (setq elcord-quiet 't)
 (setq elcord-refresh-rate 7)
 (setq elcord-idle-message "Howling at the moon...")
+
 (defun elcord--editor-icon ()
   "The icon to use to represent the current editor."
   "https://raw.githubusercontent.com/bramtechs/nixos-config/main/misc/icon-invert-skew-red.png")
