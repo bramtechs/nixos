@@ -3,9 +3,12 @@
   imports =
     [
       <home-manager/nixos>
-      ./minimal-install.nix
       ../packages-heavy.nix
-      ../irc.nix
+      ../packages-linux.nix
+      ../packages.nix
+      ../cinnamon.nix
+      ../configuration.nix
+      #../mount-nas.nix
     ];
 
   # kernel additions
@@ -93,13 +96,12 @@
   home-manager.users.bram = { config, lib, pkgs, ... }: {
     imports =
       [
-        ./bram.nix
-        ./bram-i3.nix
-        ./bram-nvim.nix
-        ./bram-alacritty.nix
-        ./bram-vscode.nix
-        ./bram-firefox.nix
-        ./bram-librewolf.nix
+        ../bram.nix
+        ../bram-i3.nix
+        ../bram-nvim.nix
+        ../bram-alacritty.nix
+        ../bram-vscode.nix
+        ../bram-librewolf.nix
       ];
   };
 

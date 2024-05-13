@@ -11,8 +11,6 @@
     
     microsoft-edge
     azuredatastudio
-    androidStudioPackages.dev
-    android-tools
     
     docker-compose
     codeblocks
@@ -57,8 +55,8 @@
 
     mpv
 
-    google-chrome
-    spotify
+    #google-chrome
+    #spotify
     discord
   ];
 }

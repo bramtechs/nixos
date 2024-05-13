@@ -1,7 +1,7 @@
 { config, lib, pkgs, callPackage, ... }:
 
 let
-    emacsConfig = lib.readFile ./emacs.el;
+    emacsConfig = lib.readFile ./emacs.el + lib.readFile ./makefile-tools.el;
 in
 {
     programs.emacs = {
@@ -34,13 +34,17 @@ in
       epkgs.csv-mode
       epkgs.cmake-mode
      
+      epkgs.hl-todo
+      epkgs.aggressive-indent
 	    epkgs.auto-complete
       epkgs.markdown-preview-mode
       epkgs.git
       epkgs.rainbow-mode
       epkgs.pdf-tools
       epkgs.multiple-cursors
-      
+      epkgs.emojify
+      epkgs.magit
+            
       # distractions
       epkgs.bongo
       epkgs.vlc

@@ -50,6 +50,7 @@
       cdnix = "cd $HOME/dev/monolith/nixos";
       cdmono = "cd $HOME/dev/monolith";
       screenfetch = "hyfetch";
+      shell-nix = "nix-shell";
     };
 
     initExtra = ''
