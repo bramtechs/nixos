@@ -14,6 +14,12 @@
 
     hardware.pulseaudio.enable = false; # remove annoying beeps
 
+      services.xserver = {
+          enable = true;
+          layout = "us";
+          xkbOptions = "ctrl:nocaps"; # remember to use caps instead of control!
+      };
+
     home-manager.users.bram = { config, lib, pkgs, ... }: {
       imports = [
         ../bram.nix

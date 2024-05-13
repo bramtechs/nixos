@@ -51,6 +51,7 @@
     ffmpeg
     yt-dlp
     pandoc
+    texliveMedium
     cmus
     dos2unix
     emacs29-gtk3
