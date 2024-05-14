@@ -3,9 +3,12 @@
   imports =
     [
       <home-manager/nixos>
-      ./minimal-install.nix
       ../packages-heavy.nix
-      ../irc.nix
+      ../packages-linux.nix
+      ../packages.nix
+      ../cinnamon.nix
+      ../configuration.nix
+      #../mount-nas.nix
     ];
 
   # kernel additions
@@ -83,19 +86,22 @@
     nameservers = [ "1.1.1.1" "1.0.0.1" ]; 
     networkmanager.enable = true;
     wireless.enable = false;
-    nameservers = [ "1.1.1.1" "1.0.0.1" ];
+    extraHosts = ''
+      192.168.0.149 nas
+      127.0.0.1 server.test
+      127.0.0.1 tirematch.local
+    '';
   };
 
   home-manager.users.bram = { config, lib, pkgs, ... }: {
     imports =
       [
-        ./bram.nix
-        ./bram-i3.nix
-        ./bram-nvim.nix
-        ./bram-alacritty.nix
-        ./bram-vscode.nix
-        ./bram-firefox.nix
-        ./bram-librewolf.nix
+        ../bram.nix
+        ../bram-i3.nix
+        ../bram-nvim.nix
+        ../bram-alacritty.nix
+        ../bram-vscode.nix
+        ../bram-librewolf.nix
       ];
   };
 

@@ -11,8 +11,6 @@
 
     microsoft-edge
     azuredatastudio
-    androidStudioPackages.dev
-    android-tools
 
     docker-compose
     codeblocks
@@ -54,9 +52,7 @@
 
     gnome.gnome-font-viewer
     eclipses.eclipse-java
-
     mpv
-
     spotify
     discord
   ];
