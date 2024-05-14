@@ -1,9 +1,10 @@
 { config, lib, pkgs, callPackage, ... }:
 
 {
-    # Linux packages that I don't want on Mac.
+    # Linux packages that I don't want on Mac or aren't available.
 
     # system packages
+    documentation.dev.enable = true;
     environment.systemPackages = with pkgs; [
         gnome.gnome-disk-utility
         gnome.nautilus
