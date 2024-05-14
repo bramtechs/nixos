@@ -8,19 +8,19 @@
     jetbrains.clion
     jetbrains.idea-community
     jetbrains.rider
-    
+
     microsoft-edge
     azuredatastudio
     androidStudioPackages.dev
     android-tools
-    
+
     docker-compose
     codeblocks
     thunderbird
     element-desktop
     bruno
     dbeaver
-    
+
     # creation
     obs-studio
 
@@ -43,7 +43,7 @@
 
     gimp
     libreoffice
-    vlc    
+    vlc
 
     blender
     inkscape
@@ -57,7 +57,6 @@
 
     mpv
 
-    google-chrome
     spotify
     discord
   ];

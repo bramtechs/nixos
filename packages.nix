@@ -38,7 +38,7 @@
     cmake
     gcc
     php83
-    php83Packages.composer  
+    php83Packages.composer
     gcc
     spotdl
     wget
@@ -54,5 +54,7 @@
     cmus
     dos2unix
     emacs29-gtk3
+
+    google-chrome
   ];
 }
