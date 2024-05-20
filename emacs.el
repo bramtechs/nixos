@@ -64,7 +64,8 @@
 ;;(ac-config-default)
 
 ;;(global-aggressive-indent-mode 1)
-(global-emojify-mode)
+(if (not (eq system-type 'windows-nt))
+    (global-emojify-mode))
 (global-hl-todo-mode)
 
 ;; pdf support
