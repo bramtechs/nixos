@@ -8,17 +8,17 @@
     jetbrains.clion
     jetbrains.idea-community
     jetbrains.rider
-    
+
     microsoft-edge
     azuredatastudio
-    
+
     docker-compose
     codeblocks
     thunderbird
     element-desktop
     bruno
     dbeaver
-    
+
     # creation
     obs-studio
 
@@ -41,7 +41,7 @@
 
     gimp
     libreoffice
-    vlc    
+    vlc
 
     blender
     inkscape
@@ -52,11 +52,8 @@
 
     gnome.gnome-font-viewer
     eclipses.eclipse-java
-
     mpv
-
-    #google-chrome
-    #spotify
+    spotify
     discord
   ];
 }
