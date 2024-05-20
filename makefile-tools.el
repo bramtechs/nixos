@@ -1,32 +1,45 @@
+;; Windows
 
-(defun find-closest-makefile ()
-  "Find the closest Makefile starting from the current directory."
-  (let ((dir (locate-dominating-file default-directory "Makefile")))
-    (if dir
-        (concat (file-name-as-directory dir) "Makefile")
-      nil)))
+(defun run-build-script ()
+  (interactive)
+  (setq build-script (locate-dominating-file default-directory "build.ps1"))
+  (if (eq build-script nil)
+      (message "No build script found")
+    (compile (concat "powershell.exe -File " build-script "build.ps1"))))
 
-(defun find-closest-makefile-folder ()
-  "Find the closest Makefile starting from the current directory."
-  (locate-dominating-file default-directory "Makefile"))
+(defun run-run-script ()
+  (interactive)
+  (setq run-script (locate-dominating-file default-directory "run.ps1"))
+  (if (eq run-script nil)
+      (message "No run script found")
+    (compile (concat "powershell.exe -File " run-script "run.ps1"))))
+
+;; Linux / Mac
 
 (defun run-makefile (&optional task)
   "Run the closest Makefile found from the current directory."
   (interactive)
-  (let ((makefile (find-closest-makefile)))
-    (if makefile
-        (progn
-          (compile (concat "make -f " makefile " -C " (find-closest-makefile-folder) " -b " task))
-          (message "Makefile %s is being run." makefile))
-      (message "No Makefile found."))))
+  (setq makefile-folder (locate-dominating-file default-directory "Makefile"))
+  (if makefile-folder
+      (progn
+        (setq makefile (concat makefile-folder "Makefile"))
+        (compile (concat "make -f " makefile " -C " makefile-folder " -b " task))
+        (message "Makefile %s is being run." makefile))
+    (message "No Makefile found.")))
+
+;; Shared
 
 (defun build-project ()
   (setq compilation-scroll-output 'first-error) ;; stop compilation scroll on first error
-  (run-makefile))
+  (if (eq system-type 'windows-nt)
+      (run-build-script)
+    (run-makefile)))
 
 (defun run-project ()
   (setq compilation-scroll-output 't) ;; auto scroll compilation buffer
-  (run-makefile "run"))
+  (if (eq system-type 'windows-nt)
+      (run-run-script)
+    (run-makefile "run")))
 
 ;;;###autoload
 (define-minor-mode slow-mode

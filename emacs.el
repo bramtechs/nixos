@@ -7,8 +7,9 @@
 (tool-bar-mode -1)
 
 ;; install packages manually when not using nix
-(if (eq system-type 'windows-nt)
-    (load-file "no-nix.el"))
+(when (eq system-type 'windows-nt)
+  (load-file "no-nix.el")
+  (load-file "makefile-tools.el"))
 
 ;; make emacs shut up
 (setq ring-bell-function 'ignore)
