@@ -6,6 +6,10 @@
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 
+;; install packages manually when not using nix
+(if (eq system-type 'windows-nt)
+    (load-file "no-nix.el"))
+
 ;; make emacs shut up
 (setq ring-bell-function 'ignore)
 (setq set-message-beep 'silent)
@@ -18,9 +22,11 @@
 ;; nowrap
 (set-default 'truncate-lines t)
 
-(if (eq system-type 'darwin)
-    (set-frame-font "Monaco 17" nil t)
-  (set-frame-font "Ubuntu Mono 14" nil t))
+(cond
+ ((eq system-type 'darwin)
+  (set-frame-font "Monaco 17" nil t))
+ ((not (eq system-type 'windows-nt))
+  (set-frame-font "Ubuntu Mono 14" nil t)))
 
 ;; reduce some friction
 (setq use-short-answers t)
@@ -57,7 +63,8 @@
 (global-hl-todo-mode)
 
 ;; pdf support
-(pdf-tools-install)
+(if (not (eq system-type 'windows-nt))
+    (pdf-tools-install))
 
 ;; org mode
 (setq org-support-shift-select 't)
@@ -71,6 +78,7 @@
 ;; set theme
 (add-to-list 'custom-theme-load-path "~/dev/nixos/")
 (add-to-list 'custom-theme-load-path "/mnt/c/dev/nixos/") ;; wsl
+(add-to-list 'custom-theme-load-path "C:/dev/nixos/") ;; windows
 
 (load-theme 'custom-emacs t)
 
@@ -90,14 +98,19 @@
 (add-hook 'compilation-filter-hook 'ansi-color-compilation-filter)
 
 (defun edit-config ()
-  (if (file-exists-p "~/dev/nixos/emacs.el")
-    (find-file "~/dev/nixos/emacs.el")
-    (find-file "/mnt/c/dev/nixos/emacs.el")))
+  (find-file
+   (cond
+    ((eq system-type 'windows-nt) "C:/dev/nixos/emacs.el")
+    ((file-exists-p "~/dev/nixos/emacs.el") "~/dev/nixos/emacs.el")
+    (t "/mnt/c/dev/nixos/emacs.el"))))
 
 (defun edit-nix-config ()
-  (if (file-exists-p "~/dev/nixos/bram-emacs.nix")
-    (find-file "~/dev/nixos/bram-emacs.nix")
-    (find-file "/mnt/c/dev/nixos/bram-emacs.nix")))
+  (if (eq system-type 'windows-nt)
+      (message "Not using Nix")
+    (find-file
+     (if (file-exists-p "~/dev/nixos/bram-emacs.nix")
+         "~/dev/nixos/bram-emacs.nix"
+       "/mnt/c/dev/nixos/bram-emacs.nix"))))
 
 ;; keybindings
 (global-set-key (kbd "<f2>") (lambda () (interactive) (edit-config)))
@@ -112,9 +125,13 @@
                            (erc :server "localhost" :port "6667"
                                 :nick "brambasiel")))
 ;; eww
-(if (file-exists-p "~/dev/nixos/epithet.el")
-    (load-file "~/dev/nixos/epithet.el")
-  (load-file "/mnt/c/dev/nixos/epithet.el")) ;; wsl
+(cond
+ ((eq system-type 'windows-nt)
+  (load-file "C:/dev/nixos/epithet.el"))
+ ((file-exists-p "~/dev/nixos/epithet.el")
+  (load-file "~/dev/nixos/epithet.el"))
+ (t
+  (load-file "/mnt/c/dev/nixos/epithet.el"))) ;; wsl
 
 (add-hook 'eww-after-render-hook #'epithet-rename-buffer)
 ;;(setq eww-retrieve-command '("google-chrome-stable" "--headless" "--dump-dom"))
