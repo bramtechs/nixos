@@ -25,7 +25,9 @@
 (cond
  ((eq system-type 'darwin)
   (set-frame-font "Monaco 17" nil t))
- ((not (eq system-type 'windows-nt))
+ ((eq system-type 'windows-nt)
+  (set-frame-font "Cascadia Code 14" nil t))
+ (t
   (set-frame-font "Ubuntu Mono 14" nil t)))
 
 ;; reduce some friction
@@ -170,7 +172,7 @@
 
 ;; elcord (larp-mode)
 (elcord-mode)
-(setq elcord-icon-base '"https://raw.githubusercontent.com/bramtechs/elcord/own/icons_red/")
+(setq elcord-icon-base '"https://raw.githubusercontent.com/bramtechs/elcord/own/icons/")
 (setq elcord-mode-icon-alist (append elcord-mode-icon-alist
                                      '((janet-mode . "janet-mode_icon")
                                        (asm-mode . "assembly-mode_icon")
@@ -184,6 +186,6 @@
 
 (defun elcord--editor-icon ()
   "The icon to use to represent the current editor."
-  "https://raw.githubusercontent.com/bramtechs/nixos-config/main/misc/icon-invert-skew-red.png")
+  "https://raw.githubusercontent.com/bramtechs/nixos-config/main/misc/icon-invert-skew.png")
 
 
