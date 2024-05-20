@@ -30,6 +30,9 @@
 
 (global-set-key (kbd "C-x p") 'project-find-file)
 
+;; open diary thingy
+(global-set-key (kbd "C-x e")  (lambda () (interactive) (switch-to-buffer "/mnt/c/Users/bramb/iCloudDrive/org/index.org")))
+
 ;; Ctrl x,c,v :: Conflicts with emacs sometimes, but old habits don't die.
 ;; Workarounds:
 ;; - Press the prefix key twice very quickly (within 0.2 seconds),
