@@ -1,18 +1,28 @@
 ;; Windows
 
-(defun run-build-script ()
+(defun run-script (script-name)
+  "Run the specified SCRIPT-NAME (either 'build' or 'run') if found in a dominating directory."
   (interactive)
-  (setq build-script (locate-dominating-file default-directory "build.ps1"))
-  (if (eq build-script nil)
-      (message "No build script found")
-    (compile (concat "powershell.exe -File " build-script "build.ps1"))))
+  (let ((ps-script (locate-dominating-file default-directory (concat script-name ".ps1")))
+        (cmd-script (locate-dominating-file default-directory (concat script-name ".cmd"))))
+    (cond
+     (ps-script
+      (let ((default-directory ps-script))
+        (compile (concat "powershell.exe -File " script-name ".ps1"))))
+     (cmd-script
+      (let ((default-directory cmd-script))
+        (compile (concat script-name ".cmd"))))
+     (t (message "No %s script found" script-name)))))
+
+(defun run-build-script ()
+  "Run the build script if found in a dominating directory."
+  (interactive)
+  (run-script "build"))
 
 (defun run-run-script ()
+  "Run the run script if found in a dominating directory."
   (interactive)
-  (setq run-script (locate-dominating-file default-directory "run.ps1"))
-  (if (eq run-script nil)
-      (message "No run script found")
-    (compile (concat "powershell.exe -File " run-script "run.ps1"))))
+  (run-script "run"))
 
 ;; Linux / Mac
 
