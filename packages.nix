@@ -56,7 +56,5 @@
     rclone
     dos2unix
     emacs29-gtk3
-
-    google-chrome
-  ];
+ ];
 }
