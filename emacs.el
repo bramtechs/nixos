@@ -12,7 +12,13 @@
     ;; findstr can handle the basic find|grep use case
     (grep-apply-setting 'grep-find-template
                         "findstr /S /N /D:. /C:<R> <F>")
-    (setq find-name-arg nil)))
+    (setq find-name-arg nil))
+
+  ;; register reload config cmd
+  (defun reload-config ()
+    "Reload Emacs config"
+    (interactive)
+    (load-file "~/.emacs")))
 
 ;; install packages manually when not using nix
 (when (eq system-type 'windows-nt)
