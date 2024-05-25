@@ -28,6 +28,11 @@
                      git
                      rainbow-mode
                      multiple-cursors
+
+                     ;; copilot
+                     editorconfig
+                     jsonrpc
+                     quelpa
                      
                      ;; distractions
                      bongo
@@ -51,3 +56,13 @@
 (dolist (package package-list)
   (unless (package-installed-p package)
     (package-install package)))
+
+;; quelpa packages
+(require 'quelpa)
+(quelpa '(copilot :fetcher github
+                  :repo "copilot-emacs/copilot.el"
+                  :branch "main"
+                  :files ("*.el")))
+
+;; map copilot
+(global-set-key (kbd "C-x RET") 'copilot-accept-completion)
