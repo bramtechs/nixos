@@ -20,6 +20,7 @@
                      vue-mode
                      csv-mode
                      cmake-mode
+                     pdf-tools
                      
                      hl-todo
                      aggressive-indent
