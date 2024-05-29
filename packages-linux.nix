@@ -18,7 +18,6 @@
         rnix-lsp
         nodejs_21
 
-        #google-chrome
         adapta-gtk-theme
         ubuntu_font_family
         ubuntu-themes
@@ -26,7 +25,7 @@
         xterm
         pavucontrol
         lxappearance
-        discord
+        
         libnotify
         xclip
         gdb

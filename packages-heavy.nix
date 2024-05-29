@@ -53,8 +53,5 @@
     gnome.gnome-font-viewer
     eclipses.eclipse-java
     mpv
-
-    spotify
-    discord
   ];
 }
