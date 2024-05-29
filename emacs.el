@@ -84,8 +84,7 @@
 (global-hl-todo-mode)
 
 ;; pdf support
-(if (not (eq system-type 'windows-nt))
-    (pdf-tools-install))
+(pdf-tools-install)
 
 ;; org mode
 (setq org-support-shift-select 't)
