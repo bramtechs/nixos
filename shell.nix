@@ -8,8 +8,6 @@ mkShell
   {
     buildInputs = [
       google-chrome
-      spotify
-      discord
     ];
   }
 

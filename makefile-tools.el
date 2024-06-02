@@ -1,32 +1,55 @@
+;; Windows
 
-(defun find-closest-makefile ()
-  "Find the closest Makefile starting from the current directory."
-  (let ((dir (locate-dominating-file default-directory "Makefile")))
-    (if dir
-        (concat (file-name-as-directory dir) "Makefile")
-      nil)))
+(defun run-script (script-name)
+  "Run the specified SCRIPT-NAME (either 'build' or 'run') if found in a dominating directory."
+  (interactive)
+  (let ((ps-script (locate-dominating-file default-directory (concat script-name ".ps1")))
+        (cmd-script (locate-dominating-file default-directory (concat script-name ".cmd"))))
+    (cond
+     (ps-script
+      (let ((default-directory ps-script))
+        (compile (concat "powershell.exe -File " script-name ".ps1"))))
+     (cmd-script
+      (let ((default-directory cmd-script))
+        (compile (concat script-name ".cmd"))))
+     (t (message "No %s script found" script-name)))))
 
-(defun find-closest-makefile-folder ()
-  "Find the closest Makefile starting from the current directory."
-  (locate-dominating-file default-directory "Makefile"))
+(defun run-build-script ()
+  "Run the build script if found in a dominating directory."
+  (interactive)
+  (run-script "build"))
+
+(defun run-run-script ()
+  "Run the run script if found in a dominating directory."
+  (interactive)
+  (run-script "run"))
+
+;; Linux / Mac
 
 (defun run-makefile (&optional task)
   "Run the closest Makefile found from the current directory."
   (interactive)
-  (let ((makefile (find-closest-makefile)))
-    (if makefile
-        (progn
-          (compile (concat "make -f " makefile " -C " (find-closest-makefile-folder) " -b " task))
-          (message "Makefile %s is being run." makefile))
-      (message "No Makefile found."))))
+  (setq makefile-folder (locate-dominating-file default-directory "Makefile"))
+  (if makefile-folder
+      (progn
+        (setq makefile (concat makefile-folder "Makefile"))
+        (compile (concat "make -f " makefile " -C " makefile-folder " -b " task))
+        (message "Makefile %s is being run." makefile))
+    (message "No Makefile found.")))
+
+;; Shared
 
 (defun build-project ()
   (setq compilation-scroll-output 'first-error) ;; stop compilation scroll on first error
-  (run-makefile))
+  (if (eq system-type 'windows-nt)
+      (run-build-script)
+    (run-makefile)))
 
 (defun run-project ()
   (setq compilation-scroll-output 't) ;; auto scroll compilation buffer
-  (run-makefile "run"))
+  (if (eq system-type 'windows-nt)
+      (run-run-script)
+    (run-makefile "run")))
 
 ;;;###autoload
 (define-minor-mode slow-mode

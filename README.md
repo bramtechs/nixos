@@ -6,5 +6,9 @@
 
 *"Most sane Nix user - configuration."*
 
+## Windows
+
+- Install [msys2](https://www.msys2.org/) for Emacs pdf support
+
 ## Disclaimer
 Hardcoded for my user, not intended as a template.

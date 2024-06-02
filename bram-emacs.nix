@@ -53,6 +53,7 @@ in
       epkgs.ement
       epkgs.ivy
       epkgs.ivy-youtube
+      epkgs.fireplace
     ];
   };
 }
