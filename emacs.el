@@ -41,9 +41,9 @@
  ((eq system-type 'darwin)
   (set-frame-font "Monaco 17" nil t))
  ((eq system-type 'windows-nt)
-  (set-frame-font "Cascadia Code 14" nil t))
+  (set-frame-font "Cascadia Code 13" nil t))
  (t
-  (set-frame-font "Ubuntu Mono 14" nil t)))
+  (set-frame-font "Ubuntu Mono 13" nil t)))
 
 ;; reduce some friction
 (setq use-short-answers t)

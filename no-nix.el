@@ -21,6 +21,7 @@
                      csv-mode
                      cmake-mode
                      pdf-tools
+                     koopa-mode
                      
                      hl-todo
                      aggressive-indent
@@ -69,7 +70,9 @@
 (setq warning-minimum-level :error) ;; hide annoying identation warnings
 (global-set-key (kbd "C-x <tab>") 'copilot-accept-completion)
 (global-set-key (kbd "C-x RET") 'copilot-accept-completion)
-    
+
+(require 'koopa-mode)
+
 ;; enable copilot for all modes except c and c++
-(add-hook 'after-init-hook 'global-copilot-mode)
-(add-hook 'c-mode-common-hook 'copilot-mode)
+;; (add-hook 'after-init-hook 'global-copilot-mode)
+;; (add-hook 'c-mode-common-hook 'copilot-mode)
