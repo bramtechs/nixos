@@ -156,6 +156,11 @@
 (add-hook 'eww-after-render-hook #'epithet-rename-buffer)
 ;;(setq eww-retrieve-command '("google-chrome-stable" "--headless" "--dump-dom"))
 
+;; disable MMM background
+(add-hook 'mmm-mode-hook
+          (lambda ()
+            (set-face-background 'mmm-default-submode-face nil)))
+
 ;; shorthands
 (defun mwb ()
   (interactive)
@@ -189,7 +194,7 @@
 (setq ivy-youtube-play-at "mpv")
 
 ;; elcord (larp-mode)
-(elcord-mode)
+;; (elcord-mode)
 (setq elcord-icon-base '"https://raw.githubusercontent.com/bramtechs/elcord/own/icons/")
 (setq elcord-mode-icon-alist (append elcord-mode-icon-alist
                                      '((janet-mode . "janet-mode_icon")
