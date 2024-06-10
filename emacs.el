@@ -6,6 +6,9 @@
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 
+(if (eq system-type 'windows-nt)
+    (setq no-nix t))
+
 ;; fix grep on windows
 (when (eq system-type 'windows-nt)
   (with-eval-after-load 'grep
@@ -21,7 +24,7 @@
     (load-file "~/.emacs")))
 
 ;; install packages manually when not using nix
-(when (eq system-type 'windows-nt)
+(when (bound-and-true-p no-nix)
   (load-file "no-nix.el")
   (load-file "makefile-tools.el"))
 
@@ -53,9 +56,6 @@
 
 (global-set-key (kbd "C-x p") 'project-find-file)
 
-;; open diary thingy
-(global-set-key (kbd "C-x e")  (lambda () (interactive) (switch-to-buffer "/mnt/c/Users/bramb/iCloudDrive/org/index.org")))
-
 ;; Ctrl x,c,v :: Conflicts with emacs sometimes, but old habits don't die.
 ;; Workarounds:
 ;; - Press the prefix key twice very quickly (within 0.2 seconds),
@@ -79,8 +79,6 @@
 ;;(ac-config-default)
 
 ;;(global-aggressive-indent-mode 1)
-(if (not (eq system-type 'windows-nt))
-    (global-emojify-mode))
 (global-hl-todo-mode)
 
 ;; pdf support
@@ -194,7 +192,7 @@
 (setq ivy-youtube-play-at "mpv")
 
 ;; elcord (larp-mode)
-;; (elcord-mode)
+(elcord-mode)
 (setq elcord-icon-base '"https://raw.githubusercontent.com/bramtechs/elcord/own/icons/")
 (setq elcord-mode-icon-alist (append elcord-mode-icon-alist
                                      '((janet-mode . "janet-mode_icon")
