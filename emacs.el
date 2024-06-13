@@ -191,6 +191,12 @@
 ;; ivy
 (setq ivy-youtube-play-at "mpv")
 
+;; map copilot
+(require 'copilot)
+(setq warning-minimum-level :error) ;; hide annoying identation warnings
+(global-set-key (kbd "C-x <tab>") 'copilot-accept-completion)
+(global-set-key (kbd "C-x RET") 'copilot-accept-completion)
+
 ;; elcord (larp-mode)
 (elcord-mode)
 (setq elcord-icon-base '"https://raw.githubusercontent.com/bramtechs/elcord/own/icons/")

@@ -53,5 +53,8 @@
     gnome.gnome-font-viewer
     eclipses.eclipse-java
     mpv
+
+    google-chrome
+    discord
   ];
 }

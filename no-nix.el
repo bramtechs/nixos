@@ -64,12 +64,3 @@
                   :repo "copilot-emacs/copilot.el"
                   :branch "main"
                   :files ("*.el")))
-
-;; map copilot
-(setq warning-minimum-level :error) ;; hide annoying identation warnings
-(global-set-key (kbd "C-x <tab>") 'copilot-accept-completion)
-(global-set-key (kbd "C-x RET") 'copilot-accept-completion)
-    
-;; enable copilot for all modes except c and c++
-;; (add-hook 'after-init-hook 'global-copilot-mode)
-;; (add-hook 'c-mode-common-hook 'copilot-mode)
