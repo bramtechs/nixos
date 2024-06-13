@@ -215,4 +215,9 @@
   "The icon to use to represent the current editor."
   "https://raw.githubusercontent.com/bramtechs/nixos-config/main/misc/icon-invert-skew.png")
 
+(require 'exwm)
+(require 'exwm-config)
+(exwm-config-default)
 
+;; turn this off again
+(ido-mode -1)

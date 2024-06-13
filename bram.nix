@@ -70,6 +70,11 @@
     '';
   };
 
+  # emacs
+  programs.emacs = {
+    # TODO: migrate emacs off of home manager
+  };
+  
   # dicks
   programs.hyfetch = {
     enable = true;

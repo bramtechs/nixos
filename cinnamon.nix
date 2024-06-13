@@ -2,11 +2,12 @@
 
 {
     services.xserver = {
-        displayManager.lightdm.enable = true;
-        desktopManager = {
-            cinnamon.enable = true;
-        };
-        displayManager.defaultSession = "cinnamon";
+      displayManager.sddm.enable = true;
+      windowManager.exwm.enable = true;
+      desktopManager = {
+        cinnamon.enable = true;
+      };
+      displayManager.defaultSession = "cinnamon";
     };
 
     environment.systemPackages = with pkgs; [
