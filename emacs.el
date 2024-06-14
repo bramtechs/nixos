@@ -218,6 +218,7 @@
 (require 'exwm)
 (require 'exwm-config)
 (exwm-config-default)
+(enable-exwm)
 
 ;; turn this off again
 (ido-mode -1)

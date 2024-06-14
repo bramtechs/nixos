@@ -2,13 +2,13 @@
 
 {
     services.xserver = {
-      displayManager.sddm.enable = true;
+      displayManager.lightdm.enable = true;
       windowManager.exwm.enable = true;
       desktopManager = {
         cinnamon.enable = true;
       };
-      displayManager.defaultSession = "cinnamon";
     };
+    services.displayManager.defaultSession = "cinnamon";
 
     environment.systemPackages = with pkgs; [
         gnome.gnome-system-monitor

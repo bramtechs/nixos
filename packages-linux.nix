@@ -1,7 +1,7 @@
 { config, lib, pkgs, callPackage, ... }:
 
 {
-    # Linux packages that I don't want on Mac or aren't available.
+    # Linux-specific packages, not available on MacOS.
 
     # system packages
     documentation.dev.enable = true;
@@ -16,9 +16,7 @@
         tpm2-tss
 
         flameshot
-        rnix-lsp
-        nodejs_21
-
+        
         adapta-gtk-theme
         ubuntu_font_family
         ubuntu-themes
