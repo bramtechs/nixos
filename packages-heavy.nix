@@ -54,8 +54,8 @@
     eclipses.eclipse-java
     mpv
 
-    distrobox
     google-chrome
     discord
+    spotify
   ];
 }

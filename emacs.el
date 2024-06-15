@@ -206,7 +206,7 @@
                                        (nasm-mode . "assembly-mode_icon")
                                        (d-mode . "d-mode_icon"))))
 
-(setq elcord-display-elapsed 'f)
+(setq elcord-display-elapsed nil)
 (setq elcord-quiet 't)
 (setq elcord-refresh-rate 7)
 (setq elcord-idle-message "Howling at the moon...")
