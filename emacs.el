@@ -46,7 +46,7 @@
  ((eq system-type 'windows-nt)
   (set-frame-font "Cascadia Code 14" nil t))
  (t
-  (set-frame-font "Ubuntu Mono 14" nil t)))
+  (set-frame-font "Ubuntu Mono 16" nil t)))
 
 ;; reduce some friction
 (setq use-short-answers t)
@@ -208,7 +208,7 @@
 
 (setq elcord-display-elapsed nil)
 (setq elcord-quiet 't)
-(setq elcord-refresh-rate 7)
+(setq elcord-refresh-rate 12)
 (setq elcord-idle-message "Howling at the moon...")
 
 (defun elcord--editor-icon ()
