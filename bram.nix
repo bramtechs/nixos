@@ -67,6 +67,9 @@
       if command -v gsettings &> /dev/null; then
         gsettings set org.gnome.desktop.background picture-uri file:///home/bram/dev/nixos/misc/wallpaper_red.png    
       fi
+
+      # register organization for emacs
+      export ORGANIZATION="Doomhowl Interactive"
     '';
   };
 

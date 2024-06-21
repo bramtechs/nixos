@@ -24,9 +24,10 @@
     (load-file "~/.emacs")))
 
 ;; install packages manually when not using nix
-(when (bound-and-true-p no-nix)
-  (load-file "no-nix.el")
-  (load-file "makefile-tools.el"))
+(if (bound-and-true-p no-nix)
+    (load-file "no-nix.el")
+  ;; migrate to nixos config folder
+  (cd "~/dev/nixos"))
 
 ;; make emacs shut up
 (setq ring-bell-function 'ignore)
@@ -106,7 +107,9 @@
         (c-mode . "stroustrup")
         (java-mode . "java")))
 
-;; compiling
+;; Sign source code files. If you're not me you'll probably want to
+;; get rid of this or change it's contents.
+(load-file "copyright.el")
 
 ;; etags
 (setq tags-revert-without-query 1)
@@ -218,7 +221,15 @@
 (require 'exwm)
 (require 'exwm-config)
 (exwm-config-default)
-(enable-exwm)
 
-;; turn this off again
+;; build and run keys
+(load-file "makefile-tools.el")
+
+;; stop fat-fingering suspend shortcut, making emacs hang on exwm
+(global-unset-key "\C-x\C-z")
+(put 'suspend-frame 'disabled t)
+
+;; turn this distracting mode off again
 (ido-mode -1)
+
+(message "Loaded entire config successfully")
