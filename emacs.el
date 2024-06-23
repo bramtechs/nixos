@@ -145,6 +145,11 @@
          "~/dev/nixos/bram-emacs.nix"
        "/mnt/c/dev/nixos/bram-emacs.nix"))))
 
+;; auto-revert-mode might be slow, so try to disable it
+(with-eval-after-load 'magit-autorevert
+  (defalias 'magit-auto-revert-buffers 'auto-revert-buffers)
+  (magit-auto-revert-mode -1))
+    
 ;; keybindings
 (global-set-key (kbd "<f2>") (lambda () (interactive) (edit-config)))
 (global-set-key (kbd "S-<f2>") (lambda () (interactive) (edit-nix-config)))
@@ -230,18 +235,11 @@
   "The icon to use to represent the current editor."
   "https://raw.githubusercontent.com/bramtechs/nixos-config/main/misc/icon-invert-skew.png")
 
-(require 'exwm)
-(require 'exwm-config)
-(exwm-config-default)
+
+(if (not (bound-and-true-p no-nix))
+    (load-file "exwm.el"))
 
 ;; build and run keys
 (load-file "makefile-tools.el")
-
-;; stop fat-fingering suspend shortcut, making emacs hang on exwm
-(global-unset-key "\C-x\C-z")
-(put 'suspend-frame 'disabled t)
-
-;; turn this distracting mode off again
-(ido-mode -1)
 
 (message "Loaded entire config successfully")

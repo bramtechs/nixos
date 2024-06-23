@@ -6,7 +6,7 @@
       ../packages-heavy.nix
       ../packages-linux.nix
       ../packages.nix
-      ../cinnamon.nix
+      ../startx.nix
       ../configuration.nix
       ../mount-nas.nix
     ];
@@ -101,6 +101,7 @@
         ../bram-nvim.nix
         ../bram-alacritty.nix
         ../bram-vscode.nix
+        ../bram-startx.nix
         ../bram-librewolf.nix
       ];
   };

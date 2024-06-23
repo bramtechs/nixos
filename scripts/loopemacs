@@ -5,7 +5,7 @@
 # so I don't get stuck in an unresponsive exwm.
 
 while true; do
-    emacs
+    emacs --debug-init
     sleep 3
     echo "Restarting emacs..."
 done
