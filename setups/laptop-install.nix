@@ -99,7 +99,6 @@
         ../bram.nix
         ../bram-i3.nix
         ../bram-nvim.nix
-        ../bram-alacritty.nix
         ../bram-vscode.nix
         ../bram-startx.nix
         ../bram-librewolf.nix

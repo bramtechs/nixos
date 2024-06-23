@@ -102,4 +102,6 @@
     enable = true;
     enableBashIntegration = true;
   };
+
+  
 }

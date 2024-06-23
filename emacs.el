@@ -47,7 +47,7 @@
  ((eq system-type 'windows-nt)
   (set-frame-font "Cascadia Code 14" nil t))
  (t
-  (set-frame-font "Ubuntu Mono 16" nil t)))
+  (set-frame-font "Ubuntu Mono 13" nil t)))
 
 ;; reduce some friction
 (setq use-short-answers t)
@@ -55,6 +55,7 @@
   (remq 'process-kill-buffer-query-function
          kill-buffer-query-functions))
 
+;; vscode-like file opening
 (global-set-key (kbd "C-x p") 'project-find-file)
 
 ;; Ctrl x,c,v :: Conflicts with emacs sometimes, but old habits don't die.
@@ -235,7 +236,7 @@
   "The icon to use to represent the current editor."
   "https://raw.githubusercontent.com/bramtechs/nixos-config/main/misc/icon-invert-skew.png")
 
-
+;; run exwm environment when on nixos
 (if (not (bound-and-true-p no-nix))
     (load-file "exwm.el"))
 

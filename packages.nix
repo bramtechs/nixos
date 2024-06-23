@@ -14,7 +14,6 @@ in
     enableGhostscriptFonts = true;
     packages = with pkgs; [
       font-awesome
-      alacritty
       anonymousPro
       corefonts
       dejavu_fonts
@@ -44,7 +43,6 @@ in
     spotdl
     wget
     curl
-    neofetch
     htop
     bmon
     ranger
