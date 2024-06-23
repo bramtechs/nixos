@@ -38,6 +38,11 @@
 (setq tab-width 4)
 (setq indent-line-function 'insert-tab)
 
+;; show clock
+(setq display-time-day-and-date t
+   display-time-24hr-format t)
+(display-time)
+
 ;; nowrap
 (set-default 'truncate-lines t)
 
