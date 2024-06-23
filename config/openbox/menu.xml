@@ -11,7 +11,7 @@
         </item>
         <item label="Terminal (Quake)">
           <action name="Execute">
-            <execute>xfce4-terminal --hide-menubar --hide-toolbar --drop-down --hide-scrollbar</execute>
+            <execute>xfce4-terminal --hide-menubar --hide-toolbar --drop-down --hide-scrollbar --default-working-directory ~/dev/nixos</execute>
           </action>
         </item>
         <item label="Emacs">
