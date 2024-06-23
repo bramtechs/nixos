@@ -1,5 +1,6 @@
 { config, lib, pkgs, callPackage, ... }:
 
+# Make sure ssh keys are installed or this will hang awkwardly...
 {
   fileSystems =
     let

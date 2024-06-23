@@ -72,6 +72,18 @@
 (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
 (global-set-key (kbd "C-S-<mouse-1>") 'mc/add-cursor-on-click)
 
+;; window swapping
+(global-set-key (kbd "M-s-<right>") 'windmove-swap-states-right)
+(global-set-key (kbd "M-s-<left>") 'windmove-swap-states-left)
+(global-set-key (kbd "M-s-<up>") 'windmove-swap-states-up)
+(global-set-key (kbd "M-s-<down>") 'windmove-swap-states-down)
+
+;; move between windows
+(global-set-key (kbd "s-<right>") 'windmove-right)
+(global-set-key (kbd "s-<left>") 'windmove-left)
+(global-set-key (kbd "s-<up>") 'windmove-up)
+(global-set-key (kbd "s-<down>") 'windmove-down)
+
 ;; markdown preview
 (custom-set-variables
  '(markdown-command "pandoc"))
