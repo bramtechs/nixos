@@ -47,7 +47,7 @@
  ((eq system-type 'windows-nt)
   (set-frame-font "Cascadia Code 14" nil t))
  (t
-  (set-frame-font "Ubuntu Mono 13" nil t)))
+  (set-frame-font "Ubuntu Mono 12" nil t)))
 
 ;; reduce some friction
 (setq use-short-answers t)
@@ -236,9 +236,17 @@
   "The icon to use to represent the current editor."
   "https://raw.githubusercontent.com/bramtechs/nixos-config/main/misc/icon-invert-skew.png")
 
+
+;; stop fat-fingering suspend shortcut
+(global-unset-key "\C-x\C-z")
+(put 'suspend-frame 'disabled t)
+
 ;; run exwm environment when on nixos
-(if (not (bound-and-true-p no-nix))
-    (load-file "exwm.el"))
+(when (not (bound-and-true-p no-nix))
+  
+  (defun quit-x ()
+    (interactive)
+    (start-process-shell-command "pkill" nil "pkill -n X")))
 
 ;; build and run keys
 (load-file "makefile-tools.el")

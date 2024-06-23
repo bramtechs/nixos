@@ -1,15 +1,30 @@
 { config, lib, pkgs, ... }:
 
 {
-    services.xserver = {
-      displayManager.startx.enable = true;
-    };
+  hardware.opengl.enable = true;
+  hardware.opengl.driSupport = true;
 
-    environment.systemPackages = with pkgs; [
-        gnome.gnome-system-monitor
-        gnome.gnome-terminal
-    ];
+  services.xserver = {
+    displayManager.startx.enable = true;
+  };
 
-    hardware.opengl.enable = true;
-    hardware.opengl.driSupport = true;
+  environment.systemPackages = with pkgs; [
+    gnome.gnome-system-monitor
+    xfce.xfce4-terminal
+
+    openbox
+    openbox-menu
+    xfce.mousepad
+    xorg.xbacklight
+    
+    picom
+
+    obconf
+    lxmenu-data
+
+    cinnamon.nemo-with-extensions
+    dmenu
+    nitrogen
+  ];
+
 }

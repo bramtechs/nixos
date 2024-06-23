@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
-        
+
 # enable dbus
 
 if test -z "$DBUS_SESSION_BUS_ADDRESS"; then
@@ -11,8 +11,8 @@ if command -v dbus-update-activation-environment >/dev/null 2>&1; then
         dbus-update-activation-environment DISPLAY XAUTHORITY
 fi
 
-while true; do
-    emacs
-    sleep 3
-    echo "Restarting emacs..."
-done
+# setup monitors
+xrandr --output HDMI-2 --left-of DP-1 --mode 1920x1080 --rate 60
+xrandr --output DP-1 --primary --mode 1920x1080 --rate 60
+
+openbox
