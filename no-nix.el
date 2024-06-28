@@ -21,7 +21,9 @@
                      csv-mode
                      cmake-mode
                      pdf-tools
-                     
+                     koopa-mode
+
+                     magit
                      hl-todo
                      aggressive-indent
 	             auto-complete

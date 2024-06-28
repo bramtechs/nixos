@@ -42,6 +42,9 @@
 (setq tab-width 4)
 (setq indent-line-function 'insert-tab)
 
+;; performance tweaks
+(setq inhibit-double-buffering t)
+
 ;; show clock
 (setq display-time-day-and-date t
    display-time-24hr-format t)
@@ -54,9 +57,9 @@
  ((eq system-type 'darwin)
   (set-frame-font "Monaco 17" nil t))
  ((eq system-type 'windows-nt)
-  (set-frame-font "Cascadia Code 14" nil t))
+  (set-frame-font "Cascadia Code 13" nil t))
  (t
-  (set-frame-font "Ubuntu Mono 12" nil t)))
+  (set-frame-font "Ubuntu Mono 13" nil t)))
 
 ;; reduce some friction
 (setq use-short-answers t)
@@ -121,7 +124,15 @@
 (add-to-list 'custom-theme-load-path "/mnt/c/dev/nixos/") ;; wsl
 (add-to-list 'custom-theme-load-path "C:/dev/nixos/") ;; windows
 
-(load-theme 'custom-emacs t)
+(defun dark-mode ()
+  (interactive)
+  (load-theme 'custom-emacs t))
+
+(defun light-mode ()
+  (interactive)
+  (load-theme 'leuven t))
+
+(dark-mode)
 
 ;; c-style language formatting
 (setq c-default-style
@@ -245,6 +256,21 @@
   "The icon to use to represent the current editor."
   "https://raw.githubusercontent.com/bramtechs/nixos-config/main/misc/icon-invert-skew.png")
 
+; Stop Emacs from losing undo information by
+; setting very high limits for undo buffers
+(setq undo-limit 20000000)
+(setq undo-strong-limit 40000000)
+
+;; autocomplete word
+(global-unset-key (kbd "C-SPC"))
+(global-set-key (kbd "C-SPC") 'dabbrev-expand)
+(global-set-key (kbd "C-<tab>") 'dabbrev-expand)
+
+(setq compilation-error-regexp-alist
+    (cons '("^\\([0-9]+>\\)?\\(\\(?:[a-zA-Z]:\\)?[^:(\t\n]+\\)(\\([0-9]+\\)) : \\(?:fatal error\\|warnin\\(g\\)\\) C[0-9]+:" 2 3 nil (4))
+     compilation-error-regexp-alist))
+
+(setq mouse-wheel-scroll-amount (quote (3)))
 
 ;; stop fat-fingering suspend shortcut
 (global-unset-key "\C-x\C-z")
@@ -252,7 +278,6 @@
 
 ;; run exwm environment when on nixos
 (when (not (bound-and-true-p no-nix))
-
   (defun quit-x ()
     (interactive)
     (start-process-shell-command "pkill" nil "pkill -n X")))

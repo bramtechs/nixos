@@ -91,3 +91,8 @@
 (global-set-key (kbd "<f5>") (lambda () (interactive) (build-project-a)))
 (global-set-key (kbd "<f6>") (lambda () (interactive) (run-project-a)))
 (global-set-key (kbd "<f7>") 'compile)
+
+;; Compilation mode add clang-cl (worst regex ever) (https://regex101.com/r/Qn5liy/1)
+;;(setq clang-cl-regex "/(^.+?(?=\\())(\\()(.+?(?=,))(,)(.+?(?=))()\\): (error|warning|note)( : )(.+?(?=\\[))/")
+;;(add-to-list 'compilation-error-regexp-alist
+;;             (list clang-cl-regex 1 3 5 7 9))
