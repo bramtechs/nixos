@@ -34,6 +34,9 @@
 (setq tab-width 4)
 (setq indent-line-function 'insert-tab)
 
+;; performance tweaks
+(setq inhibit-double-buffering t)
+
 ;; nowrap
 (set-default 'truncate-lines t)
 
@@ -100,7 +103,15 @@
 (add-to-list 'custom-theme-load-path "/mnt/c/dev/nixos/") ;; wsl
 (add-to-list 'custom-theme-load-path "C:/dev/nixos/") ;; windows
 
-(load-theme 'custom-emacs t)
+(defun dark-mode ()
+  (interactive)
+  (load-theme 'custom-emacs t))
+
+(defun light-mode ()
+  (interactive)
+  (load-theme 'leuven t))
+
+(dark-mode)
 
 ;; c-style language formatting
 (setq c-default-style
@@ -194,7 +205,7 @@
 (setq ivy-youtube-play-at "mpv")
 
 ;; elcord (larp-mode)
-;; (elcord-mode)
+(elcord-mode)
 (setq elcord-icon-base '"https://raw.githubusercontent.com/bramtechs/elcord/own/icons/")
 (setq elcord-mode-icon-alist (append elcord-mode-icon-alist
                                      '((janet-mode . "janet-mode_icon")
@@ -211,4 +222,18 @@
   "The icon to use to represent the current editor."
   "https://raw.githubusercontent.com/bramtechs/nixos-config/main/misc/icon-invert-skew.png")
 
+; Stop Emacs from losing undo information by
+; setting very high limits for undo buffers
+(setq undo-limit 20000000)
+(setq undo-strong-limit 40000000)
 
+;; autocomplete word
+(global-unset-key (kbd "C-SPC"))
+(global-set-key (kbd "C-SPC") 'dabbrev-expand)
+(global-set-key (kbd "C-<tab>") 'dabbrev-expand)
+
+(setq compilation-error-regexp-alist
+    (cons '("^\\([0-9]+>\\)?\\(\\(?:[a-zA-Z]:\\)?[^:(\t\n]+\\)(\\([0-9]+\\)) : \\(?:fatal error\\|warnin\\(g\\)\\) C[0-9]+:" 2 3 nil (4))
+     compilation-error-regexp-alist))
+
+(setq mouse-wheel-scroll-amount (quote (3)))
