@@ -65,11 +65,13 @@
       dos2unix /mnt/c/dev/nixos/scripts/* 2> /dev/null
 
       if command -v gsettings &> /dev/null; then
-        gsettings set org.gnome.desktop.background picture-uri file:///home/bram/dev/nixos/misc/wallpaper_red.png    
+        gsettings set org.gnome.desktop.background picture-uri file:///home/bram/dev/nixos/misc/wallpaper_red.png
       fi
 
       # register organization for emacs
       export ORGANIZATION="Doomhowl Interactive"
+
+      export NIXPKGS_ALLOW_UNFREE=1
     '';
   };
 
@@ -77,7 +79,7 @@
   programs.emacs = {
     # TODO: migrate emacs off of home manager
   };
-  
+
   # dicks
   programs.hyfetch = {
     enable = true;
@@ -103,5 +105,5 @@
     enableBashIntegration = true;
   };
 
-  
+
 }
