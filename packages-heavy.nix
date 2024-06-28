@@ -17,14 +17,14 @@
     thunderbird
     element-desktop
     bruno
-    dbeaver
+    dbeaver-bin
 
     # creation
     obs-studio
 
     # deps
-    nodejs_21
-
+    nodejs
+    
     rustc
     cargo
     rustfmt
@@ -53,5 +53,10 @@
     gnome.gnome-font-viewer
     eclipses.eclipse-java
     mpv
+
+    distrobox
+    google-chrome
+    discord
+    spotify
   ];
 }

@@ -11,8 +11,6 @@
       "editor.minimap.enabled" = false;
       "editor.lineNumbers" = "off";
       "window.zoomLevel" = 1;
-      "nix.enableLanguageServer" = true;
-      "nix.serverPath" = "rnix-lsp";
       "security.workspace.trust.enabled" = false;
       "git.openRepositoryInParentFolders" = "always";
       "cmake.configureOnOpen"= true;

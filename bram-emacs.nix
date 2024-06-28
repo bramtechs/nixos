@@ -1,7 +1,11 @@
 { config, lib, pkgs, callPackage, ... }:
 
 let
-    emacsConfig = lib.readFile ./emacs.el + lib.readFile ./makefile-tools.el;
+  emacsConfig = lib.readFile ./emacs.el;
+  unstable = import
+    (builtins.fetchTarball https://github.com/nixos/nixpkgs/tarball/b3aa3989b4d23f53153603262b1756e06def9c64)
+    # reuse the current configuration
+    { config = config.nixpkgs.config; };
 in
 {
     programs.emacs = {
@@ -44,7 +48,9 @@ in
       epkgs.multiple-cursors
       epkgs.emojify
       epkgs.magit
-            
+      epkgs.exwm
+      unstable.emacsPackages.copilot
+      
       # distractions
       epkgs.bongo
       epkgs.vlc

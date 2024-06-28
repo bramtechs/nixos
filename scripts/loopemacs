@@ -1,0 +1,11 @@
+#!/usr/bin/env sh
+
+# When Emacs eventually becomes unresponsive
+# and is killed, it will restart automatically
+# so I don't get stuck in an unresponsive exwm.
+
+while true; do
+    emacs --debug-init
+    sleep 3
+    echo "Restarting emacs..."
+done

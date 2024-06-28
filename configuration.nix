@@ -20,15 +20,17 @@
 
   # general X settings
   programs.light.enable = true;
+  
+  # Enable touchpad support (enabled default in most desktopManager).
+  services.libinput.enable = true;
   services.xserver = {
-      enable = true;
-
-      # Enable touchpad support (enabled default in most desktopManager).
-      libinput.enable = true;
-
-      # Configure keymap in X11
+    enable = true;
+    
+    # Configure keymap in X11
+    xkb = {
       layout = "us";
-      xkbOptions = "ctrl:nocaps"; # remember to use caps instead of control!
+      options = "ctrl:nocaps"; # remember to use caps instead of control!
+    };
   };
 
   # Set your time zone.

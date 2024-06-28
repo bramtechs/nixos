@@ -6,6 +6,9 @@
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 
+(if (eq system-type 'windows-nt)
+    (setq no-nix t))
+
 ;; fix grep on windows
 (when (eq system-type 'windows-nt)
   (with-eval-after-load 'grep
@@ -21,9 +24,10 @@
     (load-file "~/.emacs")))
 
 ;; install packages manually when not using nix
-(when (eq system-type 'windows-nt)
-  (load-file "no-nix.el")
-  (load-file "makefile-tools.el"))
+(if (bound-and-true-p no-nix)
+    (load-file "no-nix.el")
+  ;; migrate to nixos config folder
+  (cd "~/dev/nixos"))
 
 ;; make emacs shut up
 (setq ring-bell-function 'ignore)
@@ -36,6 +40,11 @@
 
 ;; performance tweaks
 (setq inhibit-double-buffering t)
+
+;; show clock
+(setq display-time-day-and-date t
+   display-time-24hr-format t)
+(display-time)
 
 ;; nowrap
 (set-default 'truncate-lines t)
@@ -54,10 +63,8 @@
   (remq 'process-kill-buffer-query-function
          kill-buffer-query-functions))
 
+;; vscode-like file opening
 (global-set-key (kbd "C-x p") 'project-find-file)
-
-;; open diary thingy
-(global-set-key (kbd "C-x e")  (lambda () (interactive) (switch-to-buffer "/mnt/c/Users/bramb/iCloudDrive/org/index.org")))
 
 ;; Ctrl x,c,v :: Conflicts with emacs sometimes, but old habits don't die.
 ;; Workarounds:
@@ -74,6 +81,18 @@
 (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
 (global-set-key (kbd "C-S-<mouse-1>") 'mc/add-cursor-on-click)
 
+;; window swapping
+(global-set-key (kbd "M-s-<right>") 'windmove-swap-states-right)
+(global-set-key (kbd "M-s-<left>") 'windmove-swap-states-left)
+(global-set-key (kbd "M-s-<up>") 'windmove-swap-states-up)
+(global-set-key (kbd "M-s-<down>") 'windmove-swap-states-down)
+
+;; move between windows
+(global-set-key (kbd "s-<right>") 'windmove-right)
+(global-set-key (kbd "s-<left>") 'windmove-left)
+(global-set-key (kbd "s-<up>") 'windmove-up)
+(global-set-key (kbd "s-<down>") 'windmove-down)
+
 ;; markdown preview
 (custom-set-variables
  '(markdown-command "pandoc"))
@@ -82,8 +101,6 @@
 ;;(ac-config-default)
 
 ;;(global-aggressive-indent-mode 1)
-(if (not (eq system-type 'windows-nt))
-    (global-emojify-mode))
 (global-hl-todo-mode)
 
 ;; pdf support
@@ -119,7 +136,9 @@
         (c-mode . "stroustrup")
         (java-mode . "java")))
 
-;; compiling
+;; Sign source code files. If you're not me you'll probably want to
+;; get rid of this or change it's contents.
+(load-file "copyright.el")
 
 ;; etags
 (setq tags-revert-without-query 1)
@@ -143,6 +162,11 @@
          "~/dev/nixos/bram-emacs.nix"
        "/mnt/c/dev/nixos/bram-emacs.nix"))))
 
+;; auto-revert-mode might be slow, so try to disable it
+(with-eval-after-load 'magit-autorevert
+  (defalias 'magit-auto-revert-buffers 'auto-revert-buffers)
+  (magit-auto-revert-mode -1))
+    
 ;; keybindings
 (global-set-key (kbd "<f2>") (lambda () (interactive) (edit-config)))
 (global-set-key (kbd "S-<f2>") (lambda () (interactive) (edit-nix-config)))
@@ -204,6 +228,12 @@
 ;; ivy
 (setq ivy-youtube-play-at "mpv")
 
+;; map copilot
+(require 'copilot)
+(setq warning-minimum-level :error) ;; hide annoying identation warnings
+(global-set-key (kbd "C-x <tab>") 'copilot-accept-completion)
+(global-set-key (kbd "C-x RET") 'copilot-accept-completion)
+
 ;; elcord (larp-mode)
 (elcord-mode)
 (setq elcord-icon-base '"https://raw.githubusercontent.com/bramtechs/elcord/own/icons/")
@@ -213,9 +243,9 @@
                                        (nasm-mode . "assembly-mode_icon")
                                        (d-mode . "d-mode_icon"))))
 
-(setq elcord-display-elapsed 'f)
+(setq elcord-display-elapsed nil)
 (setq elcord-quiet 't)
-(setq elcord-refresh-rate 7)
+(setq elcord-refresh-rate 12)
 (setq elcord-idle-message "Howling at the moon...")
 
 (defun elcord--editor-icon ()
@@ -237,3 +267,18 @@
      compilation-error-regexp-alist))
 
 (setq mouse-wheel-scroll-amount (quote (3)))
+
+;; stop fat-fingering suspend shortcut
+(global-unset-key "\C-x\C-z")
+(put 'suspend-frame 'disabled t)
+
+;; run exwm environment when on nixos
+(when (not (bound-and-true-p no-nix))
+  (defun quit-x ()
+    (interactive)
+    (start-process-shell-command "pkill" nil "pkill -n X")))
+
+;; build and run keys
+(load-file "makefile-tools.el")
+
+(message "Loaded entire config successfully")
