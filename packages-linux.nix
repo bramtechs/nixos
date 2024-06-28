@@ -16,7 +16,7 @@
         tpm2-tss
 
         flameshot
-        
+
         adapta-gtk-theme
         ubuntu_font_family
         ubuntu-themes
@@ -24,7 +24,8 @@
         xterm
         pavucontrol
         lxappearance
-        
+
+        acpi
         libnotify
         xclip
         gdb
