@@ -9,6 +9,10 @@
 (if (eq system-type 'windows-nt)
     (setq no-nix t))
 
+;; prevent frequent garbage collection
+(load-file "./gcmh.el")
+(gcmh-mode 1)
+
 ;; fix grep on windows
 (when (eq system-type 'windows-nt)
   (with-eval-after-load 'grep
@@ -71,7 +75,7 @@
 (cua-mode t)
 (setq cua-auto-tabify-rectangles nil) ;; Don't tabify after rectangle commands
 (transient-mark-mode 1)               ;; No region when it is not highlighted
-(setq cua-keep-region-after-copy t) 
+(setq cua-keep-region-after-copy t)
 
 ;; multi cursors
 (require 'multiple-cursors)
@@ -155,7 +159,7 @@
 (with-eval-after-load 'magit-autorevert
   (defalias 'magit-auto-revert-buffers 'auto-revert-buffers)
   (magit-auto-revert-mode -1))
-    
+
 ;; keybindings
 (global-set-key (kbd "<f2>") (lambda () (interactive) (edit-config)))
 (global-set-key (kbd "S-<f2>") (lambda () (interactive) (edit-nix-config)))
@@ -208,12 +212,12 @@
           (if hide
               (progn (insert "/clear")
                      (erc-send-current-line))))
-        
+
         (erc-cmd (concat "account add eionrobb-discord " dc-email " " dc-pwd) t)
         (erc-cmd "account 0 on")
         (message "Signed into Discord!")))
     (message "Could not find credential file, at" creds-file))
-  
+
 ;; ivy
 (setq ivy-youtube-play-at "mpv")
 
@@ -248,7 +252,7 @@
 
 ;; run exwm environment when on nixos
 (when (not (bound-and-true-p no-nix))
-  
+
   (defun quit-x ()
     (interactive)
     (start-process-shell-command "pkill" nil "pkill -n X")))
