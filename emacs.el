@@ -95,9 +95,6 @@
 (custom-set-variables
  '(markdown-command "pandoc"))
 
-;; autocomplete
-;;(ac-config-default)
-
 ;;(global-aggressive-indent-mode 1)
 (global-hl-todo-mode)
 
@@ -144,6 +141,15 @@
 ;; Support colors in compilation mode
 (require 'ansi-color)
 (add-hook 'compilation-filter-hook 'ansi-color-compilation-filter)
+(require 'compile)
+(setq compilation-last-buffer nil)
+
+;; save all modified buffers without asking before compilation
+(setq compilation-ask-about-save nil)
+(setq grep-save-buffers t)
+
+;; auto kill process when recompiling
+(setq compilation-always-kill t)
 
 (defun edit-config ()
   (find-file
