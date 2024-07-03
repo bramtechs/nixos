@@ -144,6 +144,9 @@
 (require 'compile)
 (setq compilation-last-buffer nil)
 
+;; restore files
+(global-set-key (kbd "C-x r") 'revert-buffer-quick)
+
 ;; save all modified buffers without asking before compilation
 (setq compilation-ask-about-save nil)
 (setq grep-save-buffers t)
