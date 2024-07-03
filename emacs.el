@@ -13,23 +13,23 @@
 (load-file "./gcmh.el")
 (gcmh-mode 1)
 
-;; fix grep on windows
 (when (eq system-type 'windows-nt)
   (with-eval-after-load 'grep
+    ;; fix grep on windows
     ;; findstr can handle the basic find|grep use case
     (grep-apply-setting 'grep-find-template
                         "findstr /S /N /D:. /C:<R> <F>")
-    (setq find-name-arg nil))
+    (setq find-name-arg nil)))
 
-  ;; register reload config cmd
-  (defun reload-config ()
-    "Reload Emacs config"
-    (interactive)
-    (load-file "~/.emacs")))
 
-;; install packages manually when not using nix
 (if (bound-and-true-p no-nix)
-    (load-file "no-nix.el")
+    (let () ;; install packages manually when not using nix
+      (load-file "no-nix.el")
+      ;; register reload config cmd
+      (defun reload-config ()
+        "Reload Emacs config"
+        (interactive)
+        (load-file "~/.emacs")))
   ;; migrate to nixos config folder
   (cd "~/dev/nixos"))
 
