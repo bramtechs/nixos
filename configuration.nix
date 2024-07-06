@@ -12,7 +12,7 @@
 
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.allowUnfreePredicate = _: true;
-  
+
   boot.loader.systemd-boot.configurationLimit = 10;
 
   # Enable the X11 windowing system and configure i3
@@ -20,12 +20,12 @@
 
   # general X settings
   programs.light.enable = true;
-  
+
   # Enable touchpad support (enabled default in most desktopManager).
   services.libinput.enable = true;
   services.xserver = {
     enable = true;
-    
+
     # Configure keymap in X11
     xkb = {
       layout = "us";
@@ -61,7 +61,7 @@
   services.openssh = {
     enable = true;
     settings = {
-      PasswordAuthentication = false;
+      PasswordAuthentication = true;
       PermitRootLogin = "no";
     };
   };
