@@ -14,23 +14,23 @@
     (load-file "./gcmh.el")
     (gcmh-mode 1))
 
-;; fix grep on windows
 (when (eq system-type 'windows-nt)
   (with-eval-after-load 'grep
+    ;; fix grep on windows
     ;; findstr can handle the basic find|grep use case
     (grep-apply-setting 'grep-find-template
                         "findstr /S /N /D:. /C:<R> <F>")
-    (setq find-name-arg nil))
+    (setq find-name-arg nil)))
 
-  ;; register reload config cmd
-  (defun reload-config ()
-    "Reload Emacs config"
-    (interactive)
-    (load-file "~/.emacs")))
 
-;; install packages manually when not using nix
 (if (bound-and-true-p no-nix)
-    (load-file "no-nix.el")
+    (let () ;; install packages manually when not using nix
+      (load-file "no-nix.el")
+      ;; register reload config cmd
+      (defun reload-config ()
+        "Reload Emacs config"
+        (interactive)
+        (load-file "~/.emacs")))
   ;; migrate to nixos config folder
   (cd "~/dev/nixos"))
 
@@ -54,13 +54,7 @@
 ;; nowrap
 (set-default 'truncate-lines t)
 
-(cond
- ((eq system-type 'darwin)
-  (set-frame-font "Monaco 17" nil t))
- ((eq system-type 'windows-nt)
-  (set-frame-font "Cascadia Code 13" nil t))
- (t
-  (set-frame-font "Ubuntu Mono 13" nil t)))
+(set-frame-font "Fira Mono Medium 13" nil t)
 
 ;; reduce some friction
 (setq use-short-answers t)
@@ -101,9 +95,6 @@
 ;; markdown preview
 (custom-set-variables
  '(markdown-command "pandoc"))
-
-;; autocomplete
-;;(ac-config-default)
 
 ;;(global-aggressive-indent-mode 1)
 (global-hl-todo-mode)
@@ -151,6 +142,15 @@
 ;; Support colors in compilation mode
 (require 'ansi-color)
 (add-hook 'compilation-filter-hook 'ansi-color-compilation-filter)
+(require 'compile)
+(setq compilation-last-buffer nil)
+
+;; save all modified buffers without asking before compilation
+(setq compilation-ask-about-save nil)
+(setq grep-save-buffers t)
+
+;; auto kill process when recompiling
+(setq compilation-always-kill t)
 
 (defun edit-config ()
   (find-file

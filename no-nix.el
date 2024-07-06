@@ -16,6 +16,7 @@
                      shader-mode
                      python-mode
                      php-mode
+                     groovy-mode
                      typescript-mode
                      vue-mode
                      csv-mode
