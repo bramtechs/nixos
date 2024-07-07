@@ -37,6 +37,9 @@
 (setq ring-bell-function 'ignore)
 (setq set-message-beep 'silent)
 
+;; allow edits from other programs
+(global-auto-revert-mode t)
+
 ;; Tab size is 4 spaces
 (setq-default indent-tabs-mode nil)
 (setq tab-width 4)
@@ -73,6 +76,9 @@
 (setq cua-auto-tabify-rectangles nil) ;; Don't tabify after rectangle commands
 (transient-mark-mode 1)               ;; No region when it is not highlighted
 (setq cua-keep-region-after-copy t)
+
+;; switch to header
+(global-set-key (kbd "C-x <return>") 'ff-find-other-file)
 
 ;; multi cursors
 (require 'multiple-cursors)
