@@ -57,7 +57,7 @@
 ;; nowrap
 (set-default 'truncate-lines t)
 
-(set-frame-font "Fira Mono Medium 13" nil t)
+(set-frame-font "Fira Mono Medium 12" nil t)
 
 ;; reduce some friction
 (setq use-short-answers t)
@@ -86,17 +86,22 @@
 (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
 (global-set-key (kbd "C-S-<mouse-1>") 'mc/add-cursor-on-click)
 
-;; window swapping
-(global-set-key (kbd "M-s-<right>") 'windmove-swap-states-right)
-(global-set-key (kbd "M-s-<left>") 'windmove-swap-states-left)
-(global-set-key (kbd "M-s-<up>") 'windmove-swap-states-up)
-(global-set-key (kbd "M-s-<down>") 'windmove-swap-states-down)
+(if (eq system-type 'windows-nt)
+    (progn
+      (global-set-key (kbd "C-x j") 'windmove-swap-states-right)
+      (global-set-key (kbd "C-x J") 'windmove-swap-states-left))
+  (progn
+    ;; window swapping
+    (global-set-key (kbd "M-s-<right>") 'windmove-swap-states-right)
+    (global-set-key (kbd "M-s-<left>") 'windmove-swap-states-left)
+    (global-set-key (kbd "M-s-<up>") 'windmove-swap-states-up)
+    (global-set-key (kbd "M-s-<down>") 'windmove-swap-states-down)
 
-;; move between windows
-(global-set-key (kbd "s-<right>") 'windmove-right)
-(global-set-key (kbd "s-<left>") 'windmove-left)
-(global-set-key (kbd "s-<up>") 'windmove-up)
-(global-set-key (kbd "s-<down>") 'windmove-down)
+    ;; move between windows
+    (global-set-key (kbd "s-<right>") 'windmove-right)
+    (global-set-key (kbd "s-<left>") 'windmove-left)
+    (global-set-key (kbd "s-<up>") 'windmove-up)
+    (global-set-key (kbd "s-<down>") 'windmove-down)))
 
 ;; markdown preview
 (custom-set-variables
@@ -106,7 +111,7 @@
 (global-hl-todo-mode)
 
 ;; pdf support
-(pdf-tools-install)
+;; (pdf-tools-install)
 
 ;; org mode
 (setq org-support-shift-select 't)
