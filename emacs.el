@@ -10,8 +10,9 @@
     (setq no-nix t))
 
 ;; prevent frequent garbage collection
-(load-file "./gcmh.el")
-(gcmh-mode 1)
+(when (file-exists-p "./gcmh.el")
+    (load-file "./gcmh.el")
+    (gcmh-mode 1))
 
 (when (eq system-type 'windows-nt)
   (with-eval-after-load 'grep

@@ -4,25 +4,21 @@
   # system packages
   environment.systemPackages = with pkgs; [
     vmware-workstation
-    jetbrains.phpstorm
+    # jetbrains.phpstorm
     jetbrains.clion
     jetbrains.idea-community
-    jetbrains.rider
+    # jetbrains.rider
 
-    microsoft-edge
-    azuredatastudio
+    # microsoft-edge
+    # azuredatastudio
 
     docker-compose
-    codeblocks
-    thunderbird
-    element-desktop
+    # codeblocks
+    # thunderbird
+    # element-desktop
     bruno
     dbeaver-bin
-
-    # creation
     obs-studio
-
-    # deps
     nodejs
     
     rustc
@@ -51,10 +47,10 @@
     keepassxc
 
     gnome.gnome-font-viewer
-    eclipses.eclipse-java
+    # eclipses.eclipse-java
     mpv
 
-    distrobox
+    # distrobox
     google-chrome
     discord
     spotify
