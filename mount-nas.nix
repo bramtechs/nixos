@@ -41,8 +41,14 @@
         fsType = "fuse";
         inherit options;
       };
+      "/mnt/downloads" = {
+        device = "${pkgs.sshfs-fuse}/bin/sshfs#bram@nas:/downloads";
+        fsType = "fuse";
+        inherit options;
+      };
     };
   systemd.automounts = [
     { where = "/mnt/nas"; automountConfig.TimeoutIdleSec = "1 min"; }
+    { where = "/mnt/downloads"; automountConfig.TimeoutIdleSec = "1 min"; }
   ];
 }
