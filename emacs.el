@@ -38,6 +38,9 @@
 (setq ring-bell-function 'ignore)
 (setq set-message-beep 'silent)
 
+;; allow edits from other programs
+(global-auto-revert-mode t)
+
 ;; Tab size is 4 spaces
 (setq-default indent-tabs-mode nil)
 (setq tab-width 4)
@@ -54,7 +57,7 @@
 ;; nowrap
 (set-default 'truncate-lines t)
 
-(set-frame-font "Fira Mono Medium 13" nil t)
+(set-frame-font "Fira Mono Medium 12" nil t)
 
 ;; reduce some friction
 (setq use-short-answers t)
@@ -75,22 +78,30 @@
 (transient-mark-mode 1)               ;; No region when it is not highlighted
 (setq cua-keep-region-after-copy t)
 
+;; switch to header
+(global-set-key (kbd "C-x <return>") 'ff-find-other-file)
+
 ;; multi cursors
 (require 'multiple-cursors)
 (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
 (global-set-key (kbd "C-S-<mouse-1>") 'mc/add-cursor-on-click)
 
-;; window swapping
-(global-set-key (kbd "M-s-<right>") 'windmove-swap-states-right)
-(global-set-key (kbd "M-s-<left>") 'windmove-swap-states-left)
-(global-set-key (kbd "M-s-<up>") 'windmove-swap-states-up)
-(global-set-key (kbd "M-s-<down>") 'windmove-swap-states-down)
+(if (eq system-type 'windows-nt)
+    (progn
+      (global-set-key (kbd "C-x j") 'windmove-swap-states-right)
+      (global-set-key (kbd "C-x J") 'windmove-swap-states-left))
+  (progn
+    ;; window swapping
+    (global-set-key (kbd "M-s-<right>") 'windmove-swap-states-right)
+    (global-set-key (kbd "M-s-<left>") 'windmove-swap-states-left)
+    (global-set-key (kbd "M-s-<up>") 'windmove-swap-states-up)
+    (global-set-key (kbd "M-s-<down>") 'windmove-swap-states-down)
 
-;; move between windows
-(global-set-key (kbd "s-<right>") 'windmove-right)
-(global-set-key (kbd "s-<left>") 'windmove-left)
-(global-set-key (kbd "s-<up>") 'windmove-up)
-(global-set-key (kbd "s-<down>") 'windmove-down)
+    ;; move between windows
+    (global-set-key (kbd "s-<right>") 'windmove-right)
+    (global-set-key (kbd "s-<left>") 'windmove-left)
+    (global-set-key (kbd "s-<up>") 'windmove-up)
+    (global-set-key (kbd "s-<down>") 'windmove-down)))
 
 ;; markdown preview
 (custom-set-variables
@@ -100,7 +111,7 @@
 (global-hl-todo-mode)
 
 ;; pdf support
-(pdf-tools-install)
+;; (pdf-tools-install)
 
 ;; org mode
 (setq org-support-shift-select 't)
@@ -144,6 +155,9 @@
 (add-hook 'compilation-filter-hook 'ansi-color-compilation-filter)
 (require 'compile)
 (setq compilation-last-buffer nil)
+
+;; restore files
+(global-set-key (kbd "C-x r") 'revert-buffer-quick)
 
 ;; save all modified buffers without asking before compilation
 (setq compilation-ask-about-save nil)
