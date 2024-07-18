@@ -281,6 +281,9 @@
 (global-set-key (kbd "C-SPC") 'dabbrev-expand)
 (global-set-key (kbd "C-<tab>") 'dabbrev-expand)
 
+;; format with lsp
+(global-set-key (kbd "C-f") 'lsp-format-buffer)
+
 (setq compilation-error-regexp-alist
     (cons '("^\\([0-9]+>\\)?\\(\\(?:[a-zA-Z]:\\)?[^:(\t\n]+\\)(\\([0-9]+\\)) : \\(?:fatal error\\|warnin\\(g\\)\\) C[0-9]+:" 2 3 nil (4))
      compilation-error-regexp-alist))
