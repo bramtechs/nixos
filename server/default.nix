@@ -28,18 +28,20 @@
   boot.supportedFilesystems = [ "ntfs" ];
 
   networking = {
+
     hostName = "doomhowl-server";
     nameservers = [ "1.1.1.1" "1.0.0.1" ];
     extraHosts = ''
       192.168.0.149 nas
     '';
+    useDHCP = false;
+    defaultGateway = "16.0.0.1";
     interfaces = {
       enp2s0.ipv4.addresses = [{
         address = "16.0.0.100";
         prefixLength = 8;
       }];
     };
-
   };
 
   virtualisation = { docker.enable = true; };
