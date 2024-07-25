@@ -3,8 +3,8 @@
 {
   services.nginx = {
     enable = true;
-    virtualHosts."git.doomhowl.local" = {
-      locations."/" = { proxyPass = "http://localhost:3001/"; };
+    virtualHosts."doomhowl.local" = {
+      locations."/git" = { proxyPass = "http://localhost:3001/"; };
     };
   };
 
@@ -16,8 +16,8 @@
       interval = "hourly";
     };
     settings.server = {
-      DOMAIN = "git.doomhowl.local";
-      ROOT_URL = "http://git.doomhowl.local/";
+      DOMAIN = "doomhowl.local";
+      ROOT_URL = "http://doomhowl.local/git";
       HTTP_PORT = 3001;
     };
 
