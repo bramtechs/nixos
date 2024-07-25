@@ -6,6 +6,7 @@
 
     ./packages.nix
     ./gitea.nix
+    ./mount-nas-server.nix
   ];
 
   nixpkgs.config.allowUnfree = true;
