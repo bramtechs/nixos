@@ -28,7 +28,7 @@
   boot.supportedFilesystems = [ "ntfs" ];
 
   networking = {
-    hostName = "doomhowl";
+    hostName = "doomhowl-server";
     nameservers = [ "1.1.1.1" "1.0.0.1" ];
     extraHosts = ''
       192.168.0.149 nas
