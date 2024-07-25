@@ -1,0 +1,6 @@
+#!/usr/bin/env sh
+echo "Backing up gitea sqlite db"
+
+BACKUP_FOLDER="/home/server/backups/gitea"
+mkdir -p $BACKUP_FOLDER
+cp /var/lib/gitea/data/gitea.db "$BACKUP_FOLDER/$(date "+%Y%m%d-%H%M%S")_gitea.db"

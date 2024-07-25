@@ -1,14 +1,9 @@
 { config, lib, pkgs, callPackage, ... }:
 
 {
-  imports =
-    [
-      <home-manager/nixos>
-    ];
+  imports = [ <home-manager/nixos> ];
 
-  nixpkgs.config.permittedInsecurePackages = [
-    "nix-2.15.3"
-  ];
+  nixpkgs.config.permittedInsecurePackages = [ "nix-2.15.3" ];
 
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.allowUnfreePredicate = _: true;
@@ -37,24 +32,30 @@
   time.timeZone = "Europe/Brussels";
 
   networking = {
-      hostName = "doomhowl"; # Define your hostname.
+    hostName = "doomhowl"; # Define your hostname.
   };
 
-  console = {
-    keyMap = "us";
-  };
+  console = { keyMap = "us"; };
 
   users.users.bram = {
     isNormalUser = true;
-    extraGroups = [ "kvm" "adbusers" "libvirtd" "fuse" "video" "wheel" "networkmanager" "docker" "sudo" "tss" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [
+      "kvm"
+      "adbusers"
+      "libvirtd"
+      "fuse"
+      "video"
+      "wheel"
+      "networkmanager"
+      "docker"
+      "sudo"
+      "tss"
+    ]; # Enable ‘sudo’ for the user.
   };
 
   home-manager.users.bram = { config, lib, pkgs, ... }: {
-    imports =
-      [
-        ./bram-emacs.nix
-      ];
-      home.stateVersion = "23.11";
+    imports = [ ./bram-emacs.nix ./bram-git.nix ];
+    home.stateVersion = "23.11";
   };
 
   # Enable the OpenSSH daemon.
@@ -66,9 +67,7 @@
     };
   };
 
-  programs = {
-    dconf.enable = true;
-  };
+  programs = { dconf.enable = true; };
 
   # Open ports in the firewall.
   networking.firewall.allowedTCPPorts = [ 22 3000 ];

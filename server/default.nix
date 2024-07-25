@@ -1,7 +1,11 @@
-{ config, lib, pkgs, callPackage, ... }:
-{
-  imports =
-  [
+{ config, lib, pkgs, callPackage, ... }: {
+  imports = [
+    <home-manager/nixos>
+    (fetchTarball
+      "https://github.com/nix-community/nixos-vscode-server/tarball/master")
+
+    ./packages.nix
+    ./gitea.nix
   ];
 
   nixpkgs.config.allowUnfree = true;
@@ -9,8 +13,11 @@
 
   # kernel additions
   boot.initrd.kernelModules = [ "cifs" ];
-  boot.extraModulePackages = [ config.boot.kernelPackages.rtl8821ce ]; # it took me a while to get wifi working...
-  boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
+  boot.extraModulePackages = [
+    config.boot.kernelPackages.rtl8821ce
+  ]; # it took me a while to get wifi working...
+  boot.initrd.availableKernelModules =
+    [ "nvme" "xhci_pci" "ahci" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
 
   time.hardwareClockInLocalTime = true;
   time.timeZone = "Europe/Brussels";
@@ -23,24 +30,40 @@
   networking = {
     hostName = "doomhowl";
     nameservers = [ "1.1.1.1" "1.0.0.1" ];
-    networkmanager.enable = true;
-    wireless.enable = false;
     extraHosts = ''
       192.168.0.149 nas
     '';
+    interfaces = {
+      enp2s0.ipv4.addresses = [{
+        address = "16.0.0.100";
+        prefixLength = 8;
+      }];
+    };
+
   };
 
-  virtualisation = {
-    docker.enable = true;
-  };
+  virtualisation = { docker.enable = true; };
 
-  console = {
-    keyMap = "us";
-  };
+  console = { keyMap = "us"; };
 
   users.users.server = {
     isNormalUser = true;
-    extraGroups = [ "kvm" "libvirtd" "fuse" "video" "wheel" "networkmanager" "docker" "sudo" "tss" ];
+    extraGroups = [
+      "kvm"
+      "libvirtd"
+      "fuse"
+      "video"
+      "wheel"
+      "networkmanager"
+      "docker"
+      "sudo"
+      "tss"
+    ];
+  };
+
+  home-manager.users.server = { config, lib, pkgs, ... }: {
+    imports = [ ../bram-git.nix ];
+    home.stateVersion = "24.05";
   };
 
   services.openssh = {
@@ -50,8 +73,9 @@
       PermitRootLogin = "no";
     };
   };
+  services.vscode-server.enable = true;
 
-  networking.firewall.allowedTCPPorts = [ 22 ];
+  networking.firewall.allowedTCPPorts = [ 22 80 443 ];
   networking.firewall.enable = true;
 
   system.fsPackages = [ pkgs.sshfs ];

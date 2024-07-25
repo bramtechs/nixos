@@ -14,20 +14,6 @@
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.allowUnfreePredicate = (_: true);
 
-  programs.git = {
-    package = pkgs.gitAndTools.gitFull;
-    enable = true;
-    userName = "bramtechs";
-    userEmail = "bramtech@telenet.be";
-    ignores = [ "*~" "*ghcid.txt" "TAGS" ".idea" ".vscode" ];
-    extraConfig = {
-      core.editor = "vim";
-      pull.rebase = false;
-      # Allow keybase git protocol.
-      protocol.keybase.allow = "always";
-    };
-  };
-
   programs.tmux = {
     enable = true;
     escapeTime = 0;
