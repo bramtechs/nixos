@@ -11,6 +11,7 @@
     wget
     curl
     vim
+    gnumake
     nixfmt-classic
   ];
 }

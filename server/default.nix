@@ -6,7 +6,7 @@
 
     ./packages.nix
     ./gitea.nix
-    ./hydra.nix
+    # ./hydra.nix
     ./mount-nas-server.nix
   ];
 
