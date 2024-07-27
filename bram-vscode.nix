@@ -26,15 +26,16 @@
       esbenp.prettier-vscode
       ms-vscode.cpptools
       ms-vscode.cmake-tools
+      vadimcn.vscode-lldb
       ms-python.python
       ms-toolsai.jupyter
-      vadimcn.vscode-lldb
+      ms-vscode-remote.remote-ssh
     ];
   };
 
   imports = [
     # Source: https://gist.github.com/piousdeer/b29c272eaeba398b864da6abf6cb5daa
-    # Make vscode settings writable
+    # HACK to make vscode settings writable
 
     (import
       (builtins.fetchurl {

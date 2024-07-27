@@ -61,6 +61,14 @@
     '';
   };
 
+  home.file.".ssh/config" = {
+    text = ''
+    Host doomhowl.local
+      HostName doomhowl.local
+      User server
+    '';
+  };
+
   # emacs
   programs.emacs = {
     # TODO: migrate emacs off of home manager

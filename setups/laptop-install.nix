@@ -88,8 +88,7 @@
     wireless.enable = false;
     extraHosts = ''
       192.168.0.149 nas
-      127.0.0.1 server.test
-      127.0.0.1 tirematch.local
+      16.0.0.100    doomhowl.local
     '';
   };
 
