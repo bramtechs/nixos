@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+pushd $(dirname $0)
+
+if [[ ! -f jenkins.war ]]; then
+    echo "Downloading Jenkins..."
+    wget https://get.jenkins.io/war-stable/2.452.3/jenkins.war
+fi
+
+if [[ ! -f jenkins.war ]]; then
+    echo "Jenkins failed to download!"
+    exit 1
+fi
+
+echo "Running jenkins"
+java -jar jenkins.war
+
+popd
