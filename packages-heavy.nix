@@ -12,6 +12,7 @@
     # microsoft-edge
     # azuredatastudio
 
+    android-studio
     docker-compose
     # codeblocks
     # thunderbird
