@@ -1,26 +1,15 @@
 { config, lib, pkgs, callPackage, ... }:
 
-{
-  programs.vscode = {
-    enable = true;
-    enableExtensionUpdateCheck = false;
-    enableUpdateCheck = false;
-    userSettings = {
-      "files.autoSave" = "onFocusChange";
-      "workbench.colorTheme" = "Gruvbox Dark Medium";
-      "editor.minimap.enabled" = false;
-      "editor.lineNumbers" = "off";
-      "window.zoomLevel" = 1;
-      "security.workspace.trust.enabled" = false;
-      "git.openRepositoryInParentFolders" = "always";
-      "cmake.configureOnOpen"= true;
-      "extensions.ignoreRecommendations"= true;
-      "git.autofetch"= true;
-      "[javascript]" = {
-        "editor.defaultFormatter"= "esbenp.prettier-vscode";
-      };
-    };
-    extensions = with pkgs.vscode-extensions; [
+let 
+  system = builtins.currentSystem;
+  extensions =
+    (import (builtins.fetchGit {
+      url = "https://github.com/nix-community/nix-vscode-extensions";
+      ref = "refs/heads/master";
+      rev = "c43d9089df96cf8aca157762ed0e2ddca9fcd71e";
+    })).extensions.${system};
+  extensionsList = with extensions.vscode-marketplace; [
+      rust-lang.rust-analyzer
       jnoortheen.nix-ide
       jdinhlife.gruvbox
       esbenp.prettier-vscode
@@ -28,9 +17,55 @@
       ms-vscode.cmake-tools
       vadimcn.vscode-lldb
       ms-python.python
-      ms-toolsai.jupyter
+      # ms-toolsai.jupyter
       ms-vscode-remote.remote-ssh
-    ];
+      leonardssh.vscord
+      mads-hartmann.bash-ide-vscode
+      tomoki1207.pdf
+      twxs.cmake
+      ms-azuretools.vscode-docker
+      mechatroner.rainbow-csv
+      christian-kohler.path-intellisense
+      wayou.vscode-todo-highlight
+      gruntfuggly.todo-tree
+      usernamehw.errorlens
+      benszabo.hotline-vice
+      dave-hagedorn.jenkins-runner
+      maarti.jenkins-doc
+  ];
+in
+{
+  programs.vscode = {
+    enable = true;
+    enableExtensionUpdateCheck = false;
+    enableUpdateCheck = false;
+    userSettings = {
+      "files.autoSave" = "onFocusChange";
+      #"workbench.colorTheme" = "Gruvbox Dark Medium";
+      "workbench.colorTheme"="Hotline Vice";
+      "editor.minimap.enabled" = false;
+      "editor.lineNumbers" = "off";
+      "window.zoomLevel" = 1;
+      "security.workspace.trust.enabled" = false;
+      "git.openRepositoryInParentFolders" = "always";
+      "extensions.ignoreRecommendations"= true;
+      "git.autofetch"= true;
+      "vscord.status.idle.disconnectOnIdle"= true;
+      "vscord.status.idle.resetElapsedTime"= true;
+      "vscord.behaviour.suppressNotifications"= true;
+      "C_Cpp.clang_format_fallbackStyle"="Webkit";
+      "cmake.configureOnEdit"=false;
+      "cmake.configureOnOpen"=false;
+      "cmake.enableAutomaticKitScan"=false;
+      "cmake.showConfigureWithDebuggerNotification"=false;
+      "nix.enableLanguageServer"= true;
+      "nix.serverPath"= "nil";
+      "vscord.status.details.text.idle"="Procrastinating";
+      "[javascript]" = {
+        "editor.defaultFormatter"= "esbenp.prettier-vscode";
+      };
+    };
+    extensions = extensionsList;
   };
 
   imports = [
