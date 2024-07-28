@@ -8,11 +8,14 @@
         client_max_body_size 512M;
 
         # make nginx use unescaped URI, keep "%2F" as-is, remove the "/git" sub-path prefix, pass "/v2" as-is.
-        rewrite ^ $request_uri;
-        rewrite ^(/git)?(/.*) $2 break;
-        proxy_pass http://127.0.0.1:3000$uri;
+        set $clean_uri $request_uri;
+        if ($clean_uri ~ "^/git(/.*)$") {
+          set $clean_uri $1;
+        }
 
-        # other common HTTP headers, see the "Nginx" config section above
+        proxy_pass http://127.0.0.1:3000$clean_uri;
+
+        # other common HTTP headers
         proxy_set_header Connection $http_connection;
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Host $host;
