@@ -22,8 +22,8 @@ let
       leonardssh.vscord
       mads-hartmann.bash-ide-vscode
       tomoki1207.pdf
+      twxs.cmake
       mechatroner.rainbow-csv
-      eamodio.gitlens
       christian-kohler.path-intellisense
       wayou.vscode-todo-highlight
       gruntfuggly.todo-tree

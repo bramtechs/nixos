@@ -1,3 +1,4 @@
 #!/usr/bin/env sh
 rm -f $HOME/.config/Code/User/settings.json
 rm -rf ~/.vscode/extensions
+systemctl restart home-manager-*
