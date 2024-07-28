@@ -56,6 +56,7 @@ in
     dos2unix
     emacs29-gtk3
     scrot
+    nil # nix lsp
     
     # custom packages
     doom.raylib

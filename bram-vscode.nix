@@ -23,6 +23,7 @@ let
       mads-hartmann.bash-ide-vscode
       tomoki1207.pdf
       twxs.cmake
+      ms-azuretools.vscode-docker
       mechatroner.rainbow-csv
       christian-kohler.path-intellisense
       wayou.vscode-todo-highlight
@@ -57,6 +58,8 @@ in
       "cmake.configureOnOpen"=false;
       "cmake.enableAutomaticKitScan"=false;
       "cmake.showConfigureWithDebuggerNotification"=false;
+      "nix.enableLanguageServer"= true;
+      "nix.serverPath"= "nil";
       "vscord.status.details.text.idle"="Procrastinating";
       "[javascript]" = {
         "editor.defaultFormatter"= "esbenp.prettier-vscode";
