@@ -1,5 +1,37 @@
 { config, lib, pkgs, callPackage, ... }:
 
+let 
+  system = builtins.currentSystem;
+  extensions =
+    (import (builtins.fetchGit {
+      url = "https://github.com/nix-community/nix-vscode-extensions";
+      ref = "refs/heads/master";
+      rev = "c43d9089df96cf8aca157762ed0e2ddca9fcd71e";
+    })).extensions.${system};
+  extensionsList = with extensions.vscode-marketplace; [
+      rust-lang.rust-analyzer
+      jnoortheen.nix-ide
+      jdinhlife.gruvbox
+      esbenp.prettier-vscode
+      ms-vscode.cpptools
+      ms-vscode.cmake-tools
+      vadimcn.vscode-lldb
+      ms-python.python
+      # ms-toolsai.jupyter
+      ms-vscode-remote.remote-ssh
+      leonardssh.vscord
+      mads-hartmann.bash-ide-vscode
+      tomoki1207.pdf
+      mechatroner.rainbow-csv
+      eamodio.gitlens
+      christian-kohler.path-intellisense
+      wayou.vscode-todo-highlight
+      gruntfuggly.todo-tree
+      usernamehw.errorlens
+      benszabo.hotline-vice
+      tabeyti.jenkins-jack
+  ];
+in
 {
   programs.vscode = {
     enable = true;
@@ -7,7 +39,8 @@
     enableUpdateCheck = false;
     userSettings = {
       "files.autoSave" = "onFocusChange";
-      "workbench.colorTheme" = "Gruvbox Dark Medium";
+      #"workbench.colorTheme" = "Gruvbox Dark Medium";
+      "workbench.colorTheme"="Hotline Vice";
       "editor.minimap.enabled" = false;
       "editor.lineNumbers" = "off";
       "window.zoomLevel" = 1;
@@ -16,21 +49,16 @@
       "cmake.configureOnOpen"= true;
       "extensions.ignoreRecommendations"= true;
       "git.autofetch"= true;
+      "vscord.status.idle.disconnectOnIdle"= true;
+      "vscord.status.idle.resetElapsedTime"= true;
+      "vscord.behaviour.suppressNotifications"= true;
+      "C_Cpp.clang_format_fallbackStyle"="Webkit";
+      "vscord.status.details.text.idle"="Procrastinating";
       "[javascript]" = {
         "editor.defaultFormatter"= "esbenp.prettier-vscode";
       };
     };
-    extensions = with pkgs.vscode-extensions; [
-      jnoortheen.nix-ide
-      jdinhlife.gruvbox
-      esbenp.prettier-vscode
-      ms-vscode.cpptools
-      ms-vscode.cmake-tools
-      vadimcn.vscode-lldb
-      ms-python.python
-      ms-toolsai.jupyter
-      ms-vscode-remote.remote-ssh
-    ];
+    extensions = extensionsList;
   };
 
   imports = [
