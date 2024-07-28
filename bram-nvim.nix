@@ -17,15 +17,8 @@ in
     plugins = with pkgs.vimPlugins; with pkgs.vimPlugins.nvim-treesitter-parsers; [
       telescope-nvim
       gruvbox-nvim
-      nvim-lspconfig
-      mason-nvim
-      mason-lspconfig-nvim
-
-      lsp-zero-nvim
       vim-auto-save
-
       nvim-treesitter.withAllGrammars
-
       (fromGitHub "HEAD" "janet-lang/janet.vim")
     ];
     viAlias = true;

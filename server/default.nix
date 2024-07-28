@@ -6,7 +6,7 @@
 
     ./packages.nix
     ./gitea.nix
-    # ./hydra.nix
+    ./jenkins.nix
     ./mount-nas-server.nix
   ];
 
@@ -66,7 +66,13 @@
   };
 
   home-manager.users.server = { config, lib, pkgs, ... }: {
-    imports = [ ../bram-git.nix ];
+    nixpkgs.config.allowUnfree = true;
+    nixpkgs.config.allowUnfreePredicate = _: true;
+    imports = [
+      ../bram-git.nix
+      ../bram-vscode.nix
+      ../bram-nvim.nix
+    ];
     home.stateVersion = "24.05";
   };
 
