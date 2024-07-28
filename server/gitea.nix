@@ -13,7 +13,7 @@
           set $clean_uri $1;
         }
 
-        proxy_pass http://127.0.0.1:3000$clean_uri;
+        proxy_pass http://127.0.0.1:3001$clean_uri;
 
         # other common HTTP headers
         proxy_set_header Connection $http_connection;
