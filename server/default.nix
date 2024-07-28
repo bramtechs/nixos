@@ -34,7 +34,8 @@
     hostName = "doomhowl-server";
     nameservers = [ "1.1.1.1" "1.0.0.1" ];
     extraHosts = ''
-      192.168.0.149 nas
+      192.168.0.149   nas
+      127.0.0.1       doomhowl.local
     '';
     useDHCP = false;
     defaultGateway = "16.0.0.1";
