@@ -33,11 +33,15 @@
       enable = true;
       interval = "hourly";
     };
-    settings.server = {
-      DOMAIN = "doomhowl.local";
-      ROOT_URL = "http://doomhowl.local/git";
-      HTTP_PORT = 3001;
+    settings = {
+        webhook = {
+          ALLOWED_HOST_LIST = "*";
+        };
+        server = {
+          DOMAIN = "doomhowl.local";
+          ROOT_URL = "http://doomhowl.local/git";
+          HTTP_PORT = 3001;
+        };
     };
-
   };
 }
