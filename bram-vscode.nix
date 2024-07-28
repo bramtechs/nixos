@@ -29,7 +29,8 @@ let
       gruntfuggly.todo-tree
       usernamehw.errorlens
       benszabo.hotline-vice
-      tabeyti.jenkins-jack
+      dave-hagedorn.jenkins-runner
+      maarti.jenkins-doc
   ];
 in
 {
@@ -46,13 +47,16 @@ in
       "window.zoomLevel" = 1;
       "security.workspace.trust.enabled" = false;
       "git.openRepositoryInParentFolders" = "always";
-      "cmake.configureOnOpen"= true;
       "extensions.ignoreRecommendations"= true;
       "git.autofetch"= true;
       "vscord.status.idle.disconnectOnIdle"= true;
       "vscord.status.idle.resetElapsedTime"= true;
       "vscord.behaviour.suppressNotifications"= true;
       "C_Cpp.clang_format_fallbackStyle"="Webkit";
+      "cmake.configureOnEdit"=false;
+      "cmake.configureOnOpen"=false;
+      "cmake.enableAutomaticKitScan"=false;
+      "cmake.showConfigureWithDebuggerNotification"=false;
       "vscord.status.details.text.idle"="Procrastinating";
       "[javascript]" = {
         "editor.defaultFormatter"= "esbenp.prettier-vscode";
