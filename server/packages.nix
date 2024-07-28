@@ -13,5 +13,6 @@
     vim
     gnumake
     nixfmt-classic
+    docker-compose
   ];
 }
