@@ -10,6 +10,7 @@ let
     })).extensions.${system};
   extensionsList = with extensions.vscode-marketplace; [
       rust-lang.rust-analyzer
+      rust-lang.rust
       jnoortheen.nix-ide
       jdinhlife.gruvbox
       esbenp.prettier-vscode
@@ -17,7 +18,6 @@ let
       ms-vscode.cmake-tools
       vadimcn.vscode-lldb
       ms-python.python
-      # ms-toolsai.jupyter
       ms-vscode-remote.remote-ssh
       leonardssh.vscord
       mads-hartmann.bash-ide-vscode
@@ -30,7 +30,6 @@ let
       gruntfuggly.todo-tree
       usernamehw.errorlens
       benszabo.hotline-vice
-      dave-hagedorn.jenkins-runner
       maarti.jenkins-doc
   ];
 in
@@ -50,7 +49,6 @@ in
       "git.openRepositoryInParentFolders" = "always";
       "extensions.ignoreRecommendations"= true;
       "git.autofetch"= true;
-      "vscord.status.idle.disconnectOnIdle"= true;
       "vscord.status.idle.resetElapsedTime"= true;
       "vscord.behaviour.suppressNotifications"= true;
       "C_Cpp.clang_format_fallbackStyle"="Webkit";

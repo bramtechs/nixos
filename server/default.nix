@@ -12,6 +12,7 @@
 
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.allowUnfreePredicate = _: true;
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # kernel additions
   boot.initrd.kernelModules = [ "cifs" ];
