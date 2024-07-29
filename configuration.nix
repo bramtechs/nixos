@@ -1,12 +1,12 @@
-{ config, lib, pkgs, callPackage, ... }:
+{ pkgs, ... }:
 
 {
   imports = [ <home-manager/nixos> ];
 
-  nixpkgs.config.permittedInsecurePackages = [ "nix-2.15.3" ];
-
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.allowUnfreePredicate = _: true;
+  nixpkgs.config.permittedInsecurePackages = [ "nix-2.15.3" ];
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   boot.loader.systemd-boot.configurationLimit = 10;
 

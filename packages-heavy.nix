@@ -1,4 +1,4 @@
-{ config, lib, pkgs, callPackage, ... }:
+{ pkgs, ... }:
 
 {
   # system packages
@@ -6,7 +6,7 @@
     vmware-workstation
     # jetbrains.phpstorm
     jetbrains.clion
-    jetbrains.idea-community
+    jetbrains.idea-community-bin
     # jetbrains.rider
 
     # microsoft-edge
