@@ -34,9 +34,11 @@
 
     hostName = "doomhowl-server";
     nameservers = [ "1.1.1.1" "1.0.0.1" ];
+    # leaked ips
     extraHosts = ''
       192.168.0.149   nas
       127.0.0.1       doomhowl.local
+      16.0.0.239      node
     '';
     useDHCP = false;
     defaultGateway = "16.0.0.1";
