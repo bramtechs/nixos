@@ -15,7 +15,7 @@
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # kernel additions
-  boot.initrd.kernelModules = [ "cifs" ];
+  boot.initrd.kernelModules = [ "cifs" "kvm-amd" "kvm-intel" ];
   boot.extraModulePackages = [
     config.boot.kernelPackages.rtl8821ce
   ]; # it took me a while to get wifi working...
@@ -48,7 +48,10 @@
     };
   };
 
-  virtualisation = { docker.enable = true; };
+  virtualisation = {
+    docker.enable = true;
+    libvirtd.enable = true;
+  };
 
   console = { keyMap = "us"; };
 
@@ -70,12 +73,9 @@
   home-manager.users.server = { config, lib, pkgs, ... }: {
     nixpkgs.config.allowUnfree = true;
     nixpkgs.config.allowUnfreePredicate = _: true;
-    imports = [
-      ../bram-git.nix
-      ../bram-vscode.nix
-      ../bram-nvim.nix
-    ];
+    imports = [ ../bram-git.nix ../bram-vscode.nix ../bram-nvim.nix ];
     home.stateVersion = "24.05";
+    home.sessionVariables = { VAGRANT_DEFAULT_PROVIDER = "libvirt"; };
   };
 
   services.openssh = {

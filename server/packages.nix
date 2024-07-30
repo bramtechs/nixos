@@ -14,5 +14,7 @@
     gnumake
     nixfmt-classic
     docker-compose
+    tree
+    vagrant
   ];
 }
