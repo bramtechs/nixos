@@ -32,8 +32,13 @@
       "reconnect"
     ];
   in {
-    "/mnt/nas" = {
+    "/mnt/nas/git" = {
       device = "${pkgs.sshfs-fuse}/bin/sshfs#bram@nas:/git";
+      fsType = "fuse";
+      inherit options;
+    };
+    "/mnt/nas/data" = {
+      device = "${pkgs.sshfs-fuse}/bin/sshfs#bram@nas:/data";
       fsType = "fuse";
       inherit options;
     };

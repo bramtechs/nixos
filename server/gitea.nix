@@ -31,7 +31,7 @@
     appName = "Doomhowl Interactive";
     dump = {
       enable = true;
-      interval = "hourly";
+      interval = "16:00";
     };
     settings = {
         webhook = {
