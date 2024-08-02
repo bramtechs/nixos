@@ -14,5 +14,6 @@
     gnumake
     nixfmt-classic
     docker-compose
+    ccache
   ];
 }
