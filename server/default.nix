@@ -1,6 +1,7 @@
-{ config, lib, pkgs, callPackage, ... }: {
+{ config, pkgs, ... }: {
   imports = [
-    <home-manager/nixos>
+    (import ../modules.nix {}).home-manager
+
     (fetchTarball
       "https://github.com/nix-community/nixos-vscode-server/tarball/master")
 

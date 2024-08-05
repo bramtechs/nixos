@@ -1,4 +1,4 @@
-{ config, lib, pkgs, callPackage, ... }:
+{ lib, pkgs, ... }:
 
 let
   nvimConfig = lib.readFile ./nvim.vim;

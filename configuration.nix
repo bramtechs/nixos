@@ -1,7 +1,9 @@
 { pkgs, ... }:
 
 {
-  imports = [ <home-manager/nixos> ];
+  imports = [
+    (import ./modules.nix {}).home-manager
+  ];
 
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.allowUnfreePredicate = _: true;
@@ -54,7 +56,13 @@
   };
 
   home-manager.users.bram = { config, lib, pkgs, ... }: {
-    imports = [ ./bram-emacs.nix ./bram-git.nix ];
+    imports = [ 
+      ./bram-emacs.nix
+      ./bram-git.nix 
+      ./bram.nix
+      ./bram-nvim.nix
+      ./bram-vscode.nix
+    ];
     home.stateVersion = "23.11";
   };
 
@@ -67,7 +75,31 @@
     };
   };
 
-  programs = { dconf.enable = true; };
+  networking = {
+    nameservers = [ "1.1.1.1" "1.0.0.1" ];
+    networkmanager.enable = true;
+    wireless.enable = false;
+    extraHosts = ''
+      192.168.0.149 nas
+      16.0.0.100    doomhowl.local
+    '';
+  };
+
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
+    dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+  };
+
+  programs = {
+    virt-manager.enable = true;
+    adb.enable = true;
+    dconf.enable = true;
+  };
+
+  services.udev.packages = [
+    pkgs.android-udev-rules
+  ];
 
   # Open ports in the firewall.
   networking.firewall.allowedTCPPorts = [ 22 3000 ];

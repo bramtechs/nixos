@@ -1,12 +1,12 @@
-{ config, lib, pkgs, callPackage, ... }:
+{ config, pkgs, ... }:
 {
   imports =
     [
-      <home-manager/nixos>
       ../packages-heavy.nix
       ../packages-linux.nix
       ../packages.nix
-      ../startx.nix
+      # ../startx.nix
+      ../budgie.nix
       ../configuration.nix
       ../mount-nas.nix
     ];
@@ -82,40 +82,4 @@
     docker.enable = true;
   };
 
-  networking = {
-    nameservers = [ "1.1.1.1" "1.0.0.1" ];
-    networkmanager.enable = true;
-    wireless.enable = false;
-    extraHosts = ''
-      192.168.0.149 nas
-      16.0.0.100    doomhowl.local
-    '';
-  };
-
-  home-manager.users.bram = { config, lib, pkgs, ... }: {
-    imports =
-      [
-        ../bram.nix
-        ../bram-i3.nix
-        ../bram-nvim.nix
-        ../bram-vscode.nix
-        ../bram-startx.nix
-        ../bram-librewolf.nix
-      ];
-  };
-
-  programs.steam = {
-    enable = true;
-    remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
-    dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
-  };
-
-  programs = {
-    virt-manager.enable = true;
-    adb.enable = true;
-  };
-
-  services.udev.packages = [
-    pkgs.android-udev-rules
-  ];
 }

@@ -1,8 +1,8 @@
-{ config, lib, pkgs, ... }:
+{ ... }:
 {
     imports =
         [
-            <home-manager/nix-darwin>
+            (import ../modules.nix {}).home-manager
             ./packages.nix
         ];
 
