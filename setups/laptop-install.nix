@@ -6,7 +6,7 @@
       ../packages-linux.nix
       ../packages.nix
       # ../startx.nix
-      ../gnome.nix
+      ../cinnamon.nix
       ../configuration.nix
       ../mount-nas.nix
     ];
