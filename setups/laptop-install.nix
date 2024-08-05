@@ -6,7 +6,7 @@
       ../packages-linux.nix
       ../packages.nix
       # ../startx.nix
-      ../budgie.nix
+      ../gnome.nix
       ../configuration.nix
       ../mount-nas.nix
     ];
