@@ -17,6 +17,7 @@
 
         flameshot
 
+        command-center
         adapta-gtk-theme
         ubuntu_font_family
         ubuntu-themes

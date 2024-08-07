@@ -18,6 +18,9 @@
   # general X settings
   programs.light.enable = true;
 
+  # compilation cache
+  programs.ccache.enable = true;
+  
   # Enable touchpad support (enabled default in most desktopManager).
   services.libinput.enable = true;
   services.xserver = {
