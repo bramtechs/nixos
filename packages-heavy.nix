@@ -1,18 +1,26 @@
 { pkgs, ... }:
 
+let
+  unstable = import(pkgs.fetchFromGitHub {
+    owner = "NixOS";
+    repo = "nixpkgs";
+    rev = "fa4b81d8e9ad1f7b35c9f2cdb41318e3487eaf9a";
+    hash = "sha256-oXeiqYtpuGiNCIFJ0TNP1YWtPCLoENXknh90ztBmlCE=";
+  }) { config = { allowUnfree = true; };};
+in
 {
   # system packages
   environment.systemPackages = with pkgs; [
     vmware-workstation
     # jetbrains.phpstorm
-    jetbrains.clion
+    unstable.jetbrains.clion
     jetbrains.idea-community-bin
     # jetbrains.rider
 
     # microsoft-edge
     # azuredatastudio
 
-    android-studio
+    unstable.android-studio
     docker-compose
     # codeblocks
     # thunderbird
@@ -21,7 +29,7 @@
     dbeaver-bin
     obs-studio
     nodejs
-    
+
     rustc
     cargo
     rustfmt
