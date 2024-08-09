@@ -36,7 +36,8 @@ in
       epkgs.vue-mode
       epkgs.csv-mode
       epkgs.cmake-mode
-     
+      epkgs.yaml-mode
+      
       epkgs.hl-todo
       epkgs.aggressive-indent
 	    epkgs.auto-complete
