@@ -8,7 +8,7 @@
       # ../startx.nix
       ../cinnamon.nix
       ../configuration.nix
-      ../mount-nas.nix
+      #../mount-nas.nix
     ];
 
   # kernel additions

@@ -1,7 +1,7 @@
-{ config, lib, pkgs, callPackage, ... }:
+{ pkgs, ... }:
 
 let
-  doom = import <doomhowl> {};
+  doom = import (import ./modules.nix {}).doomhowl {};
 in
 {
   # unfree
