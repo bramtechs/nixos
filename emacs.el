@@ -254,6 +254,9 @@
 (global-set-key (kbd "C-x <tab>") 'copilot-accept-completion)
 (global-set-key (kbd "C-x RET") 'copilot-accept-completion)
 
+;; magit
+(global-set-key (kbd "M-g") 'magit)
+
 ;; elcord (larp-mode)
 (elcord-mode)
 (setq elcord-icon-base '"https://raw.githubusercontent.com/bramtechs/elcord/own/icons/")
@@ -283,7 +286,7 @@
 (global-set-key (kbd "C-<tab>") 'dabbrev-expand)
 
 ;; format with lsp
-(global-set-key (kbd "C-f") 'lsp-format-buffer)
+;; (global-set-key (kbd "C-f") 'lsp-format-buffer)
 
 (setq compilation-error-regexp-alist
     (cons '("^\\([0-9]+>\\)?\\(\\(?:[a-zA-Z]:\\)?[^:(\t\n]+\\)(\\([0-9]+\\)) : \\(?:fatal error\\|warnin\\(g\\)\\) C[0-9]+:" 2 3 nil (4))
