@@ -1,3 +1,4 @@
 result
 smb-secrets
 .config/JetBrains/**/*.key
+private_hosts

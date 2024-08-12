@@ -1,5 +1,8 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
+let
+  private_hosts_file = ./private_hosts;
+in
 {
   imports = [
     (import ./modules.nix {}).home-manager
@@ -85,7 +88,7 @@
     extraHosts = ''
       192.168.0.149 nas
       16.0.0.100    doomhowl.local
-    '';
+    '' + (if builtins.pathExists private_hosts_file then builtins.readFile private_hosts_file else "");
   };
 
   programs.steam = {
