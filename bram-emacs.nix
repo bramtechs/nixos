@@ -10,16 +10,16 @@ in
     programs.emacs = {
     enable = true;
     package = pkgs.emacs29-gtk3;
-    
+
     extraConfig = emacsConfig;
 
     extraPackages = epkgs: [
-      
+
       # themes
       epkgs.jetbrains-darcula-theme
       epkgs.obsidian-theme
       epkgs.oblivion-theme
-      
+
       # language modes
       epkgs.janet-mode
       epkgs.lua-mode
@@ -37,7 +37,9 @@ in
       epkgs.csv-mode
       epkgs.cmake-mode
       epkgs.yaml-mode
-      
+      epkgs.groovy-mode
+
+
       epkgs.hl-todo
       epkgs.aggressive-indent
 	    epkgs.auto-complete
@@ -50,7 +52,7 @@ in
       epkgs.magit
       epkgs.exwm
       unstable.emacsPackages.copilot
-      
+
       # distractions
       epkgs.bongo
       epkgs.vlc

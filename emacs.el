@@ -130,7 +130,9 @@
 
 (defun dark-mode ()
   (interactive)
-  (load-theme 'custom-emacs t))
+  (load-theme 'jetbrains-darcula t)
+  ;;(load-theme 'custom-emacs t)
+  )
 
 (defun light-mode ()
   (interactive)
@@ -139,14 +141,22 @@
 (dark-mode)
 
 ;; c-style language formatting
-(setq c-default-style
-      '((c++-mode . "stroustrup")
-        (c-mode . "stroustrup")
-        (java-mode . "java")))
+(defun my-c++-mode-hook ()
+  (c-set-style "stroustrup")
+  (c-set-offset "innamespace" 0))
+
+(add-hook 'c++-mode-hook 'my-c++-mode-hook)
 
 ;; Sign source code files. If you're not me you'll probably want to
 ;; get rid of this or change it's contents.
 (load-file "copyright.el")
+
+;; auto remove trailing whitespace
+(add-hook 'before-save-hook 'my-prog-nuke-trailing-whitespace)
+
+(defun my-prog-nuke-trailing-whitespace ()
+  (when (derived-mode-p 'prog-mode)
+    (delete-trailing-whitespace)))
 
 ;; etags
 (setq tags-revert-without-query 1)
