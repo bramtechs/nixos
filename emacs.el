@@ -226,6 +226,9 @@
 (global-set-key (kbd "C-x <tab>") 'copilot-accept-completion)
 (global-set-key (kbd "C-x RET") 'copilot-accept-completion)
 
+;; magit
+(global-set-key (kbd "M-g") 'magit)
+
 ;; elcord (larp-mode)
 (elcord-mode)
 (setq elcord-icon-base '"https://raw.githubusercontent.com/bramtechs/elcord/own/icons/")
