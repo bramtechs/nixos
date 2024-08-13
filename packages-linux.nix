@@ -39,5 +39,6 @@
         rustfmt
         haxe
         inetutils
+        feh
     ];
 }
