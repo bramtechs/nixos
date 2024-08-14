@@ -143,7 +143,7 @@
 ;; c-style language formatting
 (defun my-c++-mode-hook ()
   (c-set-style "stroustrup")
-  (c-set-offset "innamespace" 0))
+  (c-set-offset 'innamespace 0))
 
 (add-hook 'c++-mode-hook 'my-c++-mode-hook)
 
