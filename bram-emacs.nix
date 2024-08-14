@@ -2,17 +2,11 @@
 
 let
   emacsConfig = lib.readFile ./emacs.el;
-  unstable = import
-    (builtins.fetchTarball "https://github.com/nixos/nixpkgs/tarball/b3aa3989b4d23f53153603262b1756e06def9c64")
-    { config = config.nixpkgs.config; };
 in
 {
-    programs.emacs = {
+  programs.emacs = {
     enable = true;
-    package = pkgs.emacs29-gtk3;
-
     extraConfig = emacsConfig;
-
     extraPackages = epkgs: [
 
       # themes
@@ -37,8 +31,12 @@ in
       epkgs.csv-mode
       epkgs.cmake-mode
       epkgs.yaml-mode
+<<<<<<< HEAD
       epkgs.groovy-mode
 
+=======
+      epkgs.gcmh
+>>>>>>> b706580d1a892809f7f10e400096aa16d0b60ce6
 
       epkgs.hl-todo
       epkgs.aggressive-indent
@@ -48,20 +46,12 @@ in
       epkgs.rainbow-mode
       epkgs.pdf-tools
       epkgs.multiple-cursors
-      epkgs.emojify
       epkgs.magit
-      epkgs.exwm
-      unstable.emacsPackages.copilot
+      epkgs.copilot
 
       # distractions
-      epkgs.bongo
-      epkgs.vlc
       epkgs.elcord
       epkgs.playerctl
-      epkgs.ement
-      epkgs.ivy
-      epkgs.ivy-youtube
-      epkgs.fireplace
     ];
   };
 }

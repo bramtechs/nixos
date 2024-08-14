@@ -11,7 +11,7 @@
     (setq no-nix t))
 
 ;; prevent frequent garbage collection
-(when (file-exists-p "./gcmh.el")
+(when (and (file-exists-p "./gcmh.el") 'no-nix)
     (load-file "./gcmh.el")
     (gcmh-mode 1))
 
@@ -38,9 +38,6 @@
 ;; make emacs shut up
 (setq ring-bell-function 'ignore)
 (setq set-message-beep 'silent)
-
-;; allow edits from other programs
-(global-auto-revert-mode t)
 
 ;; Tab size is 4 spaces
 (setq-default indent-tabs-mode nil)
@@ -108,7 +105,6 @@
 (custom-set-variables
  '(markdown-command "pandoc"))
 
-;;(global-aggressive-indent-mode 1)
 (global-hl-todo-mode)
 
 ;; pdf support
@@ -234,30 +230,6 @@
   (interactive)
   (mark-whole-buffer))
 
-;; load credentials
-(defconst creds-file "~/.env.el")
-(if (file-readable-p creds-file)
-    (progn
-      (load-file creds-file)
-      (defun erc-discord ()
-        (interactive)
-        (defun erc-cmd (c &optional hide)
-          (interactive)
-          (setq erc-accidental-paste-threshold-seconds 0)
-          (insert c)
-          (erc-send-current-line)
-          (if hide
-              (progn (insert "/clear")
-                     (erc-send-current-line))))
-
-        (erc-cmd (concat "account add eionrobb-discord " dc-email " " dc-pwd) t)
-        (erc-cmd "account 0 on")
-        (message "Signed into Discord!")))
-    (message "Could not find credential file, at" creds-file))
-
-;; ivy
-(setq ivy-youtube-play-at "mpv")
-
 ;; map copilot
 (require 'copilot)
 (setq warning-minimum-level :error) ;; hide annoying identation warnings
@@ -285,18 +257,10 @@
   "The icon to use to represent the current editor."
   "https://raw.githubusercontent.com/bramtechs/nixos-config/main/misc/icon-invert-skew.png")
 
-; Stop Emacs from losing undo information by
-; setting very high limits for undo buffers
-(setq undo-limit 20000000)
-(setq undo-strong-limit 40000000)
-
 ;; autocomplete word
 (global-unset-key (kbd "C-SPC"))
 (global-set-key (kbd "C-SPC") 'dabbrev-expand)
 (global-set-key (kbd "C-<tab>") 'dabbrev-expand)
-
-;; format with lsp
-;; (global-set-key (kbd "C-f") 'lsp-format-buffer)
 
 (setq compilation-error-regexp-alist
     (cons '("^\\([0-9]+>\\)?\\(\\(?:[a-zA-Z]:\\)?[^:(\t\n]+\\)(\\([0-9]+\\)) : \\(?:fatal error\\|warnin\\(g\\)\\) C[0-9]+:" 2 3 nil (4))
@@ -307,12 +271,6 @@
 ;; stop fat-fingering suspend shortcut
 (global-unset-key "\C-x\C-z")
 (put 'suspend-frame 'disabled t)
-
-;; run exwm environment when on nixos
-(when (not (bound-and-true-p no-nix))
-  (defun quit-x ()
-    (interactive)
-    (start-process-shell-command "pkill" nil "pkill -n X")))
 
 ;; build and run keys
 (load-file "makefile-tools.el")
