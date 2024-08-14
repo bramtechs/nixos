@@ -40,5 +40,6 @@
         haxe
         inetutils
         feh
+        sloccount
     ];
 }
