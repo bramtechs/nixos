@@ -20,7 +20,7 @@ in
       epkgs.d-mode
       epkgs.make-color
       epkgs.fsharp-mode
-  	  epkgs.nix-mode
+      epkgs.nix-mode
       epkgs.markdown-mode
       epkgs.shader-mode
       epkgs.shader-mode
@@ -31,16 +31,11 @@ in
       epkgs.csv-mode
       epkgs.cmake-mode
       epkgs.yaml-mode
-<<<<<<< HEAD
       epkgs.groovy-mode
-
-=======
       epkgs.gcmh
->>>>>>> b706580d1a892809f7f10e400096aa16d0b60ce6
-
       epkgs.hl-todo
       epkgs.aggressive-indent
-	    epkgs.auto-complete
+      epkgs.auto-complete
       epkgs.markdown-preview-mode
       epkgs.git
       epkgs.rainbow-mode
