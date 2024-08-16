@@ -3,8 +3,7 @@
 with lib;
 
 {
-  imports =
-  [     ];
+  imports = [];
 
   powerManagement.enable = false;
   system.stateVersion = mkDefault "18.03";
@@ -12,7 +11,7 @@ with lib;
   time.timeZone = "Europe/Brussels";
 
   environment.systemPackages = with pkgs; [
-    vim
+    vim git
   ];
 
   console = { keyMap = "us"; };
