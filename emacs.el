@@ -10,11 +10,6 @@
 (if (eq system-type 'windows-nt)
     (setq no-nix t))
 
-;; prevent frequent garbage collection
-(when (file-exists-p "./gcmh.el")
-    (load-file "./gcmh.el")
-    (gcmh-mode 1))
-
 (when (eq system-type 'windows-nt)
   (with-eval-after-load 'grep
     ;; fix grep on windows
@@ -23,24 +18,13 @@
                         "findstr /S /N /D:. /C:<R> <F>")
     (setq find-name-arg nil)))
 
-
 (if (bound-and-true-p no-nix)
-    (let () ;; install packages manually when not using nix
-      (load-file "no-nix.el")
-      ;; register reload config cmd
-      (defun reload-config ()
-        "Reload Emacs config"
-        (interactive)
-        (load-file "~/.emacs")))
-  ;; migrate to nixos config folder
-  (cd "~/dev/nixos"))
+    ;; install packages manually when not using nix
+    (load-file "no-nix.el"))
 
 ;; make emacs shut up
 (setq ring-bell-function 'ignore)
 (setq set-message-beep 'silent)
-
-;; allow edits from other programs
-(global-auto-revert-mode t)
 
 ;; Tab size is 4 spaces
 (setq-default indent-tabs-mode nil)
@@ -69,7 +53,7 @@
 ;; vscode-like file opening
 (global-set-key (kbd "C-x p") 'project-find-file)
 
-;; Ctrl x,c,v :: Conflicts with emacs sometimes, but old habits don't die.
+;; Ctrl x,c,v :: Conflicts with emacs sometimes.
 ;; Workarounds:
 ;; - Press the prefix key twice very quickly (within 0.2 seconds),
 ;; - press the prefix key and the following key within 0.2 seconds, or
@@ -108,7 +92,6 @@
 (custom-set-variables
  '(markdown-command "pandoc"))
 
-;;(global-aggressive-indent-mode 1)
 (global-hl-todo-mode)
 
 ;; pdf support
@@ -130,7 +113,9 @@
 
 (defun dark-mode ()
   (interactive)
-  (load-theme 'custom-emacs t))
+  (load-theme 'jetbrains-darcula t)
+  ;;(load-theme 'custom-emacs t)
+  )
 
 (defun light-mode ()
   (interactive)
@@ -139,14 +124,18 @@
 (dark-mode)
 
 ;; c-style language formatting
-(setq c-default-style
-      '((c++-mode . "stroustrup")
-        (c-mode . "stroustrup")
-        (java-mode . "java")))
+(defun my-c++-mode-hook ()
+  (c-set-style "stroustrup")
+  (c-set-offset 'innamespace 0))
 
-;; Sign source code files. If you're not me you'll probably want to
-;; get rid of this or change it's contents.
-(load-file "copyright.el")
+(add-hook 'c++-mode-hook 'my-c++-mode-hook)
+
+;; auto remove trailing whitespace
+(add-hook 'before-save-hook 'my-prog-nuke-trailing-whitespace)
+
+(defun my-prog-nuke-trailing-whitespace ()
+  (when (derived-mode-p 'prog-mode)
+    (delete-trailing-whitespace)))
 
 ;; etags
 (setq tags-revert-without-query 1)
@@ -199,22 +188,6 @@
 (global-set-key (kbd "C-c rc") (lambda () (interactive)
                            (erc :server "localhost" :port "6667"
                                 :nick "brambasiel")))
-;; eww
-(cond
- ((eq system-type 'windows-nt)
-  (load-file "C:/dev/nixos/epithet.el"))
- ((file-exists-p "~/dev/nixos/epithet.el")
-  (load-file "~/dev/nixos/epithet.el"))
- (t
-  (load-file "/mnt/c/dev/nixos/epithet.el"))) ;; wsl
-
-(add-hook 'eww-after-render-hook #'epithet-rename-buffer)
-;;(setq eww-retrieve-command '("google-chrome-stable" "--headless" "--dump-dom"))
-
-;; disable MMM background
-(add-hook 'mmm-mode-hook
-          (lambda ()
-            (set-face-background 'mmm-default-submode-face nil)))
 
 ;; shorthands
 (defun mwb ()
@@ -224,38 +197,11 @@
   (interactive)
   (mark-whole-buffer))
 
-;; load credentials
-(defconst creds-file "~/.env.el")
-(if (file-readable-p creds-file)
-    (progn
-      (load-file creds-file)
-      (defun erc-discord ()
-        (interactive)
-        (defun erc-cmd (c &optional hide)
-          (interactive)
-          (setq erc-accidental-paste-threshold-seconds 0)
-          (insert c)
-          (erc-send-current-line)
-          (if hide
-              (progn (insert "/clear")
-                     (erc-send-current-line))))
-
-        (erc-cmd (concat "account add eionrobb-discord " dc-email " " dc-pwd) t)
-        (erc-cmd "account 0 on")
-        (message "Signed into Discord!")))
-    (message "Could not find credential file, at" creds-file))
-
-;; ivy
-(setq ivy-youtube-play-at "mpv")
-
 ;; map copilot
 (require 'copilot)
 (setq warning-minimum-level :error) ;; hide annoying identation warnings
 (global-set-key (kbd "C-x <tab>") 'copilot-accept-completion)
 (global-set-key (kbd "C-x RET") 'copilot-accept-completion)
-
-;; magit
-(global-set-key (kbd "M-g") 'magit)
 
 ;; elcord (larp-mode)
 (elcord-mode)
@@ -275,18 +221,10 @@
   "The icon to use to represent the current editor."
   "https://raw.githubusercontent.com/bramtechs/nixos-config/main/misc/icon-invert-skew.png")
 
-; Stop Emacs from losing undo information by
-; setting very high limits for undo buffers
-(setq undo-limit 20000000)
-(setq undo-strong-limit 40000000)
-
 ;; autocomplete word
 (global-unset-key (kbd "C-SPC"))
 (global-set-key (kbd "C-SPC") 'dabbrev-expand)
 (global-set-key (kbd "C-<tab>") 'dabbrev-expand)
-
-;; format with lsp
-;; (global-set-key (kbd "C-f") 'lsp-format-buffer)
 
 (setq compilation-error-regexp-alist
     (cons '("^\\([0-9]+>\\)?\\(\\(?:[a-zA-Z]:\\)?[^:(\t\n]+\\)(\\([0-9]+\\)) : \\(?:fatal error\\|warnin\\(g\\)\\) C[0-9]+:" 2 3 nil (4))
@@ -298,13 +236,155 @@
 (global-unset-key "\C-x\C-z")
 (put 'suspend-frame 'disabled t)
 
-;; run exwm environment when on nixos
-(when (not (bound-and-true-p no-nix))
-  (defun quit-x ()
-    (interactive)
-    (start-process-shell-command "pkill" nil "pkill -n X")))
-
 ;; build and run keys
-(load-file "makefile-tools.el")
+;; Windows
+
+(defun run-script (script-name)
+  "Run the specified SCRIPT-NAME (either 'build' or 'run') if found in a dominating directory."
+  (interactive)
+  (let ((ps-script (locate-dominating-file default-directory (concat script-name ".ps1")))
+        (cmd-script (locate-dominating-file default-directory (concat script-name ".cmd"))))
+    (cond
+     (ps-script
+      (let ((default-directory ps-script))
+        (compile (concat "powershell.exe -File " script-name ".ps1"))))
+     (cmd-script
+      (let ((default-directory cmd-script))
+        (compile (concat script-name ".cmd"))))
+     (t (message "No %s script found" script-name)))))
+
+(defun run-build-script ()
+  "Run the build script if found in a dominating directory."
+  (interactive)
+  (run-script "build"))
+
+(defun run-run-script ()
+  "Run the run script if found in a dominating directory."
+  (interactive)
+  (run-script "run"))
+
+;; Linux / Mac
+
+(defun run-makefile (&optional task)
+  "Run the closest Makefile found from the current directory."
+  (interactive)
+  (setq makefile-folder (locate-dominating-file default-directory "Makefile"))
+  (if makefile-folder
+      (progn
+        (setq makefile (concat makefile-folder "Makefile"))
+        (compile (concat "make -f " makefile " -C " makefile-folder " -b " task))
+        (message "Makefile %s is being run." makefile))
+    (message "No Makefile found.")))
+
+;; Shared
+
+(defun build-project ()
+  (setq compilation-scroll-output 'first-error) ;; stop compilation scroll on first error
+  (if (eq system-type 'windows-nt)
+      (run-build-script)
+    (run-makefile)))
+
+(defun run-project ()
+  (setq compilation-scroll-output 't) ;; auto scroll compilation buffer
+  (if (eq system-type 'windows-nt)
+      (run-run-script)
+    (run-makefile "run")))
+
+;;;###autoload
+(define-minor-mode slow-mode
+  "Toggle slow-mode, which adds cooldowns to builds."
+  :init-value nil
+  :lighter (:eval (propertize " Slow" 'face '(:foreground "OrangeRed3")))
+  :keymap (make-sparse-keymap)
+  :global t
+  (if slow-mode
+      (message "Slow mode enabled")
+    (message "Slow mode disabled")))
+
+(provide 'slow-mode)
+
+(defvar last-build-time -1)
+
+(defcustom build-cooldown 300
+  "Cooldown time (in seconds) between build commands."
+  :type 'integer
+  :group 'my-custom-settings)
+
+(defun unix-time ()
+    (time-convert (current-time) 'integer))
+
+(defun cooldowned-action (cb)
+  (setq time-left (- (+ last-build-time build-cooldown) (unix-time)))
+  (if (or (<= time-left 0) (= last-build-time -1) (not slow-mode))
+      (progn
+        (funcall cb)
+        (setq last-build-time (unix-time)))
+      (message "Wait %d seconds for next build..." time-left)))
+
+(defun build-project-a ()
+  (cooldowned-action 'build-project))
+
+(defun run-project-a ()
+  (cooldowned-action 'run-project))
+
+(global-set-key (kbd "<f5>") (lambda () (interactive) (build-project-a)))
+(global-set-key (kbd "<f6>") (lambda () (interactive) (run-project-a)))
+(global-set-key (kbd "<f7>") 'compile)
+
+;; Compilation mode add clang-cl (worst regex ever) (https://regex101.com/r/Qn5liy/1)
+;;(setq clang-cl-regex "/(^.+?(?=\\())(\\()(.+?(?=,))(,)(.+?(?=))()\\): (error|warning|note)( : )(.+?(?=\\[))/")
+;;(add-to-list 'compilation-error-regexp-alist
+;;             (list clang-cl-regex 1 3 5 7 9))
+
+;; Copyright snippets
+(defun mit-license ()
+  (interactive)
+  (goto-char (point-min))
+  (insert "MIT License\n\n")
+  (insert "Copyright (c) " (format-time-string "%Y") ". Doomhowl Interactive - bramtechs/brambasiel\n\n")
+  (insert "Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the \"Software\"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE."))
+
+(defun add-copyright ()
+  (interactive)
+  (goto-char (point-min))
+  (insert "/*\n")
+  (insert " * Copyright (c) " (format-time-string "%Y") ". Doomhowl Interactive - All Rights Reserved\n")
+  (insert " * Redistribution and use in source and binary forms, with or without modification are not permitted\n")
+  (insert " * without the prior written permission of Doomhowl Interactive.\n")
+  (insert " *\n")
+  (insert " * File created on: " (format-time-string "%d-%m-%Y") "\n")
+  (insert " */\n\n"))
+
+(defun my-cc-mode-setup ()
+  "Custom setup for C/C++ files and headers."
+  (when (and (buffer-file-name)
+             (not (file-exists-p (buffer-file-name)))
+             (or (string-match "\\.\\(c\\|cpp\\|h\\|hpp\\)\\'" (buffer-file-name))))
+    ;; Insert a header if the file is new
+    (add-copyright)
+
+    ;; Move the cursor to the end of the header
+    (goto-char (point-max))
+    (message "Added license text for this file")))
+
+;; Add the function to C and C++ mode hooks
+(add-hook 'c-mode-hook 'my-cc-mode-setup)
+(add-hook 'c++-mode-hook 'my-cc-mode-setup)
 
 (message "Loaded entire config successfully")

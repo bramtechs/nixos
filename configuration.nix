@@ -23,7 +23,7 @@ in
 
   # compilation cache
   programs.ccache.enable = true;
-  
+
   # Enable touchpad support (enabled default in most desktopManager).
   services.libinput.enable = true;
   services.xserver = {
@@ -62,9 +62,9 @@ in
   };
 
   home-manager.users.bram = { config, lib, pkgs, ... }: {
-    imports = [ 
+    imports = [
       ./bram-emacs.nix
-      ./bram-git.nix 
+      ./bram-git.nix
       ./bram.nix
       ./bram-nvim.nix
       ./bram-vscode.nix
@@ -86,8 +86,8 @@ in
     networkmanager.enable = true;
     wireless.enable = false;
     extraHosts = ''
-      192.168.0.149 nas
-      16.0.0.100    doomhowl.local
+      192.168.0.149     nas
+      192.168.0.214     doomhowl.local
     '' + (if builtins.pathExists private_hosts_file then builtins.readFile private_hosts_file else "");
   };
 

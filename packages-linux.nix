@@ -39,5 +39,7 @@
         rustfmt
         haxe
         inetutils
+        feh
+        sloccount
     ];
 }

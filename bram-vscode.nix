@@ -14,9 +14,6 @@ let
       jnoortheen.nix-ide
       jdinhlife.gruvbox
       esbenp.prettier-vscode
-      ms-vscode.cpptools
-      ms-vscode.cmake-tools
-      vadimcn.vscode-lldb
       ms-python.python
       ms-vscode-remote.remote-ssh
       leonardssh.vscord
@@ -28,7 +25,6 @@ let
       christian-kohler.path-intellisense
       wayou.vscode-todo-highlight
       gruntfuggly.todo-tree
-      usernamehw.errorlens
       benszabo.hotline-vice
       maarti.jenkins-doc
   ];
@@ -44,6 +40,7 @@ in
       "workbench.colorTheme"="Hotline Vice";
       "editor.minimap.enabled" = false;
       "editor.lineNumbers" = "off";
+      "editor.formatOnSave"=true;
       "window.zoomLevel" = 1;
       "security.workspace.trust.enabled" = false;
       "git.openRepositoryInParentFolders" = "always";
@@ -62,6 +59,7 @@ in
       "[javascript]" = {
         "editor.defaultFormatter"= "esbenp.prettier-vscode";
       };
+      "editor.defaultFormatter"= "esbenp.prettier-vscode";
     };
     extensions = extensionsList;
   };
