@@ -89,6 +89,7 @@ in
     extraHosts = ''
       192.168.0.149     nas
       192.168.0.214     doomhowl.local
+      192.168.192.157   doomhowl.global
     '' + (if builtins.pathExists private_hosts_file then builtins.readFile private_hosts_file else "");
   };
 
