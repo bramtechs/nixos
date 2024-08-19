@@ -14,6 +14,7 @@
 
     tpm2-tools
     tpm2-tss
+    lm_sensors
 
     flameshot
 
