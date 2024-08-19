@@ -9,6 +9,7 @@
     ./gitea.nix
     ./jenkins.nix
     ./mount-nas-server.nix
+    ../../zerotier.nix
   ];
 
   nixpkgs.config.allowUnfree = true;
