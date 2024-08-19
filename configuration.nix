@@ -6,6 +6,7 @@ in
 {
   imports = [
     (import ./modules.nix {}).home-manager
+    ../zerotier.nix
   ];
 
   nixpkgs.config.allowUnfree = true;
