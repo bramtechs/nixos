@@ -113,9 +113,7 @@
 
 (defun dark-mode ()
   (interactive)
-  (load-theme 'jetbrains-darcula t)
-  ;;(load-theme 'custom-emacs t)
-  )
+  (load-theme 'custom-emacs t))
 
 (defun light-mode ()
   (interactive)

@@ -11,6 +11,7 @@
     gnome.gnome-clocks
     gnome.ghex
     gnome.gnome-disk-utility
+    baobab
 
     tpm2-tools
     tpm2-tss
