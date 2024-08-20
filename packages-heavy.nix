@@ -1,14 +1,20 @@
-{ pkgs, ... }:
+{ ... }:
 
 let
-  unstable = import(pkgs.fetchFromGitHub {
+  unstable = import (pkgs.fetchFromGitHub {
     owner = "NixOS";
     repo = "nixpkgs";
     rev = "fa4b81d8e9ad1f7b35c9f2cdb41318e3487eaf9a";
     hash = "sha256-oXeiqYtpuGiNCIFJ0TNP1YWtPCLoENXknh90ztBmlCE=";
-  }) { config = { allowUnfree = true; };};
-in
-{
+  }) { config = { allowUnfree = true; }; };
+
+  pkgs = import <nixpkgs> {
+    config = {
+      permittedInsecurePackages = [ "pulsar-1.117.0" ];
+      allowUnfree = true;
+    };
+  };
+in {
   # system packages
   environment.systemPackages = with pkgs; [
     vmware-workstation
@@ -29,6 +35,7 @@ in
     dbeaver-bin
     obs-studio
     nodejs
+    pulsar
 
     rustc
     cargo

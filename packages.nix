@@ -1,9 +1,7 @@
 { pkgs, ... }:
 
-let
-  doom = import (import ./modules.nix {}).doomhowl {};
-in
-{
+let doom = import (import ./modules.nix { }).doomhowl { };
+in {
   # unfree
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.allowUnfreePredicate = (_: true);
@@ -57,6 +55,7 @@ in
     emacs29-gtk3
     scrot
     nil # nix lsp
+    nixfmt-classic
     tree
 
     # custom packages
@@ -69,5 +68,5 @@ in
     # for compilers as installing
     # clang in here will cause weird
     # linking issues
-   ];
+  ];
 }
