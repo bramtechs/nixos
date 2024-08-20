@@ -1,6 +1,6 @@
 { config, pkgs, ... }: {
   imports = [
-    (import ../modules.nix {}).home-manager
+    (import ../modules.nix { }).home-manager
 
     (fetchTarball
       "https://github.com/nix-community/nixos-vscode-server/tarball/master")
@@ -94,11 +94,7 @@
   home-manager.users.server = { config, lib, pkgs, ... }: {
     nixpkgs.config.allowUnfree = true;
     nixpkgs.config.allowUnfreePredicate = _: true;
-    imports = [
-      ../bram-git.nix
-      ../bram-vscode.nix
-      ../bram-nvim.nix
-    ];
+    imports = [ ../bram-git.nix ../bram-vscode.nix ../bram-nvim.nix ];
     home.stateVersion = "24.05";
   };
 
@@ -116,4 +112,10 @@
   networking.firewall.enable = true;
 
   system.fsPackages = [ pkgs.sshfs ];
+
+  fileSystems."/mnt/extra" = {
+    device = "/dev/disk/by-partlabel/extra";
+    fsType = "ext4";
+    options = [ "nofail" ];
+  };
 }
