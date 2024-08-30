@@ -153,6 +153,7 @@
 
 ;; auto kill process when recompiling
 (setq compilation-always-kill t)
+(setq compilation-scroll-output t)
 
 (defun edit-config ()
   (find-file

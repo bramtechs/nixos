@@ -2,12 +2,13 @@
 
 let
   private_hosts_file = ./private_hosts;
-in
-{
-  imports = [
-    (import ./modules.nix {}).home-manager
-    ../zerotier.nix
-  ];
+  zerotier_file = ../zerotier.nix;
+in {
+  imports = [ (import ./modules.nix { }).home-manager ]
+    ++ (if builtins.pathExists zerotier_file then
+      [ (import zerotier_file) ]
+    else
+      [ ]);
 
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.allowUnfreePredicate = _: true;
@@ -90,13 +91,18 @@ in
       192.168.0.149     nas
       192.168.0.214     doomhowl.local
       192.168.192.157   doomhowl.global
-    '' + (if builtins.pathExists private_hosts_file then builtins.readFile private_hosts_file else "");
+    '' + (if builtins.pathExists private_hosts_file then
+      builtins.readFile private_hosts_file
+    else
+      "");
   };
 
   programs.steam = {
     enable = true;
-    remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
-    dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+    remotePlay.openFirewall =
+      true; # Open ports in the firewall for Steam Remote Play
+    dedicatedServer.openFirewall =
+      true; # Open ports in the firewall for Source Dedicated Server
   };
 
   programs = {
@@ -105,9 +111,7 @@ in
     dconf.enable = true;
   };
 
-  services.udev.packages = [
-    pkgs.android-udev-rules
-  ];
+  services.udev.packages = [ pkgs.android-udev-rules ];
 
   # Open ports in the firewall.
   networking.firewall.allowedTCPPorts = [ 22 3000 ];
@@ -116,4 +120,3 @@ in
 
   system.fsPackages = [ pkgs.sshfs ];
 }
-

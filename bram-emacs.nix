@@ -43,6 +43,7 @@ in
       epkgs.multiple-cursors
       epkgs.magit
       epkgs.copilot
+      epkgs.kotlin-mode
 
       # distractions
       epkgs.elcord
