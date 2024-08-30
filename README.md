@@ -12,4 +12,4 @@
 
 ## Disclaimer
 Hardcoded for my user, not intended as a template.<br/>
-Some Nix code is sloppily written as I don't know the language enough.
+Some code is sloppily written as I don't know the language that well yet.
