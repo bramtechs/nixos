@@ -8,8 +8,8 @@
     ./packages.nix
     ./gitea.nix
     ./jenkins.nix
-    ./mount-nas-server.nix
-    ./adguard.nix
+    #./mount-nas-server.nix
+    #./adguard.nix
     ../../zerotier.nix
   ];
 
@@ -53,9 +53,7 @@
     };
   };
 
-  virtualisation = {
-    docker.enable = true;
-  };
+  virtualisation = { docker.enable = true; };
 
   console = { keyMap = "us"; };
 
