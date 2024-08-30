@@ -203,7 +203,7 @@
 (global-set-key (kbd "C-x RET") 'copilot-accept-completion)
 
 ;; TODO FIX: shitty discord changed their layout without any reason
-(when 'f
+(when nil
   ;; elcord (larp-mode)
   (elcord-mode)
   (setq elcord-icon-base '"https://raw.githubusercontent.com/bramtechs/elcord/own/icons/")
