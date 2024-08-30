@@ -116,6 +116,6 @@
   fileSystems."/mnt/extra" = {
     device = "/dev/disk/by-partlabel/extra";
     fsType = "ext4";
-    options = [ "nofail" ];
+    options = [ "nofail" "users" ];
   };
 }
