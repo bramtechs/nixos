@@ -9,6 +9,7 @@
     ./gitea.nix
     ./jenkins.nix
     ./mount-nas-server.nix
+    ./adguard.nix
     ../../zerotier.nix
   ];
 
@@ -108,7 +109,7 @@
   services.vscode-server.enable = true;
 
   networking.firewall.allowedTCPPorts = [ 22 80 443 8006 3389 ];
-  networking.firewall.allowedUDPPorts = [ 3389 ];
+  networking.firewall.allowedUDPPorts = [ 3389 53 ];
   networking.firewall.enable = true;
 
   system.fsPackages = [ pkgs.sshfs ];
