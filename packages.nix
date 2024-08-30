@@ -60,6 +60,7 @@ in {
 
     # custom packages
     doom.raylib
+    doom.wolfpack
     cmake
     gdb
     lldb

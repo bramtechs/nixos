@@ -202,23 +202,25 @@
 (global-set-key (kbd "C-x <tab>") 'copilot-accept-completion)
 (global-set-key (kbd "C-x RET") 'copilot-accept-completion)
 
-;; elcord (larp-mode)
-(elcord-mode)
-(setq elcord-icon-base '"https://raw.githubusercontent.com/bramtechs/elcord/own/icons/")
-(setq elcord-mode-icon-alist (append elcord-mode-icon-alist
-                                     '((janet-mode . "janet-mode_icon")
-                                       (asm-mode . "assembly-mode_icon")
-                                       (nasm-mode . "assembly-mode_icon")
-                                       (d-mode . "d-mode_icon"))))
+;; TODO FIX: shitty discord changed their layout without any reason
+(when 'f
+  ;; elcord (larp-mode)
+  (elcord-mode)
+  (setq elcord-icon-base '"https://raw.githubusercontent.com/bramtechs/elcord/own/icons/")
+  (setq elcord-mode-icon-alist (append elcord-mode-icon-alist
+                                       '((janet-mode . "janet-mode_icon")
+                                         (asm-mode . "assembly-mode_icon")
+                                         (nasm-mode . "assembly-mode_icon")
+                                         (d-mode . "d-mode_icon"))))
 
-(setq elcord-display-elapsed nil)
-(setq elcord-quiet 't)
-(setq elcord-refresh-rate 12)
-(setq elcord-idle-message "Howling at the moon...")
+  (setq elcord-display-elapsed nil)
+  (setq elcord-quiet 't)
+  (setq elcord-refresh-rate 12)
+  (setq elcord-idle-message "Howling at the moon...")
 
-(defun elcord--editor-icon ()
-  "The icon to use to represent the current editor."
-  "https://raw.githubusercontent.com/bramtechs/nixos-config/main/misc/icon-invert-skew.png")
+  (defun elcord--editor-icon ()
+    "The icon to use to represent the current editor."
+    "https://raw.githubusercontent.com/bramtechs/nixos-config/main/misc/icon-invert-skew.png"))
 
 ;; autocomplete word
 (global-unset-key (kbd "C-SPC"))
