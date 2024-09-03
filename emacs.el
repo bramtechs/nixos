@@ -213,7 +213,7 @@
 
 (defun elcord--editor-icon ()
   "The icon to use to represent the current editor."
-  "https://raw.githubusercontent.com/bramtechs/nixos/8e7dcf5dcd54dac46477734d5d18bfab39ace48d/misc/icon-invert-skew.png")
+  "https://raw.githubusercontent.com/bramtechs/nixos/main/misc/icon-invert-skew.png")
 
 ;; autocomplete word
 (global-unset-key (kbd "C-SPC"))
