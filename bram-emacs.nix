@@ -44,6 +44,7 @@ in
       epkgs.magit
       epkgs.copilot
       epkgs.kotlin-mode
+      epkgs.dockerfile-mode
 
       # distractions
       epkgs.elcord
