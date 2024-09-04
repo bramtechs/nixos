@@ -34,10 +34,6 @@ in {
     git
     neovim
     tmux
-    cmake
-    gcc
-    php83
-    php83Packages.composer
     spotdl
     wget
     curl
@@ -52,14 +48,12 @@ in {
     cmus
     rclone
     dos2unix
-    emacs29-gtk3
     scrot
     nil # nix lsp
     nixfmt-classic
     tree
 
     # custom packages
-    doom.raylib
     doom.wolfpack
     cmake
     gdb

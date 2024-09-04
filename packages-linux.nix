@@ -12,13 +12,8 @@
     gnome.ghex
     gnome.gnome-disk-utility
     baobab
-
-    tpm2-tools
-    tpm2-tss
     lm_sensors
-
     flameshot
-
     mission-center
     adapta-gtk-theme
     ubuntu_font_family
@@ -27,19 +22,11 @@
     xterm
     pavucontrol
     lxappearance
-
     acpi
     libnotify
     xclip
-    gdb
-    dmd
-    gf
     iotop
     playerctl
-    rustc
-    cargo
-    rustfmt
-    haxe
     inetutils
     feh
     sloccount
