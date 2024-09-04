@@ -42,7 +42,9 @@
 ;; nowrap
 (set-default 'truncate-lines t)
 
-(set-frame-font "Fira Mono Medium 12" nil t)
+(if (eq system-type 'darwing)
+    (set-frame-font "Fira Mono Medium 16" nil t)
+  (set-frame-font "Fira Mono Medium 12" nil t))
 
 ;; reduce some friction
 (setq use-short-answers t)
