@@ -7,6 +7,7 @@
 
     ./packages.nix
     ./gitea.nix
+    ./filebrowser.nix
     ./jenkins.nix
     #./mount-nas-server.nix
     ../../zerotier.nix
@@ -81,7 +82,7 @@
   services.openssh = {
     enable = true;
     settings = {
-      PasswordAuthentication = false;
+      PasswordAuthentication = true;
       PermitRootLogin = "no";
     };
   };
