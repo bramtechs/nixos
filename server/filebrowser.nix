@@ -4,7 +4,7 @@
   services.cron = {
     enable = true;
     systemCronJobs = [
-      "@reboot      server    ${pkgs.filebrowser}/bin/filebrowser --config /home/server/nixos/server/filebrowser.json"
+      "@reboot      server    ${pkgs.filebrowser}/bin/filebrowser --config /home/server/dev/nixos/server/filebrowser.json"
     ];
   };
 
