@@ -34,6 +34,9 @@
 ;; performance tweaks
 (setq inhibit-double-buffering t)
 
+;; always be up to date
+(global-auto-revert-mode 't)
+
 ;; show clock
 (setq display-time-day-and-date t
    display-time-24hr-format t)
@@ -116,6 +119,7 @@
 (defun dark-mode ()
   (interactive)
   (load-theme 'custom-emacs t))
+  ;;(load-theme 'jetbrains-darcula t))
 
 (defun light-mode ()
   (interactive)
