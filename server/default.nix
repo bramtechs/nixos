@@ -7,6 +7,7 @@
 
     ./packages.nix
     ./gitea.nix
+    ./filebrowser.nix
     ./jenkins.nix
     #./mount-nas-server.nix
     ../../zerotier.nix
@@ -81,14 +82,14 @@
   services.openssh = {
     enable = true;
     settings = {
-      PasswordAuthentication = false;
+      PasswordAuthentication = true;
       PermitRootLogin = "no";
     };
   };
   services.vscode-server.enable = true;
 
-  networking.firewall.allowedTCPPorts = [ 22 80 443 8006 3389 3000 ];
-  networking.firewall.allowedUDPPorts = [ 3389 53 ];
+  networking.firewall.allowedTCPPorts = [ 22 80 443 8006 3389 3000 9000 6881 ];
+  networking.firewall.allowedUDPPorts = [ 3389 53 9000 6881 ];
   networking.firewall.enable = true;
 
   system.fsPackages = [ pkgs.sshfs ];
