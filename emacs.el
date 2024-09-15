@@ -153,6 +153,10 @@
 (setq compilation-ask-about-save nil)
 (setq grep-save-buffers t)
 
+;; cursed mode to fix scrolling with laptop touchpads
+;; almost makes emacs feel like a modern editor
+(pixel-scroll-precision-mode t)
+
 ;; auto kill process when recompiling
 (setq compilation-always-kill t)
 (setq compilation-scroll-output t)
