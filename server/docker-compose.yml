@@ -3,8 +3,8 @@ services:
     image: lscr.io/linuxserver/qbittorrent:latest
     container_name: qbittorrent
     environment:
-      - PUID=1000
-      - PGID=1000
+      - PUID=1001
+      - PGID=100
       - TZ=Etc/UTC
       - WEBUI_PORT=9000
       - TORRENTING_PORT=6881

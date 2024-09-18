@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+pushd $(dirname $0)
+
+sudo mkdir -p /var/www/doomhowl.local
+sudo rsync -a --progress --progress www/* /var/www/doomhowl.local
+
+popd
