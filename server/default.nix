@@ -10,6 +10,7 @@
     ./filebrowser.nix
     ./jenkins.nix
     ./nginx.nix
+    ./samba.nix
     #./mount-nas-server.nix
     ../../zerotier.nix
   ];
