@@ -240,6 +240,9 @@
 (global-unset-key "\C-x\C-z")
 (put 'suspend-frame 'disabled t)
 
+;; stop fat-fingering quit shortcut
+(global-unset-key "\C-x\C-c")
+
 ;; build and run keys
 ;; Windows
 

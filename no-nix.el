@@ -3,7 +3,7 @@
                      jetbrains-darcula-theme
                      obsidian-theme
                      oblivion-theme
-                     
+
                      ;; language modes
                      janet-mode
                      lua-mode
@@ -23,6 +23,7 @@
                      cmake-mode
                      pdf-tools
                      koopa-mode
+                     kotlin-mode
 
                      magit
                      hl-todo
@@ -37,7 +38,7 @@
                      editorconfig
                      jsonrpc
                      quelpa
-                         
+
                      ;; distractions
                      bongo
                      vlc
@@ -52,7 +53,7 @@
 
 (package-initialize)
 
-;; fetch the list of packages available 
+;; fetch the list of packages available
 (unless package-archive-contents
   (package-refresh-contents))
 
