@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+rsync -a --progress /var/lib/gitea /mnt/extra/backup
+rsync -a --progress /var/lib/jenkins /mnt/extra/backup
+rsync -a --progress /var/lib/qbittorrent /mnt/extra/backup

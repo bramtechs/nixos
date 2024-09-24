@@ -29,10 +29,6 @@
   services.gitea = {
     enable = true;
     appName = "Doomhowl Interactive";
-    dump = {
-      enable = true;
-      interval = "16:00";
-    };
     settings = {
         webhook = {
           ALLOWED_HOST_LIST = "*";

@@ -101,4 +101,12 @@
     fsType = "ext4";
     options = [ "nofail" "users" ];
   };
+
+  # run backup script often
+  services.cron = {
+    enable = true;
+    systemCronJobs = [
+      "0 */3 * * *     root    ${pkgs.bash}/bin/bash ${builtins.toString ./backup}"
+    ];
+  };
 }
