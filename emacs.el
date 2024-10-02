@@ -45,7 +45,7 @@
 ;; nowrap
 (set-default 'truncate-lines t)
 
-(if (eq system-type 'darwing)
+(if (eq system-type 'darwin)
     (set-frame-font "Fira Mono Medium 16" nil t)
   (set-frame-font "Fira Mono Medium 12" nil t))
 
