@@ -134,6 +134,9 @@
 
 (add-hook 'c++-mode-hook 'my-c++-mode-hook)
 
+(setq c-doc-comment-style '((c-mode . gtkdoc)
+                            (c++-mode . doxygen)))
+
 ;; auto remove trailing whitespace
 (add-hook 'before-save-hook 'my-prog-nuke-trailing-whitespace)
 
@@ -240,6 +243,43 @@
 
 ;; stop fat-fingering quit shortcut
 (global-unset-key "\C-x\C-c")
+
+;; Open week planning file
+(defun get-icloud-folder ()
+  (if (eq system-type 'windows-nt)
+      "~/../../iCloudDrive"
+    (throw "error" "not implemented")))
+
+(defun week-planning ()
+  (interactive)
+  (let* ((year (format-time-string "%Y" (current-time)))
+         (week (format-time-string "%V" (current-time)))
+         (file (concat (get-icloud-folder) "/planning/" year "/week-" week ".md")))
+    (find-file file)))
+
+(global-set-key (kbd "<f8>") 'week-planning)
+
+(defun get-date-for-day (target-day)
+  "Return the date of the TARGET-DAY for the current week.
+TARGET-DAY should be an integer from 1 (Monday) to 7 (Sunday)."
+  (let* ((current-time (decode-time (current-time)))
+         (current-day (nth 6 current-time))  ;; Day of the week, 0 = Sunday, 1 = Monday, ..., 6 = Saturday
+         (current-day-iso (if (= current-day 0) 7 current-day))  ;; Convert Emacs day (0=Sun) to ISO (7=Sun)
+         (days-to-target (- target-day current-day-iso))  ;; Calculate days difference
+         (target-date (time-add (current-time) (days-to-time days-to-target))))  ;; Add/subtract days
+    (format-time-string "%Y-%m-%d" target-date)))
+
+(defun new-week ()
+  (interactive)
+  (goto-char (point-min))
+  ;; Insert each day of the week manually
+  (insert (concat "# Monday (" (get-date-for-day 1) ")\n\n"))
+  (insert (concat "# Tuesday (" (get-date-for-day 2) ")\n\n"))
+  (insert (concat "# Wednesday (" (get-date-for-day 3) ")\n\n"))
+  (insert (concat "# Thursday (" (get-date-for-day 4) ")\n\n"))
+  (insert (concat "# Friday (" (get-date-for-day 5) ")\n\n"))
+  (insert (concat "# Saturday (" (get-date-for-day 6) ")\n\n"))
+  (insert (concat "# Sunday (" (get-date-for-day 7) ")\n\n")))
 
 ;; build and run keys
 ;; Windows
