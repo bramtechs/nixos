@@ -226,8 +226,6 @@
   "https://raw.githubusercontent.com/bramtechs/nixos/main/misc/icon-invert-skew.png")
 
 ;; autocomplete word
-(global-unset-key (kbd "C-SPC"))
-(global-set-key (kbd "C-SPC") 'dabbrev-expand)
 (global-set-key (kbd "C-<tab>") 'dabbrev-expand)
 
 (setq compilation-error-regexp-alist
