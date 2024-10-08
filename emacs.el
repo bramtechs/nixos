@@ -426,7 +426,7 @@ SOFTWARE."))
   "Custom setup for C/C++ files and headers."
   (when (and (buffer-file-name)
              (not (file-exists-p (buffer-file-name)))
-             (or (string-match "\\.\\(c\\|cpp\\|h\\|hpp\\)\\'" (buffer-file-name))))
+             (or (string-match "\\.\\(c\\|cpp\\|h\\|hpp\\|cc\\|hh\\)\\'" (buffer-file-name))))
     ;; Insert a header if the file is new
     (add-copyright)
 
