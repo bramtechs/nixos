@@ -45,9 +45,15 @@
 ;; nowrap
 (set-default 'truncate-lines t)
 
+;; configure text font and size
+(defun set-font-size (size)
+  "Apply default font with specified size"
+  (interactive "nEnter font size:")
+  (set-frame-font (concat "Fira Mono Medium " (number-to-string size)) nil t))
+
 (if (eq system-type 'darwin)
-    (set-frame-font "Fira Mono Medium 16" nil t)
-  (set-frame-font "Fira Mono Medium 12" nil t))
+    (set-font-size 16)
+  (set-font-size 12))
 
 ;; reduce some friction
 (setq use-short-answers t)
