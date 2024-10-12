@@ -22,6 +22,18 @@
     ;; install packages manually when not using nix
     (load-file "no-nix.el"))
 
+;; save emacs sessions
+(defun save-session ()
+  (interactive)
+  (desktop-save-in-desktop-dir))
+
+(defun load-session ()
+  (interactive)
+  (desktop-read))
+
+(add-hook 'kill-emacs-hook
+          (lambda () (save-session)))
+
 ;; make emacs shut up
 (setq ring-bell-function 'ignore)
 (setq set-message-beep 'silent)
