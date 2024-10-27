@@ -31,6 +31,10 @@
 (setq tab-width 4)
 (setq indent-line-function 'insert-tab)
 
+;; Use MYSYS find command over the Windows one which doesn't work
+(if (eq system-type 'windows-nt)
+    (setq find-program "C:\\msys64\\usr\\bin\\find.exe"))
+
 ;; performance tweaks
 (setq inhibit-double-buffering t)
 
