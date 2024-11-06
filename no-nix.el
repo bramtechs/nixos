@@ -3,6 +3,8 @@
                      jetbrains-darcula-theme
                      obsidian-theme
                      oblivion-theme
+                     github-dark-vscode-theme
+                     autothemer
 
                      ;; language modes
                      janet-mode

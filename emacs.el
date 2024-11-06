@@ -122,18 +122,24 @@
 (add-to-list 'auto-mode-alist '("\\.frag\\'" . shader-mode))
 
 ;; set theme
+(load-file "github-dark-dimmed-theme.el")
+(load-file "github-light-theme.el")
+(load-file "github-dark-theme.el")
+
 (add-to-list 'custom-theme-load-path "~/dev/nixos/")
 (add-to-list 'custom-theme-load-path "/mnt/c/dev/nixos/") ;; wsl
 (add-to-list 'custom-theme-load-path "C:/dev/nixos/") ;; windows
 
 (defun dark-mode ()
   (interactive)
-  (load-theme 'custom-emacs t))
-  ;;(load-theme 'jetbrains-darcula t))
+  ;;(load-theme 'custom-emacs t))
+  ;;(load-theme 'github-dark t))
+  (load-theme 'jetbrains-darcula t))
 
 (defun light-mode ()
   (interactive)
-  (load-theme 'leuven t))
+  (load-theme 'github-light t))
+  ;;(load-theme 'leuven t))
 
 (dark-mode)
 
@@ -423,6 +429,16 @@ SOFTWARE."))
   (insert " * Redistribution and use in source and binary forms, with or without modification are not permitted\n")
   (insert " * without the prior written permission of Doomhowl Interactive.\n")
   (insert " *\n")
+  (insert " * File created on: " (format-time-string "%d-%m-%Y") "\n")
+  (insert " */\n\n"))
+
+(defun add-copyright-mit ()
+  (interactive)
+  (goto-char (point-min))
+  (insert "/*\n")
+  (insert " * Copyright (c) " (format-time-string "%Y") ". Doomhowl Interactive - bramtechs/brambasiel\n")
+  (insert " * MIT License. Absolutely no warranty.\n")
+  (insert " * \n")
   (insert " * File created on: " (format-time-string "%d-%m-%Y") "\n")
   (insert " */\n\n"))
 
