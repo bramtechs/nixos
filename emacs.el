@@ -149,6 +149,7 @@
   (c-set-offset 'innamespace 0))
 
 (add-hook 'c++-mode-hook 'my-c++-mode-hook)
+(add-hook 'c-mode-hook 'my-c++-mode-hook)
 
 (setq c-doc-comment-style '((c-mode . gtkdoc)
                             (c++-mode . doxygen)))
