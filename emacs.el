@@ -57,7 +57,7 @@
 
 (if (eq system-type 'darwin)
     (set-font-size 16)
-  (set-font-size 12))
+  (set-font-size 13))
 
 ;; reduce some friction
 (setq use-short-answers t)
@@ -133,8 +133,8 @@
 (defun dark-mode ()
   (interactive)
   ;;(load-theme 'custom-emacs t))
-  ;;(load-theme 'github-dark t))
-  (load-theme 'jetbrains-darcula t))
+  (load-theme 'github-dark t))
+  ;;(load-theme 'jetbrains-darcula t))
 
 (defun light-mode ()
   (interactive)
