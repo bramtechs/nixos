@@ -52,7 +52,7 @@
 ;; configure text font and size
 (defun set-font-size (size)
   "Apply default font with specified size"
-  (interactive "nEnter font size:")
+  (interactive "nEnter font size: ")
   (set-frame-font (concat "Fira Mono Medium " (number-to-string size)) nil t))
 
 (if (eq system-type 'darwin)
@@ -141,7 +141,13 @@
   (load-theme 'github-light t))
   ;;(load-theme 'leuven t))
 
-(dark-mode)
+(defun no-fruit-salad ()
+  (interactive)
+  (load-file "eziam-themes.el")
+  (load-theme 'eziam-dark t))
+
+;;(dark-mode)
+(no-fruit-salad)
 
 ;; c-style language formatting
 (defun my-c++-mode-hook ()
