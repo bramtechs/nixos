@@ -146,8 +146,8 @@
   (load-file "eziam-themes.el")
   (load-theme 'eziam-dark t))
 
-;;(dark-mode)
-(no-fruit-salad)
+(dark-mode)
+;;(no-fruit-salad)
 
 ;; c-style language formatting
 (defun my-c++-mode-hook ()
@@ -456,6 +456,14 @@ SOFTWARE."))
              (or (string-match "\\.\\(c\\|cpp\\|h\\|hpp\\|cc\\|hh\\)\\'" (buffer-file-name))))
     ;; Insert a header if the file is new
     (add-copyright)
+
+    ;; check if header add pragma once
+    (if (string-match "\\.\\(h\\|hpp\\|hh\\)\\'" (buffer-file-name))
+        (insert "#pragma once\n\n"))
+
+    ;; Check if not C file, but C++
+    (if (string-match "\\.\\(cpp\\|hpp\\|cc\\|hh\\)\\'" (buffer-file-name))
+      (insert "namespace "))
 
     ;; Move the cursor to the end of the header
     (goto-char (point-max))
