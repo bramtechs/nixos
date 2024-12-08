@@ -160,6 +160,9 @@
 (setq c-doc-comment-style '((c-mode . gtkdoc)
                             (c++-mode . doxygen)))
 
+;; fix weird indentation in INI-files
+(add-hook 'conf-mode (lambda (electric-indent-mode nil)))
+
 ;; auto remove trailing whitespace
 (add-hook 'before-save-hook 'my-prog-nuke-trailing-whitespace)
 
