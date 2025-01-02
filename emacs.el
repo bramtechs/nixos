@@ -109,6 +109,10 @@
 
 (global-hl-todo-mode)
 
+(add-to-list 'hl-todo-keyword-faces
+             '("NOCHECKIN"   . "#FFFF00")
+             '("SLOW"   . "#6ea5ff"))
+
 ;; pdf support
 ;; (pdf-tools-install)
 
