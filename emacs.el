@@ -26,6 +26,8 @@
 (setq ring-bell-function 'ignore)
 (setq set-message-beep 'silent)
 
+(gcmh-mode 1)
+
 ;; Tab size is 4 spaces
 (setq-default indent-tabs-mode nil)
 (setq tab-width 4)

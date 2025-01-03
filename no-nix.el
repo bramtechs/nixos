@@ -40,6 +40,7 @@
                      editorconfig
                      jsonrpc
                      quelpa
+                     gcmh
 
                      ;; distractions
                      bongo
