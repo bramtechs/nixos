@@ -246,6 +246,14 @@
   (interactive)
   (mark-whole-buffer))
 
+;; discover (quick way to clone repos)
+(defun discover (repo)
+  (interactive "sRepo: ")
+  (let ((repo-link (if (not (or (string-prefix-p "https://" repo) (string-prefix-p "git@" repo)))
+                       (setq repo-link (concat "git@github.com:" repo ".git")) repo))
+        (output-dir (if (eq system-type 'windows-nt) "C:\\dev\\" "~/dev/")))
+    (magit-clone-regular repo-link output-dir nil)))
+
 ;; map copilot
 (require 'copilot)
 (setq warning-minimum-level :error) ;; hide annoying identation warnings
