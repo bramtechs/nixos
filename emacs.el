@@ -192,9 +192,19 @@
 (setq compilation-ask-about-save nil)
 (setq grep-save-buffers t)
 
+;; lsp-mode
+(when (not (eq system-type 'windows-nt))
+  (message "Activating LSPs")
+  (setq lsp-keymap-prefix "C-l")
+  (require 'lsp-mode)
+  (add-hook 'c++-mode-hook #'lsp)
+  (add-hook 'cmake-mode-hook #'lsp)
+  (add-hook 'javascript-mode-hook #'lsp)
+  (add-hook 'typescript-mode-hook #'lsp))
+
 ;; cursed mode to fix scrolling with laptop touchpads
 ;; almost makes emacs feel like a modern editor
-(pixel-scroll-precision-mode t)
+;; (pixel-scroll-precision-mode t)
 
 ;; auto kill process when recompiling
 (setq compilation-always-kill t)
@@ -483,7 +493,7 @@ SOFTWARE."))
 (add-hook 'c++-mode-hook 'my-cc-mode-setup)
 
 (add-hook 'c-mode-hook 'clang-format-on-save-mode)
-(add-hook 'c++-mode-hook 'clang-format-on-save-mode)
+(add-hook 'c++-mode-hook 'clng-format-on-save-mode)
 
 ;; Associate .inc files with c++-mode
 (add-to-list 'auto-mode-alist '("\\.inc\\'" . c++-mode))

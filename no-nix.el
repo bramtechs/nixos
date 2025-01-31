@@ -26,6 +26,7 @@
                      pdf-tools
                      koopa-mode
                      kotlin-mode
+                     yaml
 
                      magit
                      hl-todo
@@ -35,6 +36,8 @@
                      git
                      rainbow-mode
                      multiple-cursors
+                     lsp-mode
+                     clang-format
 
                      ;; copilot
                      editorconfig
