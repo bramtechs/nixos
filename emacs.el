@@ -501,7 +501,7 @@ SOFTWARE."))
 (add-hook 'c++-mode-hook 'my-cc-mode-setup)
 
 (add-hook 'c-mode-hook 'clang-format-on-save-mode)
-(add-hook 'c++-mode-hook 'clng-format-on-save-mode)
+(add-hook 'c++-mode-hook 'clang-format-on-save-mode)
 
 ;; Associate .inc files with c++-mode
 (add-to-list 'auto-mode-alist '("\\.inc\\'" . c++-mode))
