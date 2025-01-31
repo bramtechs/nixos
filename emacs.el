@@ -155,17 +155,6 @@
 (dark-mode)
 ;;(no-fruit-salad)
 
-;; c-style language formatting
-(defun my-c++-mode-hook ()
-  (c-set-style "stroustrup")
-  (c-set-offset 'innamespace 0))
-
-(add-hook 'c++-mode-hook 'my-c++-mode-hook)
-(add-hook 'c-mode-hook 'my-c++-mode-hook)
-
-(setq c-doc-comment-style '((c-mode . gtkdoc)
-                            (c++-mode . doxygen)))
-
 ;; fix weird indentation in INI-files
 (add-hook 'conf-mode (lambda (electric-indent-mode nil)))
 
@@ -197,7 +186,6 @@
   (message "Activating LSPs")
   (setq lsp-keymap-prefix "C-l")
   (require 'lsp-mode)
-  (add-hook 'c++-mode-hook #'lsp)
   (add-hook 'cmake-mode-hook #'lsp)
   (add-hook 'javascript-mode-hook #'lsp)
   (add-hook 'typescript-mode-hook #'lsp))
@@ -478,6 +466,18 @@ SOFTWARE."))
 
 (defun my-cc-mode-setup ()
   "Custom setup for C/C++ files and headers."
+
+  (c-set-style "stroustrup")
+  (setq c-doc-comment-style '((c-mode . gtkdoc)
+                              (c++-mode . doxygen)))
+
+  (c-set-offset 'innamespace 0)
+
+  (clang-format-on-save-mode t)
+  (if (not (eq system-type 'windows-nt))
+      (lsp-mode t)
+      (lsp-inlay-hint-mode t))
+
   (when (and (buffer-file-name)
              (not (file-exists-p (buffer-file-name)))
              (or (string-match "\\.\\(c\\|cpp\\|h\\|hpp\\|cc\\|hh\\)\\'" (buffer-file-name))))
@@ -499,9 +499,6 @@ SOFTWARE."))
 ;; Add the function to C and C++ mode hooks
 (add-hook 'c-mode-hook 'my-cc-mode-setup)
 (add-hook 'c++-mode-hook 'my-cc-mode-setup)
-
-(add-hook 'c-mode-hook 'clang-format-on-save-mode)
-(add-hook 'c++-mode-hook 'clang-format-on-save-mode)
 
 ;; Associate .inc files with c++-mode
 (add-to-list 'auto-mode-alist '("\\.inc\\'" . c++-mode))
