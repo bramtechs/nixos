@@ -254,6 +254,7 @@
 (setq elcord-mode-icon-alist (append elcord-mode-icon-alist
                                      '((janet-mode . "janet-mode_icon")
                                        (asm-mode . "assembly-mode_icon")
+                                       (objc-mode . "objc-mode_icon")
                                        (nasm-mode . "assembly-mode_icon")
                                        (d-mode . "d-mode_icon"))))
 
@@ -499,6 +500,7 @@ SOFTWARE."))
 ;; Add the function to C and C++ mode hooks
 (add-hook 'c-mode-hook 'my-cc-mode-setup)
 (add-hook 'c++-mode-hook 'my-cc-mode-setup)
+(add-hook 'objc-mode-hook 'my-cc-mode-setup)
 
 ;; Associate .inc files with c++-mode
 (add-to-list 'auto-mode-alist '("\\.inc\\'" . c++-mode))

@@ -26,6 +26,8 @@
                      pdf-tools
                      koopa-mode
                      kotlin-mode
+                     dockerfile-mode
+                     docker-compose-mode
                      yaml
 
                      magit
