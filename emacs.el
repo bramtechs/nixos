@@ -138,8 +138,8 @@
 
 (defun dark-mode ()
   (interactive)
-  ;;(load-theme 'custom-emacs t))
-  (load-theme 'github-dark t))
+  (load-theme 'custom-emacs t))
+  ;;(load-theme 'github-dark t))
   ;;(load-theme 'jetbrains-darcula t))
 
 (defun light-mode ()
@@ -477,7 +477,7 @@ SOFTWARE."))
   (clang-format-on-save-mode t)
   (if (not (eq system-type 'windows-nt))
       (lsp-mode t)
-      (lsp-inlay-hint-mode t))
+      (lsp-inlay-hints-mode t))
 
   (when (and (buffer-file-name)
              (not (file-exists-p (buffer-file-name)))
