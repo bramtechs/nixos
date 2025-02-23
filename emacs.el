@@ -112,8 +112,11 @@
 (global-hl-todo-mode)
 
 (add-to-list 'hl-todo-keyword-faces
-             '("NOCHECKIN"   . "#FFFF00")
+             '("NOCHECKIN"   . "#FFFF00"))
+(add-to-list 'hl-todo-keyword-faces
              '("SLOW"   . "#6ea5ff"))
+(add-to-list 'hl-todo-keyword-faces
+             '("DEPRECATED"   . "#7d7d7d"))
 
 ;; pdf support
 ;; (pdf-tools-install)
@@ -501,6 +504,13 @@ SOFTWARE."))
 (add-hook 'c-mode-hook 'my-cc-mode-setup)
 (add-hook 'c++-mode-hook 'my-cc-mode-setup)
 (add-hook 'objc-mode-hook 'my-cc-mode-setup)
+
+(defun my-d-mode-hook ()
+  "Custom D mode settings."
+  (setq c-basic-offset 4)
+  (c-set-style "stroustrup")) ;; Set indentation level to 4 spaces
+
+(add-hook 'd-mode-hook 'my-d-mode-hook)
 
 ;; Associate .inc files with c++-mode
 (add-to-list 'auto-mode-alist '("\\.inc\\'" . c++-mode))
