@@ -185,13 +185,12 @@
 (setq grep-save-buffers t)
 
 ;; lsp-mode
-(when (not (eq system-type 'windows-nt))
-  (message "Activating LSPs")
-  (setq lsp-keymap-prefix "C-l")
-  (require 'lsp-mode)
-  (add-hook 'cmake-mode-hook #'lsp)
-  (add-hook 'javascript-mode-hook #'lsp)
-  (add-hook 'typescript-mode-hook #'lsp))
+(message "Activating LSPs")
+(setq lsp-keymap-prefix "C-l")
+(require 'lsp-mode)
+(add-hook 'cmake-mode-hook #'lsp)
+(add-hook 'javascript-mode-hook #'lsp)
+(add-hook 'typescript-mode-hook #'lsp)
 
 ;; cursed mode to fix scrolling with laptop touchpads
 ;; almost makes emacs feel like a modern editor
@@ -478,9 +477,8 @@ SOFTWARE."))
   (c-set-offset 'innamespace 0)
 
   (clang-format-on-save-mode t)
-  (if (not (eq system-type 'windows-nt))
-      (lsp-mode t)
-      (lsp-inlay-hints-mode t))
+  (lsp-mode t)
+  (lsp-inlay-hints-mode t)
 
   (when (and (buffer-file-name)
              (not (file-exists-p (buffer-file-name)))
