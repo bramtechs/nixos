@@ -186,8 +186,8 @@
 
 ;; lsp-mode
 (message "Activating LSPs")
-(setq lsp-keymap-prefix "C-l")
 (require 'lsp-mode)
+(setq lsp-keymap-prefix "C-l")
 (add-hook 'cmake-mode-hook #'lsp)
 (add-hook 'javascript-mode-hook #'lsp)
 (add-hook 'typescript-mode-hook #'lsp)
