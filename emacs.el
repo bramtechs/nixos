@@ -7,9 +7,6 @@
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
 
-(if (eq system-type 'windows-nt)
-    (setq no-nix t))
-
 (when (eq system-type 'windows-nt)
   (with-eval-after-load 'grep
     ;; fix grep on windows
@@ -18,9 +15,7 @@
                         "findstr /S /N /D:. /C:<R> <F>")
     (setq find-name-arg nil)))
 
-(if (bound-and-true-p no-nix)
-    ;; install packages manually when not using nix
-    (load-file "no-nix.el"))
+(load-file "no-nix.el")
 
 ;; make emacs shut up
 (setq ring-bell-function 'ignore)
@@ -183,14 +178,6 @@
 ;; save all modified buffers without asking before compilation
 (setq compilation-ask-about-save nil)
 (setq grep-save-buffers t)
-
-;; lsp-mode
-(message "Activating LSPs")
-(require 'lsp-mode)
-(setq lsp-keymap-prefix "C-l")
-(add-hook 'cmake-mode-hook #'lsp)
-(add-hook 'javascript-mode-hook #'lsp)
-(add-hook 'typescript-mode-hook #'lsp)
 
 ;; cursed mode to fix scrolling with laptop touchpads
 ;; almost makes emacs feel like a modern editor
@@ -477,8 +464,6 @@ SOFTWARE."))
   (c-set-offset 'innamespace 0)
 
   (clang-format-on-save-mode t)
-  (lsp-mode t)
-  (lsp-inlay-hints-mode t)
 
   (when (and (buffer-file-name)
              (not (file-exists-p (buffer-file-name)))

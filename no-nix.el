@@ -38,7 +38,6 @@
                      git
                      rainbow-mode
                      multiple-cursors
-                     lsp-mode
                      clang-format
 
                      ;; copilot
@@ -69,10 +68,3 @@
 (dolist (package package-list)
   (unless (package-installed-p package)
     (package-install package)))
-
-;; quelpa packages
-(require 'quelpa)
-(quelpa '(copilot :fetcher github
-                  :repo "copilot-emacs/copilot.el"
-                  :branch "main"
-                  :files ("*.el")))
