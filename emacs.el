@@ -345,7 +345,7 @@ TARGET-DAY should be an integer from 1 (Monday) to 7 (Sunday)."
   (if makefile-folder
       (progn
         (setq makefile (concat makefile-folder "Makefile"))
-        (compile (concat "make -f " makefile " -C " makefile-folder " -b " task))
+        (compile (concat "make -f \'" makefile "\' -C \'" makefile-folder "\' -b " task))
         (message "Makefile %s is being run." makefile))
     (message "No Makefile found.")))
 
