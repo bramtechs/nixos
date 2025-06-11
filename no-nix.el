@@ -1,20 +1,15 @@
 (setq package-list '(
-                     ;; themes
                      jetbrains-darcula-theme
                      obsidian-theme
                      oblivion-theme
                      github-dark-vscode-theme
                      autothemer
-
-                     ;; language modes
-                     janet-mode
                      lua-mode
                      d-mode
                      make-color
                      fsharp-mode
   	             nix-mode
                      markdown-mode
-                     shader-mode
                      shader-mode
                      python-mode
                      php-mode
@@ -29,7 +24,6 @@
                      dockerfile-mode
                      docker-compose-mode
                      yaml
-
                      magit
                      hl-todo
                      aggressive-indent
@@ -39,17 +33,14 @@
                      rainbow-mode
                      multiple-cursors
                      clang-format
-
-                     ;; copilot
+                     lsp-mode
                      editorconfig
                      jsonrpc
                      quelpa
                      gcmh
-
-                     ;; distractions
-                     bongo
-                     vlc
                      elcord
+                     prettier
+                     exec-path-from-shell
                      ))
 
 (setq package-user-dir "~/.emacs.d/packages")
@@ -68,3 +59,7 @@
 (dolist (package package-list)
   (unless (package-installed-p package)
     (package-install package)))
+
+;; ensure shell path is used on MacOS and such
+(when (memq window-system '(mac ns x))
+  (exec-path-from-shell-initialize))
