@@ -113,6 +113,28 @@
 (add-to-list 'hl-todo-keyword-faces
              '("DEPRECATED"   . "#7d7d7d"))
 
+;; Fix MacOS' weird Home and End keys
+(use-package emacs
+  :config
+  (global-set-key (kbd "<home>") 'move-beginning-of-line)
+  (global-set-key (kbd "<end>") 'move-end-of-line)
+  (global-set-key (kbd "S-<home>") (lambda () (interactive)
+                                     (push-mark)
+                                     (move-beginning-of-line)))
+  (global-set-key (kbd "S-<end>") (lambda () (interactive)
+                                    (push-mark)
+                                    (move-end-of-line))))
+
+;; LSP for webdev
+(use-package lsp-mode
+  :init (setq lsp-keymap-prefix "C-l")
+  :ensure t
+  :hook ((js-mode . lsp)
+         (typescript-mode . lsp))
+  :commands lsp)
+
+(global-prettier-mode t)
+
 ;; pdf support
 ;; (pdf-tools-install)
 
