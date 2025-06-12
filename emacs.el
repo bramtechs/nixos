@@ -46,6 +46,8 @@
                         "findstr /S /N /D:. /C:<R> <F>")
     (setq find-name-arg nil)))
 
+(load-file "no-nix.el")
+
 ;; make emacs shut up
 (setq ring-bell-function 'ignore)
 (setq set-message-beep 'silent)
@@ -136,8 +138,33 @@
 (global-hl-todo-mode)
 
 (add-to-list 'hl-todo-keyword-faces
-             '("NOCHECKIN"   . "#FFFF00")
+             '("NOCHECKIN"   . "#FFFF00"))
+(add-to-list 'hl-todo-keyword-faces
              '("SLOW"   . "#6ea5ff"))
+(add-to-list 'hl-todo-keyword-faces
+             '("DEPRECATED"   . "#7d7d7d"))
+
+;; Fix MacOS' weird Home and End keys
+(use-package emacs
+  :config
+  (global-set-key (kbd "<home>") 'move-beginning-of-line)
+  (global-set-key (kbd "<end>") 'move-end-of-line)
+  (global-set-key (kbd "S-<home>") (lambda () (interactive)
+                                     (push-mark)
+                                     (move-beginning-of-line)))
+  (global-set-key (kbd "S-<end>") (lambda () (interactive)
+                                    (push-mark)
+                                    (move-end-of-line))))
+
+;; LSP for webdev
+(use-package lsp-mode
+  :init (setq lsp-keymap-prefix "C-l")
+  :ensure t
+  :hook ((js-mode . lsp)
+         (typescript-mode . lsp))
+  :commands lsp)
+
+(global-prettier-mode t)
 
 ;; pdf support
 ;; (pdf-tools-install)
@@ -204,17 +231,6 @@
 ;; save all modified buffers without asking before compilation
 (setq compilation-ask-about-save nil)
 (setq grep-save-buffers t)
-
-;; lsp-mode
-(when (not (eq system-type 'windows-nt))
-  (message "Activating LSPs")
-  (setq lsp-keymap-prefix "C-l")
-  (require 'lsp-mode)
-  (add-hook 'cmake-mode-hook #'lsp)
-  (add-hook 'javascript-mode-hook #'lsp)
-  (add-hook 'typescript-mode-hook (lambda()
-                                    (lsp)
-                                    (setq lsp-signature-auto-activate nil))))
 
 ;; cursed mode to fix scrolling with laptop touchpads
 ;; almost makes emacs feel like a modern editor
@@ -382,7 +398,7 @@ TARGET-DAY should be an integer from 1 (Monday) to 7 (Sunday)."
   (if makefile-folder
       (progn
         (setq makefile (concat makefile-folder "Makefile"))
-        (compile (concat "make -f " makefile " -C " makefile-folder " -b " task))
+        (compile (concat "make -f \'" makefile "\' -C \'" makefile-folder "\' -b " task))
         (message "Makefile %s is being run." makefile))
     (message "No Makefile found.")))
 
@@ -501,9 +517,6 @@ SOFTWARE."))
   (c-set-offset 'innamespace 0)
 
   (clang-format-on-save-mode t)
-  (if (not (eq system-type 'windows-nt))
-      (lsp-mode t)
-      (lsp-inlay-hints-mode t))
 
   (when (and (buffer-file-name)
              (not (file-exists-p (buffer-file-name)))
@@ -527,6 +540,13 @@ SOFTWARE."))
 (add-hook 'c-mode-hook 'my-cc-mode-setup)
 (add-hook 'c++-mode-hook 'my-cc-mode-setup)
 (add-hook 'objc-mode-hook 'my-cc-mode-setup)
+
+(defun my-d-mode-hook ()
+  "Custom D mode settings."
+  (setq c-basic-offset 4)
+  (c-set-style "stroustrup")) ;; Set indentation level to 4 spaces
+
+(add-hook 'd-mode-hook 'my-d-mode-hook)
 
 ;; Associate .inc files with c++-mode
 (add-to-list 'auto-mode-alist '("\\.inc\\'" . c++-mode))

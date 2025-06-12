@@ -1,58 +1,47 @@
 (setq package-list '(
-                     ;; themes
-                     jetbrains-darcula-theme
-                     obsidian-theme
-                     oblivion-theme
-                     github-dark-vscode-theme
-                     autothemer
-
-                     ;; language modes
-                     janet-mode
-                     lua-mode
-                     d-mode
-                     make-color
-                     fsharp-mode
+		     exwm
+	             auto-complete
   	             nix-mode
-                     markdown-mode
-                     shader-mode
-                     shader-mode
-                     python-mode
-                     php-mode
-                     groovy-mode
-                     typescript-mode
-                     vue-mode
-                     csv-mode
+                     aggressive-indent
+                     autothemer
+                     clang-format
                      cmake-mode
-                     pdf-tools
+                     csv-mode
+                     d-mode
+                     docker-compose-mode
+                     dockerfile-mode
+                     editorconfig
+                     elcord
+                     exec-path-from-shell
+                     fsharp-mode
+                     gcmh
+                     git
+                     github-dark-vscode-theme
+                     groovy-mode
+                     hl-todo
+                     jetbrains-darcula-theme
+                     jsonrpc
                      koopa-mode
                      kotlin-mode
-                     dockerfile-mode
-                     docker-compose-mode
-                     yaml
-
-                     magit
-                     hl-todo
-                     aggressive-indent
-	             auto-complete
-                     markdown-preview-mode
-                     git
-                     rainbow-mode
-                     multiple-cursors
                      lsp-mode
-                     clang-format
-
-                     ;; copilot
-                     editorconfig
-                     jsonrpc
+                     lua-mode
+                     magit
+                     make-color
+                     markdown-mode
+                     markdown-preview-mode
+                     multiple-cursors
+                     oblivion-theme
+                     obsidian-theme
+                     pdf-tools
+                     php-mode
+                     prettier
+                     python-mode
                      quelpa
-                     gcmh
-
-                     ;; distractions
-                     bongo
-                     vlc
-                     elcord
-
-		     exwm
+                     rainbow-mode
+                     shader-mode
+                     typescript-mode
+                     vue-mode
+                     yaml
                      ))
 
 (setq package-user-dir "~/.emacs.d/packages")
@@ -72,9 +61,6 @@
   (unless (package-installed-p package)
     (package-install package)))
 
-;; quelpa packages
-(require 'quelpa)
-(quelpa '(copilot :fetcher github
-                  :repo "copilot-emacs/copilot.el"
-                  :branch "main"
-                  :files ("*.el")))
+;; ensure shell path is used on MacOS and such
+(when (memq window-system '(mac ns x))
+  (exec-path-from-shell-initialize))
