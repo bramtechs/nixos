@@ -51,6 +51,8 @@
                      bongo
                      vlc
                      elcord
+
+		     exwm
                      ))
 
 (setq package-user-dir "~/.emacs.d/packages")

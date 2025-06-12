@@ -10,6 +10,34 @@
 (if (eq system-type 'windows-nt)
     (setq no-nix t))
 
+(if (bound-and-true-p no-nix)
+    ;; install packages manually when not using nix
+    (load-file "no-nix.el"))
+
+(when (bound-and-true-p use-exwm)
+  (require 'exwm)
+  ;; Set the initial workspace number.
+  (setq exwm-workspace-number 4)
+  ;; Make class name the buffer name.
+  (add-hook 'exwm-update-class-hook
+            (lambda () (exwm-workspace-rename-buffer exwm-class-name)))
+  ;; Global keybindings.
+  (setq exwm-input-global-keys
+        `(([?\s-r] . exwm-reset) ;; s-r: Reset (to line-mode).
+          ([?\s-w] . exwm-workspace-switch) ;; s-w: Switch workspace.
+          ([?\s-&] . (lambda (cmd) ;; s-&: Launch application.
+                       (interactive (list (read-shell-command "$ ")))
+                       (start-process-shell-command cmd nil cmd)))
+          ;; s-N: Switch to certain workspace.
+          ,@(mapcar (lambda (i)
+                      `(,(kbd (format "s-%d" i)) .
+                        (lambda ()
+                          (interactive)
+                          (exwm-workspace-switch-create ,i))))
+                    (number-sequence 0 9))))
+  ;; Enable EXWM
+  (exwm-enable))
+
 (when (eq system-type 'windows-nt)
   (with-eval-after-load 'grep
     ;; fix grep on windows
@@ -17,10 +45,6 @@
     (grep-apply-setting 'grep-find-template
                         "findstr /S /N /D:. /C:<R> <F>")
     (setq find-name-arg nil)))
-
-(if (bound-and-true-p no-nix)
-    ;; install packages manually when not using nix
-    (load-file "no-nix.el"))
 
 ;; make emacs shut up
 (setq ring-bell-function 'ignore)
@@ -188,7 +212,9 @@
   (require 'lsp-mode)
   (add-hook 'cmake-mode-hook #'lsp)
   (add-hook 'javascript-mode-hook #'lsp)
-  (add-hook 'typescript-mode-hook #'lsp))
+  (add-hook 'typescript-mode-hook (lambda()
+                                    (lsp)
+                                    (setq lsp-signature-auto-activate nil))))
 
 ;; cursed mode to fix scrolling with laptop touchpads
 ;; almost makes emacs feel like a modern editor
