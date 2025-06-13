@@ -96,6 +96,9 @@
 ;; vscode-like file opening
 (global-set-key (kbd "C-x p") 'project-find-file)
 
+;; turn off dumb auto-indent in config files
+(add-hook 'conf-mode-hook (lambda () (electric-indent-local-mode -1)))
+
 ;; Ctrl x,c,v :: Conflicts with emacs sometimes.
 ;; Workarounds:
 ;; - Press the prefix key twice very quickly (within 0.2 seconds),
@@ -145,17 +148,17 @@
              '("DEPRECATED"   . "#7d7d7d"))
 
 ;; Fix MacOS' weird Home and End keys
-(use-package emacs
-  :config
-  (global-set-key (kbd "<home>") 'move-beginning-of-line)
-  (global-set-key (kbd "<end>") 'move-end-of-line)
-  (global-set-key (kbd "S-<home>") (lambda () (interactive)
-                                     (push-mark)
-                                     (move-beginning-of-line)))
-  (global-set-key (kbd "S-<end>") (lambda () (interactive)
-                                    (push-mark)
-                                    (move-end-of-line))))
-
+(when (eq system-type 'darwin)
+  (use-package emacs
+    :config
+    (global-set-key (kbd "<home>") 'move-beginning-of-line)
+    (global-set-key (kbd "<end>") 'move-end-of-line)
+    (global-set-key (kbd "S-<home>") (lambda () (interactive)
+                                       (push-mark)
+                                       (move-beginning-of-line)))
+    (global-set-key (kbd "S-<end>") (lambda () (interactive)
+                                      (push-mark)
+                                      (move-end-of-line)))))
 ;; LSP for webdev
 (use-package lsp-mode
   :init (setq lsp-keymap-prefix "C-l")
