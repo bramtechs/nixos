@@ -554,4 +554,5 @@ SOFTWARE."))
 ;; Associate .inc files with c++-mode
 (add-to-list 'auto-mode-alist '("\\.inc\\'" . c++-mode))
 
+(load-file "gemini.el")
 (message "Loaded entire config successfully")
